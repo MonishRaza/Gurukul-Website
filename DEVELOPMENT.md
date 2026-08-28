@@ -42,9 +42,13 @@ feedback.html     FormSubmit form (action baked statically)
 404.html          GitHub Pages not-found page
 css/style.css     All styling. Design tokens at :root. Bumped ?v=N everywhere.
 js/site-config.js ★ ALL school data — the only file for content edits
+js/i18n.js        Hindi dictionary (SITE_I18N.hi) + the EN|हिंदी toggle engine
+                  (window.SITE_LANG) — see §4.9
 js/main.js        All behaviour: header/footer build, renderers, scroll effects.
                   ES5-style IIFE, defensive guard on missing config.
 images/logo.png   256×256 circular school badge (from my-content\1-logo)
+_tools\           Node utilities (photo pipeline §4.8, test-announcements.js,
+                  server.js = local static server on port 8931 for §4.5)
 my-content\       USER'S DROP-BOX (never published; not referenced by the site)
   1-logo\           source logo
   2-photos\         2,679 unique JPGs, 17 GB (raw, full-res, staged for curation)
@@ -96,8 +100,12 @@ every deploy that changes CSS/JS/config — school-area connections cache hard.
   --hide-scrollbars "http://localhost:8931/page.html"
 ```
 Local preview server: `node static server` on port **8931** serving the repo
-root (restart if dead; EADDRINUSE means it's already running — use it).
+root (`node _tools\server.js`; restart if dead; EADDRINUSE means it's already
+running — use it).
 PNG pixel inspection / circle-crop / resize via PowerShell `System.Drawing`.
+⚠ `--blink-settings=scriptEnabled=false` fails SILENTLY (exit 0, no PNG) —
+to prove static-first rendering, make a copy of the page with all `<script>`
+tags stripped (regex) and screenshot that instead.
 
 ### 4.6 Git identity & push (this machine)
 ```bash
@@ -140,6 +148,43 @@ Performances"), farewell-2025 (26), events-achievements (18).
 Budget approved by user: 100 MB — do not exceed it. Raw photos never go to
 the repo (§9); full archive stays on Google Drive.
 
+### 4.9 i18n — EN | हिंदी toggle (v9)
+
+English is baked in the HTML (static-first: script-stripped copy still
+renders a complete English site). Hindi lives in `js/i18n.js`
+(`var SITE_I18N = { hi: { … } }`, ~170 dotted keys) applied by
+`window.SITE_LANG`:
+
+- Mark-up hooks: `data-i18n="key"` (textContent), `data-i18n-html="key"`
+  (trusted innerHTML from the author-written dictionary),
+  `data-i18n-aria="key"`, `data-i18n-placeholder="key"`.
+- `SITE_LANG.t(key, fallback, n)` for JS-built strings (main.js helpers
+  `t` / `pick(obj, enKey, hiKey)` / `lang()`); `{n}` is a number token.
+- `set(lang, persist)` → localStorage `gurukul_lang` (try/catch-guarded),
+  sets `<html lang>`, toggles `lang-hi`/`lang-en` classes, fires onChange.
+  `?lang=hi` in the URL overrides (handy for screenshots/sharing).
+- The toggle (`SITE_LANG.mount`) renders into `#lang-slot` inside the
+  **topbar** — never inside `.site-nav`, which scrolls horizontally ≤720px.
+- Repaint on switch: main.js registers an onChange listener that rebuilds
+  header/footer/WhatsApp float + calls the module-level `pageRepaint`
+  (paintHome / repaintGallery). Announcements are cached in
+  `lastAnnouncements` so toggling never re-fetches the sheet.
+- Load order per page: `site-config.js?v=9` (sync) → `i18n.js?v=9 defer` →
+  `main.js?v=9 defer`. Anti-FOUC inline head snippet applies the stored
+  language before first paint.
+- Config additive `*Hi` keys: `schoolNameHi`, `taglineHi`,
+  `whatsapp.messageHi`, `albums[].titleHi/.yearHi`, `youtubeVideos[].titleHi`,
+  `announcements[].textHi` — missing ⇒ English fallback, never breaks.
+- Google Sheet announcements: optional `Text_hi` column (exact lowercase
+  header); parser stores `textHi`, English fallback otherwise.
+- Fonts: `html[lang="hi"]` switches body/headings to `"Poppins",
+  "Nirmala UI", "Noto Sans Devanagari", "Mangal"` (Playfair Display has NO
+  Devanagari) and disables `text-transform` on nav/eyebrow.
+- Deliberately NOT translated: contact `addressLines` (roman postal
+  address), meta descriptions (SEO), FormSubmit `_subject` (English);
+  feedback `<option>`s carry English `value` attributes so the payload is
+  language-independent.
+
 ## 5. Design system — Indian tricolour (v6)
 
 Blurred gradient washes, **never hard stripes**. Tokens in `css/style.css`:
@@ -161,7 +206,7 @@ working. Logo: white border + saffron ring glow on the hero.
 
 1. Edit (usually `js/site-config.js` or a page's HTML).
 2. Bump `?v=N` in all pages if CSS/JS changed.
-3. `node --check js/site-config.js js/main.js` (syntax gate).
+3. `node --check js/site-config.js js/main.js js/i18n.js` (syntax gate).
 4. Screenshot-verify locally on port 8931 (§4.5).
 5. Commit (§4.6), push, poll live markers (§4.7).
 6. User hard-refreshes (Ctrl+F5) to bypass cache.
@@ -177,13 +222,15 @@ working. Logo: white border + saffron ring glow on the hero.
 | 2026-08-28 | Photo drop received: 2,722 files / 18 GB → dedupe analysis (md5 content-level): **43 exact duplicates excluded** → 2,679 unique JPGs / 17 GB, re-verified zero duplicates |
 | v7 | **Real photo gallery live**: 241 curated photos / 64.8 MB across 7 albums (pipeline §4.8); favicon switched from 🎓 emoji to `images/logo.png`; all pages `?v=7` |
 | 2026-08-28 (pm) | **Custom domain live**: gurukulamarpatan.in (BigRock DNS + root `CNAME` file + Enforce HTTPS); FormSubmit activated |
+| v9 | **EN \| हिंदी toggle** in every topbar (i18n engine §4.9; choice remembered per device; `?lang=hi` URL override; announcements sheet `Text_hi` column supported); **gallery** got a "Photo Albums" heading + tab `role="tab"`/`aria-selected` a11y; all pages `?v=9`. Staff demonstration delivered separately (private artifact page + cheat-sheet, NOT site pages — user's explicit instruction) |
 
 ## 8. Known pending items
 
 - [x] **FormSubmit activation** — DONE (2026-08-28): user submitted the test +
       clicked Activate in the email to gurukulamarpatan@gmail.com. The form
       now delivers to the school inbox.
-- [ ] Announcement dates still `"TODO"` in site-config.js.
+- [ ] Announcement dates still `"TODO"` in site-config.js (user approved
+      generic dates).
 - [ ] Optional hero photo (`heroImage` in config — wide school photo).
 - [ ] Testimonials: section auto-hides until REAL entries added (never
       fabricate — no public reviews exist).
@@ -192,7 +239,11 @@ working. Logo: white border + saffron ring glow on the hero.
       2027-08-28 — **auto-renew is ON**, keep it that way.
 - [x] **Google Search Console** — DONE (2026-08-28): domain verified via
       BigRock TXT; sitemap.xml submitted (see §1 and §9).
-- [ ] Announcement dates still `"TODO"` in site-config.js.
+- [x] **Hindi translations** — DONE (v9): full dictionary in `js/i18n.js`.
+      Optional follow-up: user adds a `Text_hi` column to the announcements
+      Google Sheet for Hindi announcements (code already supports it).
+- [ ] Staff demonstration artifact: keep the private artifact page's
+      screenshots in sync if the site's design changes significantly.
 
 ## 9. Account map (all technical accounts — monishamarpatan@gmail.com)
 

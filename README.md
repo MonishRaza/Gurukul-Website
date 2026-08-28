@@ -66,6 +66,24 @@ The gallery, album tabs and lightbox update automatically. Photos are
 lazy-loaded, so even large albums stay fast. Until you add photos, the
 album shows placeholder tiles — visitors never see a broken page.
 
+## Hindi / English language switch
+
+Every page has an **EN | हिंदी** toggle in the top bar. One click switches the
+whole site to Hindi; the visitor's choice is remembered on their device.
+
+- English is the default and lives in the pages themselves — the site is
+  complete even with JavaScript off.
+- All Hindi text lives in **`js/i18n.js`** (the `SITE_I18N.hi` list).
+  To fix or improve a translation, edit the text after the matching key
+  (e.g. `"nav.gallery": "गैलरी"`) and save.
+- New photos/announcements added in `js/site-config.js` show in English until
+  you also add their `*Hi` fields (`titleHi`, `textHi`, …). Everything works
+  fine without them — Hindi visitors simply see the English text for those.
+- **Optional:** the announcements Google Sheet can have a `Text_hi` column
+  (exact header name). Announcements typed there show in Hindi automatically.
+- The contact-page address stays in English letters on purpose — it's a
+  postal address, needed in roman script.
+
 ## The school app (removed)
 
 The school app section was removed from the website on the school's
