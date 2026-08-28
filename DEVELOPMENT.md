@@ -222,7 +222,7 @@ working. Logo: white border + saffron ring glow on the hero.
 | 2026-08-28 | Photo drop received: 2,722 files / 18 GB → dedupe analysis (md5 content-level): **43 exact duplicates excluded** → 2,679 unique JPGs / 17 GB, re-verified zero duplicates |
 | v7 | **Real photo gallery live**: 241 curated photos / 64.8 MB across 7 albums (pipeline §4.8); favicon switched from 🎓 emoji to `images/logo.png`; all pages `?v=7` |
 | 2026-08-28 (pm) | **Custom domain live**: gurukulamarpatan.in (BigRock DNS + root `CNAME` file + Enforce HTTPS); FormSubmit activated |
-| v9 | **EN \| हिंदी toggle** in every topbar (i18n engine §4.9; choice remembered per device; `?lang=hi` URL override; announcements sheet `Text_hi` column supported); **gallery** got a "Photo Albums" heading + tab `role="tab"`/`aria-selected` a11y; all pages `?v=9`. Staff demonstration delivered separately (private artifact page + cheat-sheet, NOT site pages — user's explicit instruction) |
+| v9 | **EN \| हिंदी toggle** in every topbar (i18n engine §4.9; choice remembered per device; `?lang=hi` URL override; announcements sheet `Text_hi` column supported); **gallery** got a "Photo Albums" heading + tab `role="tab"`/`aria-selected` a11y; all pages `?v=9`. Staff demonstration delivered separately as a standalone file — `Gurukul Staff Tour.html` (on the user's Desktop; NOT a repo page, per user's explicit instruction): self-running 10-slide Hindi-first tour with real screenshots embedded as data URIs + printable cheat-sheet (`🖨 प्रिंट करें` button) |
 
 ## 8. Known pending items
 
@@ -242,8 +242,11 @@ working. Logo: white border + saffron ring glow on the hero.
 - [x] **Hindi translations** — DONE (v9): full dictionary in `js/i18n.js`.
       Optional follow-up: user adds a `Text_hi` column to the announcements
       Google Sheet for Hindi announcements (code already supports it).
-- [ ] Staff demonstration artifact: keep the private artifact page's
-      screenshots in sync if the site's design changes significantly.
+- [ ] Staff tour file (`Gurukul Staff Tour.html`, user's Desktop — kept out
+      of the repo on purpose): regenerate its 10 screenshots if the site's
+      design changes significantly. Source + screenshot tooling in
+      `%TEMP%\gurukul-v9\demo\` (regenerable via §4.5 headless captures +
+      System.Drawing crops).
 
 ## 9. Account map (all technical accounts — monishamarpatan@gmail.com)
 
