@@ -1,7 +1,7 @@
 # Gurukul Academy Website — Development Knowledge Base
 
 The complete, concise reference for how this website is built, how to change it,
-and every decision made so far. Last updated: **2026-08-28 (v6 + photo pipeline)**.
+and every decision made so far. Last updated: **2026-08-28 (v7 + custom domain)**.
 
 ---
 
@@ -10,11 +10,12 @@ and every decision made so far. Last updated: **2026-08-28 (v6 + photo pipeline)
 | | |
 |---|---|
 | **School** | Gurukul Academy Higher Secondary School, Satna Road, Gadauli, Amarpatan, District Maihar, MP – 485775. Founded 2013. |
-| **Live site** | https://monishraza.github.io/Gurukul-Website/ |
+| **Live site** | **https://gurukulamarpatan.in** (custom domain, 2026-08-28). Old URL `https://monishraza.github.io/Gurukul-Website/` 301-redirects to it. |
 | **Repo** | https://github.com/MonishRaza/Gurukul-Website (public, `main` branch) |
-| **Hosting** | GitHub Pages — Settings → Pages → Deploy from branch: `main` / `(root)`. Free, HTTPS, always-on. |
+| **Hosting** | GitHub Pages — Settings → Pages → Deploy from branch: `main` / `(root)`. Free, always-on. |
+| **Custom domain** | `gurukulamarpatan.in`, bought from **BigRock** (Order 126752297, expires 2027-08-28, auto-renew ON). DNS at BigRock's default nameservers: 4 A-records `@` → 185.199.108–111.153, CNAME `www` → `monishraza.github.io`. Root `CNAME` file in repo + Enforce HTTPS ON; GitHub auto-issued the SSL cert. |
 | **Stack** | Plain HTML + CSS + JS. **No frameworks, no build step, no npm, no CDN dependencies.** Works offline from a double-click of `index.html`. |
-| **Zero cost** | Hosting free. Feedback form via FormSubmit (free). Maps embed keyless. |
+| **Cost** | Hosting free; only the domain (~₹800/yr at BigRock). Feedback form via FormSubmit (free, **activated 2026-08-28**). Maps embed keyless. |
 
 ## 2. Architecture — the one rule to remember
 
@@ -174,6 +175,7 @@ working. Logo: white border + saffron ring glow on the hero.
 | v6 | §4.1 JS-crash fix; GA monogram removed + `[hidden]` guard; contact page & feedback form made static-first; Indian tricolour theme; all pages `?v=6` |
 | 2026-08-28 | Photo drop received: 2,722 files / 18 GB → dedupe analysis (md5 content-level): **43 exact duplicates excluded** → 2,679 unique JPGs / 17 GB, re-verified zero duplicates |
 | v7 | **Real photo gallery live**: 241 curated photos / 64.8 MB across 7 albums (pipeline §4.8); favicon switched from 🎓 emoji to `images/logo.png`; all pages `?v=7` |
+| 2026-08-28 (pm) | **Custom domain live**: gurukulamarpatan.in (BigRock DNS + root `CNAME` file + Enforce HTTPS); FormSubmit activated |
 
 ## 8. Known pending items
 
@@ -184,13 +186,10 @@ working. Logo: white border + saffron ring glow on the hero.
 - [ ] Optional hero photo (`heroImage` in config — wide school photo).
 - [ ] Testimonials: section auto-hides until REAL entries added (never
       fabricate — no public reviews exist).
-- [ ] Custom domain — **purchased 2026-08-28**, pending registrant
-      verification (confirmation email within ~30–40 min of registration).
-      Once verified: set the domain in repo Settings → Pages (or add a
-      `CNAME` file), add the registrar's DNS records (A records for the
-      apex → 185.199.108–111.153, CNAME for `www` →
-      `monishraza.github.io`), then enable Enforce HTTPS. README documents
-      the DNS steps.
+- [x] **Custom domain** — DONE (2026-08-28): gurukulamarpatan.in live with
+      HTTPS enforced; see §1 for the full DNS setup. Domain expires
+      2027-08-28 — **auto-renew is ON**, keep it that way.
+- [ ] Announcement dates still `"TODO"` in site-config.js.
 
 ## 9. Do-nots
 
