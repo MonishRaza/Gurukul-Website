@@ -6,3 +6,8 @@ my-content/
 Thumbs.db
 desktop.ini
 .DS_Store
+# Node deps + generated QA contact sheets for the photo pipeline (_tools)
+_tools/node_modules/
+_tools/sheets/
+_tools/qa-*.jpg
+_tools/albums-block.txt
