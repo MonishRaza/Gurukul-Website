@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feedback — Gurukul Academy Higher Secondary School</title>
+  <meta name="description" content="Share your feedback, suggestions or questions with Gurukul Academy Higher Secondary School.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8E%93%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="feedback">
+
+  <div id="site-header"></div>
+
+  <main>
+    <section class="hero" style="padding:3.4rem 0;">
+      <div class="container">
+        <h1>Share Your Feedback</h1>
+        <p class="tagline">Suggestions, appreciation, concerns or questions — every message reaches the school directly.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+
+        <!-- Shown only until the school's real email is set in site-config.js -->
+        <div class="setup-card" id="feedback-setup" hidden>
+          <h3>One-time setup needed</h3>
+          <p>This form sends messages to the school's email through <strong>FormSubmit</strong> (free).
+             To switch it on:</p>
+          <ol>
+            <li>Put the school's real email in <code>js/site-config.js</code> (the <code>email:</code> line).</li>
+            <li>Submit this form once — FormSubmit emails a confirmation link to that address.</li>
+            <li>Click the link. Done — all future messages arrive in the school inbox.</li>
+          </ol>
+          <p style="margin-top:0.8rem;">Full details are in <code>README.md</code>.</p>
+        </div>
+
+        <form class="form-card" id="feedback-form" method="POST" action="#">
+          <input type="hidden" name="_subject" value="Website Feedback">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+
+          <div class="form-field">
+            <label for="fb-role">I am a</label>
+            <select id="fb-role" name="Role">
+              <option>Parent / Guardian</option>
+              <option>Student</option>
+              <option>Alumnus / Alumna</option>
+              <option>Well-wisher / Visitor</option>
+            </select>
+          </div>
+
+          <div class="form-field">
+            <label for="fb-type">This is about</label>
+            <select id="fb-type" name="Feedback type">
+              <option>Appreciation</option>
+              <option selected>Suggestion</option>
+              <option>Complaint</option>
+              <option>Admission enquiry</option>
+              <option>Question</option>
+              <option>Something else</option>
+            </select>
+          </div>
+
+          <div class="form-field">
+            <label for="fb-name">Your name</label>
+            <input type="text" id="fb-name" name="Name" required autocomplete="name">
+          </div>
+
+          <div class="form-field">
+            <label for="fb-phone">Phone <span class="optional">(optional)</span></label>
+            <input type="tel" id="fb-phone" name="Phone" autocomplete="tel">
+          </div>
+
+          <div class="form-field">
+            <label for="fb-email">Email <span class="optional">(optional)</span></label>
+            <input type="email" id="fb-email" name="Email" autocomplete="email">
+          </div>
+
+          <div class="form-field">
+            <label for="fb-message">Your message</label>
+            <textarea id="fb-message" name="Message" required
+              placeholder="Your feedback, suggestion or question…"></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-blue" style="width:100%; justify-content:center;">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M2 21 23 12 2 3l0 7 15 2-15 2z"/></svg>
+            Send Feedback
+          </button>
+
+          <p class="form-note">
+            Your message goes straight to the school's email inbox.
+            You can also reach us instantly on <a href="contact.html">WhatsApp</a>.
+          </p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="js/site-config.js"></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>

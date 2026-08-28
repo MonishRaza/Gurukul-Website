@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Photo Gallery — Gurukul Academy Higher Secondary School</title>
+  <meta name="description" content="Photos from Gurukul Academy Higher Secondary School — over a decade of annual days, classrooms, sports and celebrations.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8E%93%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="gallery">
+
+  <div id="site-header"></div>
+
+  <main>
+    <section class="hero" style="padding:3.4rem 0;">
+      <div class="container">
+        <h1>Photo Gallery</h1>
+        <p class="tagline">Thirteen years of assemblies, annual days, labs, sports and celebrations — a school remembered in pictures.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="album-tabs" id="album-tabs" role="tablist" aria-label="Photo albums"></div>
+        <h2 class="album-title" id="album-title"></h2>
+        <div class="gallery-grid" id="album-grid"></div>
+        <p class="muted" style="text-align:center; margin-top:1.6rem;">
+          Have old school photos to share? Send them to us on
+          <a href="contact.html">WhatsApp</a> — we would love to add them.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ LIGHTBOX ============ -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
+    <button class="lightbox-close" id="lightbox-close" aria-label="Close">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m19 6.4L17.6 5 12 10.6 6.4 5 5 6.4 10.6 12 5 17.6 6.4 19l5.6-5.6 5.6 5.6 1.4-1.4L13.4 12z"/></svg>
+    </button>
+    <button class="lightbox-prev" id="lightbox-prev" aria-label="Previous photo">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M15.4 4.6 8 12l7.4 7.4 1.4-1.4L10.8 12l6-6z"/></svg>
+    </button>
+    <img id="lightbox-img" src="" alt="">
+    <button class="lightbox-next" id="lightbox-next" aria-label="Next photo">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8.6 4.6 7.2 6l6 6-6 6 1.4 1.4L16 12z"/></svg>
+    </button>
+    <div class="lightbox-caption" id="lightbox-caption"></div>
+  </div>
+
+  <div id="site-footer"></div>
+
+  <script src="js/site-config.js"></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>

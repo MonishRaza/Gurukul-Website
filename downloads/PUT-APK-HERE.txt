@@ -1,0 +1,7 @@
+The school app is a WEB APP (https://gurukul-amarpatan-attendance.web.app/)
+and does not need an APK — this folder is empty for now.
+
+If you ever want to publish an APK version too:
+1. Copy the .apk file into this folder.
+2. In js/site-config.js, set  apkPath: "downloads/<file-name>.apk"
+3. The "Download APK" section appears on the Our App page automatically.

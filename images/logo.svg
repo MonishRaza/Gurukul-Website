@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Gurukul Academy logo placeholder">
+  <!-- PLACEHOLDER LOGO — replace this file with the school's real logo
+       (e.g. save logo.png in this folder and update the 'logo' path in js/site-config.js) -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1b3a5c"/>
+      <stop offset="1" stop-color="#2f6598"/>
+    </linearGradient>
+  </defs>
+  <circle cx="60" cy="60" r="58" fill="url(#bg)"/>
+  <circle cx="60" cy="60" r="52" fill="none" stroke="#c9a227" stroke-width="3"/>
+  <g fill="#c9a227">
+    <path d="M60 30 28 46l32 16 26-13v20h6V46L60 30z"/>
+    <path d="M40 56v12c0 5.5 9 10 20 10s20-4.5 20-10V56l-20 10-20-10z"/>
+  </g>
+  <text x="60" y="102" text-anchor="middle" font-family="Georgia, serif" font-size="13" fill="#dbe6f3">GURUKUL</text>
+</svg>

@@ -1,0 +1,8 @@
+# Working folder for personal files before they are added to the site —
+# keep it out of the public repository
+my-content/
+
+# OS / editor noise
+Thumbs.db
+desktop.ini
+.DS_Store
