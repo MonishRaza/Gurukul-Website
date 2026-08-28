@@ -128,7 +128,7 @@
     }
   }
 
-  /* ---------- footer ---------- */
+  /* ---------- footer (template style: solid orange, centred) ---------- */
 
   function buildFooter() {
     var host = document.getElementById("site-footer");
@@ -136,35 +136,26 @@
     var year = new Date().getFullYear();
 
     host.innerHTML =
-      '<div class="container footer-grid">' +
-        "<div>" +
-          '<div class="footer-brand">' + esc(C.shortName) + "</div>" +
-          '<p class="footer-tagline">' + esc(C.tagline) + "</p>" +
-          '<p class="footer-history">Nurturing students since ' + esc(C.foundedYear) +
-          " — a decade and more of learning, discipline and achievement.</p>" +
-          '<div class="footer-social">' + socialLinksHtml("social-link") + "</div>" +
-        "</div>" +
-        "<div>" +
-          '<h3 class="footer-heading">Quick Links</h3>' +
-          '<ul class="footer-links">' +
-            PAGES.map(function (p) {
-              return '<li><a href="' + p.href + '">' + p.label + "</a></li>";
-            }).join("") +
-          "</ul>" +
-        "</div>" +
-        "<div>" +
-          '<h3 class="footer-heading">Reach Us</h3>' +
-          '<ul class="footer-contact">' +
-            '<li>' + ICON.pin + " <span>" + C.addressLines.map(esc).join("<br>") + "</span></li>" +
-            '<li>' + ICON.phone + ' <a href="' + telLink(C.phone) + '">' + esc(C.phone) + "</a></li>" +
-            '<li>' + ICON.mail + ' <a href="mailto:' + esc(C.email) + '">' + esc(C.email) + "</a></li>" +
-            '<li><a class="footer-wa" href="' + waLink() + '" target="_blank" rel="noopener">' + ICON.whatsapp + " Chat on WhatsApp</a></li>" +
-          "</ul>" +
-        "</div>" +
-      "</div>" +
-      '<div class="footer-bottom">' +
-        '<div class="container">© ' + year + " " + esc(C.schoolName) +
-        " · DISE Code: " + esc(C.diseCode) + "</div>" +
+      '<div class="footer-inner">' +
+        '<img class="footer-logo" src="' + esc(C.logo) + '" alt="' + esc(C.shortName) + ' logo" ' +
+          'onerror="this.style.display=\'none\'">' +
+        '<div class="footer-name">' + esc(C.schoolName) + "</div>" +
+        '<p class="footer-tagline">' + esc(C.tagline) + "</p>" +
+        '<div class="footer-social">' + socialLinksHtml("social-link") + "</div>" +
+        '<p class="footer-contact-line">' + C.addressLines.map(esc).join(", ") + "</p>" +
+        '<p class="footer-contact-line">' +
+          '<a href="' + telLink(C.phone) + '">' + esc(C.phone) + "</a>" +
+          (C.phoneAlt ? ' &nbsp;·&nbsp; <a href="' + telLink(C.phoneAlt) + '">' + esc(C.phoneAlt) + "</a>" : "") +
+          ' &nbsp;·&nbsp; <a href="mailto:' + esc(C.email) + '">' + esc(C.email) + "</a>" +
+        "</p>" +
+        '<p class="footer-contact-line"><a href="' + waLink() + '" target="_blank" rel="noopener">Chat on WhatsApp</a></p>' +
+        '<ul class="footer-links">' +
+          PAGES.map(function (p) {
+            return '<li><a href="' + p.href + '">' + p.label + "</a></li>";
+          }).join("") +
+        "</ul>" +
+        '<p class="footer-bottom">© ' + year + " " + esc(C.schoolName) +
+        " · DISE Code: " + esc(C.diseCode) + "</p>" +
       "</div>";
   }
 
@@ -539,11 +530,23 @@
 
   /* ---------- boot ---------- */
 
+  function initHeroPhoto() {
+    // Optional: set "heroImage" in site-config.js (e.g. "images/hero.jpg")
+    // and the homepage hero becomes a full-bleed photo with a dark overlay,
+    // exactly like the template's landing-page look.
+    if (!C.heroImage) return;
+    var hero = document.querySelector(".hero");
+    if (!hero) return;
+    hero.style.setProperty("--hero-photo", 'url("' + C.heroImage + '")');
+    hero.classList.add("has-photo");
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
     buildHeader();
     buildFooter();
     buildWhatsAppButton();
     initScrollEffects();
+    initHeroPhoto();
 
     var page = document.body.getAttribute("data-page");
     if (page === "home") renderHome();

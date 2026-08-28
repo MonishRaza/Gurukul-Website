@@ -3,6 +3,12 @@
 A fast, free, zero-maintenance static website. No monthly hosting cost —
 it runs on **GitHub Pages** (or Netlify / Cloudflare Pages, also free).
 
+> **Design credit:** the visual design (full-bleed hero with centred logo,
+> image-tile strip, bordered photo boxes, orange accent and footer) is
+> adapted from the MIT-licensed
+> [Restaurant-Website-Template](https://github.com/marynganga/Restaurant-Website-Template)
+> by Mary Ng'ang'a. Rebuilt dependency-free (no Bootstrap/jQuery) for speed.
+
 ---
 
 ## ★ Editing the site — the one file to know

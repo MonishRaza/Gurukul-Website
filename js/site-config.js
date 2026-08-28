@@ -22,6 +22,9 @@ const SITE_CONFIG = {
   tagline: "Knowledge · Discipline · Character",
   foundedYear: 2013,
   logo: "images/logo.svg",          // Replace with your own logo (e.g. images/logo.png) and update this path
+  heroImage: "",                    // Optional: put a wide school photo at images/hero.jpg and set
+                                    // heroImage: "images/hero.jpg" — the homepage hero becomes a
+                                    // full-bleed photo with a dark overlay (template landing look)
 
   /* ---------- Contact details ---------- */
   addressLines: [
