@@ -113,6 +113,31 @@ curl -s "https://monishraza.github.io/Gurukul-Website/css/style.css?v=6" | grep 
 curl -s "https://monishraza.github.io/Gurukul-Website/contact.html" | grep -c "23130101102"
 ```
 
+### 4.8 Photo pipeline (v7) — `_tools\` (Node + sharp)
+Raw archive: `my-content\2-photos\` = 2,679 unique JPGs / 17 GB (43 byte-level
+duplicates already moved to `_duplicates-excluded\`; 2 corrupt files skipped).
+The pipeline turns that into the published gallery:
+
+1. **scan.js** — walks 2-photos, writes `manifest.json` (index, path, bytes,
+   dimensions, EXIF date) and 12 contact sheets to `_tools\sheets\`.
+2. **build-selection.js** — even sampling per album from the manifest,
+   excluding known-bad index blocks and Drive `(n)` copies → `selection.json`.
+3. **export.js** — sharp per photo: `.rotate()` (EXIF orientation), resize to
+   max 1600px inside, JPEG quality binary-searched (55–85) to ≤300 KB,
+   `.withMetadata({exif:{}})` **strips all metadata incl. GPS** (privacy).
+   Output `images\<album>\<album>-NNN.jpg` + `export-results.json`.
+4. **Visual QA** — review QA contact sheets, delete duds from
+   `images\<album>\`, regenerate `albums.json` (kept-file lists) and paste
+   into `albums` in `js/site-config.js`.
+
+Result (v7): **241 photos / 64.8 MB** in 7 albums — founding-years (25),
+sports-day-2015 (68), annual-day-2018-19 (43), annual-function-2023 (51,
+mixed 2014–2023 so titled "Annual Functions"), republic-day (10, actually a
+patriotic act at the **2014** annual function — titled "Patriotic
+Performances"), farewell-2025 (26), events-achievements (18).
+Budget approved by user: 100 MB — do not exceed it. Raw photos never go to
+the repo (§9); full archive stays on Google Drive.
+
 ## 5. Design system — Indian tricolour (v6)
 
 Blurred gradient washes, **never hard stripes**. Tokens in `css/style.css`:
@@ -148,14 +173,10 @@ working. Logo: white border + saffron ring glow on the hero.
 | v5 | Google Maps embed (keyless technique §4.3), real logo implemented (circle-crop + real alpha — source PNG had baked checkerboard), school app removed on school's request (app.html, APK, monogram deleted; config comment keeps restore path) |
 | v6 | §4.1 JS-crash fix; GA monogram removed + `[hidden]` guard; contact page & feedback form made static-first; Indian tricolour theme; all pages `?v=6` |
 | 2026-08-28 | Photo drop received: 2,722 files / 18 GB → dedupe analysis (md5 content-level): **43 exact duplicates excluded** → 2,679 unique JPGs / 17 GB, re-verified zero duplicates |
+| v7 | **Real photo gallery live**: 241 curated photos / 64.8 MB across 7 albums (pipeline §4.8); favicon switched from 🎓 emoji to `images/logo.png`; all pages `?v=7` |
 
 ## 8. Known pending items
 
-- [ ] **Photo curation** — pick ~100–150 best of 2,679, resize to ≤1600px,
-      compress (~200–300 KB each, ~40 MB total) into `images/<album>/`, wire
-      into `albums` in site-config.js. 17 GB **cannot** go to GitHub Pages
-      (~1 GB site limit); full archive stays on Google Drive + optional
-      "Full album" Google Photos link on the gallery page.
 - [ ] **FormSubmit activation** — one test submission on feedback.html +
       click Activate in the email to gurukulamarpatan@gmail.com.
 - [ ] Announcement dates still `"TODO"` in site-config.js.
