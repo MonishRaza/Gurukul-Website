@@ -68,7 +68,8 @@
     { href: "index.html", label: "Home", id: "home" },
     { href: "about.html", label: "About", id: "about" },
     { href: "gallery.html", label: "Gallery", id: "gallery" },
-    { href: "app.html", label: "Our App", id: "app" },
+    { href: "index.html#social", label: "Social Presence", id: "social" },
+    { href: "app.html", label: "School App", id: "app" },
     { href: "contact.html", label: "Contact", id: "contact" },
     { href: "feedback.html", label: "Feedback", id: "feedback" }
   ];
@@ -77,8 +78,12 @@
     var host = document.getElementById("site-header");
     if (!host) return;
     var current = document.body.getAttribute("data-page") || "";
+    // "Social Presence" takes over the active state when viewing the social section of the home page
+    var socialActive = current === "home" && window.location.hash === "#social";
     var nav = PAGES.map(function (p) {
-      var active = p.id === current ? ' aria-current="page" class="active"' : "";
+      var isActive = (p.id === current && !(current === "home" && window.location.hash === "#social")) ||
+                     (p.id === "social" && socialActive);
+      var active = isActive ? ' aria-current="page" class="active"' : "";
       return '<a href="' + p.href + '"' + active + ">" + p.label + "</a>";
     }).join("");
 
@@ -101,9 +106,6 @@
             "<small>Higher Secondary School · Est. " + esc(C.foundedYear) + "</small>" +
           "</span>" +
         "</a>" +
-        '<button class="nav-toggle" aria-label="Open menu" aria-expanded="false">' +
-          "<span></span><span></span><span></span>" +
-        "</button>" +
         '<nav class="site-nav" aria-label="Main navigation">' + nav + "</nav>" +
       "</div>";
 
@@ -112,14 +114,6 @@
     logo.addEventListener("error", function () {
       logo.style.display = "none";
       mono.hidden = false;
-    });
-
-    var toggle = host.querySelector(".nav-toggle");
-    var navEl = host.querySelector(".site-nav");
-    toggle.addEventListener("click", function () {
-      var open = navEl.classList.toggle("open");
-      toggle.classList.toggle("open", open);
-      toggle.setAttribute("aria-expanded", String(open));
     });
   }
 

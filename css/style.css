@@ -199,26 +199,6 @@ code {
   box-shadow: inset 0 -2px 0 var(--gold-500);
 }
 
-.nav-toggle {
-  display: none;
-  flex-direction: column;
-  gap: 5px;
-  background: none;
-  border: 0;
-  padding: 0.5rem;
-  cursor: pointer;
-}
-.nav-toggle span {
-  width: 24px;
-  height: 2.5px;
-  background: var(--blue-900);
-  border-radius: 2px;
-  transition: transform 0.2s ease, opacity 0.2s ease;
-}
-.nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.nav-toggle.open span:nth-child(2) { opacity: 0; }
-.nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
 /* ---------- hero ---------- */
 
 .hero {
@@ -1121,25 +1101,22 @@ code {
   .topbar .topbar-item a { word-break: break-all; }
   .topbar-social { margin-left: 0; }
 
-  .nav-toggle { display: flex; }
+  /* Menu buttons are ALWAYS visible on phones — a swipeable bar under the brand */
+  #site-header > .header-inner { flex-wrap: wrap; }
 
   .site-nav {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background: var(--paper);
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0;
-    padding: 0.4rem 1rem 1rem;
-    box-shadow: var(--shadow-md);
-    border-top: 1px solid var(--line);
-    display: none;
-    z-index: 50;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.3rem;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 0.2rem 0 0.6rem;
+    scrollbar-width: none;
   }
-  .site-nav.open { display: flex; }
-  .site-nav a { padding: 0.8rem 1rem; border-radius: 10px; }
+  .site-nav::-webkit-scrollbar { display: none; }
+  .site-nav a { padding: 0.45rem 0.85rem; white-space: nowrap; flex: none; }
 
   .hero { padding: 4rem 0 5.4rem; }
 
