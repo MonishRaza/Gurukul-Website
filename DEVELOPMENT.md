@@ -16,6 +16,7 @@ and every decision made so far. Last updated: **2026-08-28 (v7 + custom domain)*
 | **Custom domain** | `gurukulamarpatan.in`, bought from **BigRock** (Order 126752297, expires 2027-08-28, auto-renew ON). DNS at BigRock's default nameservers: 4 A-records `@` → 185.199.108–111.153, CNAME `www` → `monishraza.github.io`. Root `CNAME` file in repo + Enforce HTTPS ON; GitHub auto-issued the SSL cert. |
 | **Stack** | Plain HTML + CSS + JS. **No frameworks, no build step, no npm, no CDN dependencies.** Works offline from a double-click of `index.html`. |
 | **Cost** | Hosting free; only the domain (~₹800/yr at BigRock). Feedback form via FormSubmit (free, **activated 2026-08-28**). Maps embed keyless. |
+| **Google Search Console** | Property `gurukulamarpatan.in` (Domain type), verified 2026-08-28 via BigRock DNS TXT record. `sitemap.xml` + `robots.txt` served at the domain root. ⚠️ Never delete the `google-site-verification=…` TXT record in BigRock — it keeps verification alive. |
 
 ## 2. Architecture — the one rule to remember
 
@@ -189,9 +190,26 @@ working. Logo: white border + saffron ring glow on the hero.
 - [x] **Custom domain** — DONE (2026-08-28): gurukulamarpatan.in live with
       HTTPS enforced; see §1 for the full DNS setup. Domain expires
       2027-08-28 — **auto-renew is ON**, keep it that way.
+- [x] **Google Search Console** — DONE (2026-08-28): domain verified via
+      BigRock TXT; sitemap.xml submitted (see §1 and §9).
 - [ ] Announcement dates still `"TODO"` in site-config.js.
 
-## 9. Do-nots
+## 9. Account map (all technical accounts — monishamarpatan@gmail.com)
+
+| Platform | Account | Holds |
+|---|---|---|
+| BigRock | monishamarpatan@gmail.com | Domain gurukulamarpatan.in + its DNS (incl. the Google verification TXT) |
+| GitHub | monishamarpatan@gmail.com | Repo MonishRaza/Gurukul-Website, Pages hosting, custom domain setting |
+| Google Search Console | monishamarpatan@gmail.com | Property gurukulamarpatan.in (Domain, TXT-verified) |
+| School's public email | gurukulamarpatan@gmail.com | Site contact info, feedback form inbox, YouTube/Instagram/Facebook, FormSubmit activation |
+
+The personal account is the master key to the web presence — it needs a
+recovery phone/email and a safe password. (2026-08-28: a Search Console
+property was briefly created under gurukulamarpatan@gmail.com, then redone
+under monishamarpatan for consistency; the school-account copy was never
+verified and should be removed via Settings → Remove property.)
+
+## 10. Do-nots
 
 - Don't use `const` for `SITE_CONFIG`; don't remove the `[hidden]` guard.
 - Don't move contact/map/form data out of static HTML back into JS.
