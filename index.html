@@ -3,11 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gurukul Academy Higher Secondary School — Amarpatan, Maihar (MP)</title>
+  <title data-i18n="title.home">Gurukul Academy Higher Secondary School — Amarpatan, Maihar (MP)</title>
   <meta name="description" content="Gurukul Academy Higher Secondary School, Amarpatan (MP Board, Nursery–12) — nurturing students with knowledge, discipline and character since 2013.">
   <link rel="icon" type="image/png" href="images/logo.png">
-  <link rel="stylesheet" href="css/style.css?v=8">
-  <script>document.documentElement.className += " js";</script>
+  <link rel="stylesheet" href="css/style.css?v=9">
+  <script>
+    document.documentElement.className += " js";
+    // Anti-FOUC: apply the stored language before the page paints.
+    try {
+      if (localStorage.getItem("gurukul_lang") === "hi") {
+        document.documentElement.setAttribute("lang", "hi");
+        document.documentElement.classList.add("lang-hi");
+      }
+    } catch (e) {}
+  </script>
 </head>
 <body data-page="home">
 
@@ -20,17 +29,17 @@
       </span>
       <span class="brand-text">
         <strong>Gurukul Academy</strong>
-        <small>Higher Secondary School &middot; Est. 2013</small>
+        <small data-i18n="brand.small">Higher Secondary School &middot; Est. 2013</small>
       </span>
     </a>
     <nav class="site-nav" aria-label="Main navigation">
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="gallery.html">Gallery</a>
-      <a href="index.html#social">Social Presence</a>
-      <a href="contact.html">Contact</a>
-      <a href="feedback.html">Feedback</a>
-      <a class="nav-staff" href="https://app.gurukulamarpatan.in" target="_blank" rel="noopener">Staff Portal</a>
+      <a href="index.html" data-i18n="nav.home">Home</a>
+      <a href="about.html" data-i18n="nav.about">About</a>
+      <a href="gallery.html" data-i18n="nav.gallery">Gallery</a>
+      <a href="index.html#social" data-i18n="nav.social">Social Presence</a>
+      <a href="contact.html" data-i18n="nav.contact">Contact</a>
+      <a href="feedback.html" data-i18n="nav.feedback">Feedback</a>
+      <a class="nav-staff" href="https://app.gurukulamarpatan.in" target="_blank" rel="noopener" data-i18n="nav.staffPlain">Staff Portal</a>
     </nav>
   </div>
 </header>
@@ -41,52 +50,52 @@
       <div class="container">
         <img class="hero-logo" src="images/logo.png" alt="Gurukul Academy logo"
           onerror="this.style.display='none'">
-        <span class="est">★ Established 2013 · Amarpatan, Madhya Pradesh</span>
-        <h1>Gurukul Academy <span class="accent">Higher Secondary</span> School</h1>
-        <p class="slogan">Knowledge · Discipline · Character</p>
-        <p class="tagline">Over a decade of shaping young minds on Satna Road, Gadauli.</p>
+        <span class="est" data-i18n="home.hero.est">★ Established 2013 · Amarpatan, Madhya Pradesh</span>
+        <h1 data-i18n-html="home.hero.titleHtml">Gurukul Academy <span class="accent">Higher Secondary</span> School</h1>
+        <p class="slogan" data-i18n="home.hero.slogan">Knowledge · Discipline · Character</p>
+        <p class="tagline" data-i18n="home.hero.intro">Over a decade of shaping young minds on Satna Road, Gadauli.</p>
         <div class="hero-chips">
-          <span>MP Board</span>
-          <span>Nursery to Class 12</span>
-          <span>English &amp; Hindi Medium</span>
-          <span>DISE 23130101102</span>
+          <span data-i18n="home.chips.board">MP Board</span>
+          <span data-i18n="home.chips.class">Nursery to Class 12</span>
+          <span data-i18n="home.chips.medium">English &amp; Hindi Medium</span>
+          <span data-i18n="home.chips.dise">DISE 23130101102</span>
         </div>
         <div class="hero-actions">
-          <a class="btn btn-gold" href="#youtube">Watch School Videos</a>
-          <a class="btn btn-outline" href="contact.html">Visit / Contact Us</a>
+          <a class="btn btn-gold" href="#youtube" data-i18n="home.hero.ctaVideos">Watch School Videos</a>
+          <a class="btn btn-outline" href="contact.html" data-i18n="home.hero.ctaContact">Visit / Contact Us</a>
           <a class="btn btn-blue" href="https://app.gurukulamarpatan.in" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 12c-4.4 0-8 2.7-8 6v2h16v-2c0-3.3-3.6-6-8-6z"/></svg>
-            Staff Portal
+            <span data-i18n="nav.staffPlain">Staff Portal</span>
           </a>
         </div>
       </div>
     </section>
 
     <!-- ============ EXPLORE STRIP (template-style image tiles) ============ -->
-    <section class="section" style="padding:0;" aria-label="Explore the school">
+    <section class="section" style="padding:0;" aria-label="Explore the school" data-i18n-aria="home.explore.aria">
       <div class="explore-grid">
         <a class="explore-tile tile-info" href="about.html">
-          <span class="tile-big">Since 2013</span>
-          <span class="tile-small">13+ years of excellence</span>
+          <span class="tile-big" data-i18n="home.tile.since">Since 2013</span>
+          <span class="tile-small" data-i18n="home.tile.sinceSub">13+ years of excellence</span>
         </a>
         <a class="explore-tile tile-accent" href="contact.html">
-          <span class="tile-big">Visit Us</span>
-          <span class="tile-small">Satna Road, Gadauli, Amarpatan</span>
+          <span class="tile-big" data-i18n="home.tile.visit">Visit Us</span>
+          <span class="tile-small" data-i18n="home.tile.visitSub">Satna Road, Gadauli, Amarpatan</span>
         </a>
         <a class="explore-tile tile-photo" href="gallery.html"
            style="background-image:url('https://i.ytimg.com/vi/yj4RaZx9_TI/hqdefault.jpg')">
-          <span class="tile-big">Photo Gallery</span>
-          <span class="tile-small">Moments through the years</span>
+          <span class="tile-big" data-i18n="home.tile.gallery">Photo Gallery</span>
+          <span class="tile-small" data-i18n="home.tile.gallerySub">Moments through the years</span>
         </a>
         <a class="explore-tile tile-photo" href="feedback.html"
            style="background-image:url('https://i.ytimg.com/vi/5GNxw6k3DI8/hqdefault.jpg')">
-          <span class="tile-big">Feedback</span>
-          <span class="tile-small">We would love to hear from you</span>
+          <span class="tile-big" data-i18n="home.tile.feedback">Feedback</span>
+          <span class="tile-small" data-i18n="home.tile.feedbackSub">We would love to hear from you</span>
         </a>
         <a class="explore-tile tile-photo" href="index.html#youtube"
            style="background-image:url('https://i.ytimg.com/vi/4FczjYFcD4I/hqdefault.jpg')">
-          <span class="tile-big">Watch Videos</span>
-          <span class="tile-small">Our YouTube channel</span>
+          <span class="tile-big" data-i18n="home.tile.videos">Watch Videos</span>
+          <span class="tile-small" data-i18n="home.tile.videosSub">Our YouTube channel</span>
         </a>
       </div>
     </section>
@@ -95,32 +104,32 @@
     <section class="section">
       <div class="container">
         <div class="section-head reveal">
-          <span class="eyebrow">Why families choose us</span>
-          <h2>Why Gurukul Academy</h2>
+          <span class="eyebrow" data-i18n="home.why.kicker">Why families choose us</span>
+          <h2 data-i18n="home.why.heading">Why Gurukul Academy</h2>
           <div class="rule"></div>
-          <p>A decade of shaping young minds with strong values and modern learning.</p>
+          <p data-i18n="home.why.intro">A decade of shaping young minds with strong values and modern learning.</p>
         </div>
         <div class="grid grid-3">
           <div class="card reveal">
             <div class="card-icon">
               <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3 1 9l11 6 9-4.9V17h2V9L12 3zM5 13.2V17c0 1.7 3.1 3 7 3s7-1.3 7-3v-3.8l-7 3.8-7-3.8z"/></svg>
             </div>
-            <h3>Quality Education</h3>
-            <p>Dedicated teachers and a structured MP Board curriculum that prepares students for board examinations and beyond.</p>
+            <h3 data-i18n="home.card1.title">Quality Education</h3>
+            <p data-i18n="home.card1.text">Dedicated teachers and a structured MP Board curriculum that prepares students for board examinations and beyond.</p>
           </div>
           <div class="card reveal">
             <div class="card-icon">
               <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 1 3 5v6c0 5.6 3.8 10.7 9 12 5.2-1.3 9-6.4 9-12V5l-9-4zm0 10.9h7c-.5 4.1-3.3 7.9-7 9V12H5V6.3l7-3.1v8.7z"/></svg>
             </div>
-            <h3>Discipline &amp; Values</h3>
-            <p>In the true spirit of the gurukul tradition — respect, responsibility and character built alongside academics.</p>
+            <h3 data-i18n="home.card2.title">Discipline &amp; Values</h3>
+            <p data-i18n="home.card2.text">In the true spirit of the gurukul tradition — respect, responsibility and character built alongside academics.</p>
           </div>
           <div class="card reveal">
             <div class="card-icon">
               <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm-8 1a3 3 0 1 0-3-3 3 3 0 0 0 3 3zm0 1.5c-2.3 0-7 1.2-7 3.5V19h7v-1.5c0-.9.4-1.8 1-2.5a11.8 11.8 0 0 0-1-.5zm8 0c-.6 0-1.3 0-2 .2 1.2.9 2 2 2 3.3V19h7v-1.5c0-2.3-4.7-3.5-7-3.5z"/></svg>
             </div>
-            <h3>Community &amp; Care</h3>
-            <p>A close-knit school family in Amarpatan where parents, teachers and students grow together, year after year.</p>
+            <h3 data-i18n="home.card3.title">Community &amp; Care</h3>
+            <p data-i18n="home.card3.text">A close-knit school family in Amarpatan where parents, teachers and students grow together, year after year.</p>
           </div>
         </div>
       </div>
@@ -129,10 +138,10 @@
     <!-- ============ STATS ============ -->
     <section class="stats">
       <div class="container stats-grid">
-        <div class="stat"><b>2013</b><span>Founded</span></div>
-        <div class="stat"><b>13+</b><span>Years of Service</span></div>
-        <div class="stat"><b>Nursery–12</b><span>Classes Offered</span></div>
-        <div class="stat"><b>Top 3%</b><span>Schools in the Area</span></div>
+        <div class="stat"><b>2013</b><span data-i18n="home.stats.founded">Founded</span></div>
+        <div class="stat"><b>13+</b><span data-i18n="home.stats.years">Years of Service</span></div>
+        <div class="stat"><b>Nursery–12</b><span data-i18n="home.stats.classes">Classes Offered</span></div>
+        <div class="stat"><b>Top 3%</b><span data-i18n="home.stats.area">Schools in the Area</span></div>
       </div>
     </section>
 
@@ -140,10 +149,10 @@
     <section class="section section-alt" id="youtube">
       <div class="container">
         <div class="section-head reveal">
-          <span class="eyebrow">From our YouTube channel</span>
-          <h2>See Our School in Action</h2>
+          <span class="eyebrow" data-i18n="home.videos.kicker">From our YouTube channel</span>
+          <h2 data-i18n="home.videos.heading">See Our School in Action</h2>
           <div class="rule"></div>
-          <p>Assemblies, marches, matches and celebrations — real moments from Gurukul Academy, Amarpatan.</p>
+          <p data-i18n="home.videos.desc">Assemblies, marches, matches and celebrations — real moments from Gurukul Academy, Amarpatan.</p>
         </div>
         <div class="featured-video reveal">
           <iframe src="https://www.youtube.com/embed/3Zd9xY23hkg" title="Gurukul Academy — Official School Promo Video 2025"
@@ -154,7 +163,7 @@
         <p style="text-align:center; margin-top:1.8rem;">
           <a class="btn btn-blue" href="https://www.youtube.com/@gurukulacademy876" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4L15.8 12l-6.2 3.6z"/></svg>
-            Subscribe on YouTube
+            <span data-i18n="home.videos.subscribe">Subscribe on YouTube</span>
           </a>
         </p>
       </div>
@@ -164,28 +173,28 @@
     <section class="section" id="social">
       <div class="container">
         <div class="section-head reveal">
-          <span class="eyebrow">Social media</span>
-          <h2>Follow Our Journey</h2>
+          <span class="eyebrow" data-i18n="home.social.kicker">Social media</span>
+          <h2 data-i18n="home.social.heading">Follow Our Journey</h2>
           <div class="rule"></div>
-          <p>Everyday moments, event photos and updates — straight from our Facebook and Instagram pages.</p>
+          <p data-i18n="home.social.sub">Everyday moments, event photos and updates — straight from our Facebook and Instagram pages.</p>
         </div>
         <div class="social-wall">
           <div class="social-tile reveal">
-            <h3><svg class="fb" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12a12 12 0 1 0-13.9 11.9v-8.4h-3V12h3V9.4c0-3 1.8-4.7 4.6-4.7 1.3 0 2.7.2 2.7.2v3h-1.5c-1.5 0-2 .9-2 1.9V12h3.3l-.5 3.5h-2.8v8.4A12 12 0 0 0 24 12z"/></svg> Facebook — Recent Posts</h3>
+            <h3><svg class="fb" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12a12 12 0 1 0-13.9 11.9v-8.4h-3V12h3V9.4c0-3 1.8-4.7 4.6-4.7 1.3 0 2.7.2 2.7.2v3h-1.5c-1.5 0-2 .9-2 1.9V12h3.3l-.5 3.5h-2.8v8.4A12 12 0 0 0 24 12z"/></svg> <span data-i18n="home.social.fbPosts">Facebook — Recent Posts</span></h3>
             <div id="fb-feed" style="flex:1; display:flex;"></div>
             <div class="social-cta">
-              <a class="btn btn-blue" href="https://www.facebook.com/gurukulacademyamarpatan/" target="_blank" rel="noopener">Visit Facebook Page</a>
+              <a class="btn btn-blue" href="https://www.facebook.com/gurukulacademyamarpatan/" target="_blank" rel="noopener" data-i18n="home.social.visitFb">Visit Facebook Page</a>
             </div>
           </div>
           <div class="social-tile reveal">
-            <h3><svg class="ig" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.2 1.8-.4 2.2a3.8 3.8 0 0 1-.9 1.4c-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.8-.2-2.2-.4a3.8 3.8 0 0 1-1.4-.9 3.8 3.8 0 0 1-.9-1.4c-.2-.4-.4-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.1 0-3.5 0-4.8.1-1.1.1-1.5.2-1.8.3-.5.2-.8.4-1.1.7-.3.3-.5.6-.7 1.1-.1.3-.3.7-.3 1.8-.1 1.3-.1 1.7-.1 4.8s0 3.5.1 4.8c.1 1.1.2 1.5.3 1.8.2.5.4.8.7 1.1.3.3.6.5 1.1.7.3.1.7.3 1.8.3 1.3.1 1.7.1 4.8.1s3.5 0 4.8-.1c1.1-.1 1.5-.2 1.8-.3.5-.2.8-.4 1.1-.7.3-.3.5-.6.7-1.1.1-.3.3-.7.3-1.8.1-1.3.1-1.7.1-4.8s0-3.5-.1-4.8c-.1-1.1-.2-1.5-.3-1.8a2 2 0 0 0-.7-1.1 2 2 0 0 0-1.1-.7c-.3-.1-.7-.3-1.8-.3-1.3-.1-1.7-.1-4.8-.1zm0 3a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 8.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4zm6.4-8.4a1.2 1.2 0 1 1-2.4 0 1.2 1.2 0 0 1 2.4 0z"/></svg> Instagram — @gurukul_amarpatan</h3>
+            <h3><svg class="ig" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.2 1.8-.4 2.2a3.8 3.8 0 0 1-.9 1.4c-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.8-.2-2.2-.4a3.8 3.8 0 0 1-1.4-.9 3.8 3.8 0 0 1-.9-1.4c-.2-.4-.4-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.1 0-3.5 0-4.8.1-1.1.1-1.5.2-1.8.3-.5.2-.8.4-1.1.7-.3.3-.5.6-.7 1.1-.1.3-.3.7-.3 1.8-.1 1.3-.1 1.7-.1 4.8s0 3.5.1 4.8c.1 1.1.2 1.5.3 1.8.2.5.4.8.7 1.1.3.3.6.5 1.1.7.3.1.7.3 1.8.3 1.3.1 1.7.1 4.8.1s3.5 0 4.8-.1c1.1-.1 1.5-.2 1.8-.3.5-.2.8-.4 1.1-.7.3-.3.5-.6.7-1.1.1-.3.3-.7.3-1.8.1-1.3.1-1.7.1-4.8s0-3.5-.1-4.8c-.1-1.1-.2-1.5-.3-1.8a2 2 0 0 0-.7-1.1 2 2 0 0 0-1.1-.7c-.3-.1-.7-.3-1.8-.3-1.3-.1-1.7-.1-4.8-.1zm0 3a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 8.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4zm6.4-8.4a1.2 1.2 0 1 1-2.4 0 1.2 1.2 0 1 1 2.4 0z"/></svg> <span data-i18n="home.social.igPosts">Instagram — @gurukul_amarpatan</span></h3>
             <a class="ig-card" href="https://www.instagram.com/gurukul_amarpatan/" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.2 1.8-.4 2.2a3.8 3.8 0 0 1-.9 1.4c-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.8-.2-2.2-.4a3.8 3.8 0 0 1-1.4-.9 3.8 3.8 0 0 1-.9-1.4c-.2-.4-.4-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2zm0 5a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 8.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4zm6.4-8.4a1.2 1.2 0 1 1-2.4 0 1.2 1.2 0 0 1 2.4 0z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.2 1.8-.4 2.2a3.8 3.8 0 0 1-.9 1.4c-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.8-.2-2.2-.4a3.8 3.8 0 0 1-1.4-.9 3.8 3.8 0 0 1-.9-1.4c-.2-.4-.4-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2zm0 5a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 8.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4zm6.4-8.4a1.2 1.2 0 1 1-2.4 0 1.2 1.2 0 1 1 2.4 0z"/></svg>
               <b>@gurukul_amarpatan</b>
-              <span>Photos, events &amp; celebrations — follow us to see every new post.</span>
+              <span data-i18n="home.social.igCard">Photos, events &amp; celebrations — follow us to see every new post.</span>
             </a>
             <div class="social-cta">
-              <a class="btn btn-gold" href="https://www.instagram.com/gurukul_amarpatan/" target="_blank" rel="noopener">Follow on Instagram</a>
+              <a class="btn btn-gold" href="https://www.instagram.com/gurukul_amarpatan/" target="_blank" rel="noopener" data-i18n="home.social.followIg">Follow on Instagram</a>
             </div>
           </div>
         </div>
@@ -196,12 +205,12 @@
     <section class="section section-alt" id="testimonials" hidden>
       <div class="container">
         <div class="section-head">
-          <span class="eyebrow">Testimonials</span>
-          <h2>What Our Families Say</h2>
+          <span class="eyebrow" data-i18n="home.test.kicker">Testimonials</span>
+          <h2 data-i18n="home.test.heading">What Our Families Say</h2>
           <div class="rule"></div>
         </div>
         <div class="testimonial-grid" id="testimonials-grid"></div>
-        <p class="muted" style="text-align:center; margin-top:1.6rem;">
+        <p class="muted" style="text-align:center; margin-top:1.6rem;" data-i18n-html="home.test.invite">
           Are you a parent, student or alumnus? <a href="feedback.html">Share your experience</a> —
           or leave us a review on Google — and it may be featured here.
         </p>
@@ -212,8 +221,8 @@
     <section class="section">
       <div class="container">
         <div class="section-head reveal">
-          <span class="eyebrow">Notice board</span>
-          <h2>Announcements</h2>
+          <span class="eyebrow" data-i18n="home.ann.kicker">Notice board</span>
+          <h2 data-i18n="home.announcements.heading">Announcements</h2>
           <div class="rule"></div>
         </div>
         <ul class="announcements" id="announcements-list"></ul>
@@ -223,17 +232,17 @@
     <!-- ============ QUICK CONTACT CTA ============ -->
     <section class="band-dark">
       <div class="container">
-        <h2>Come, Visit Your Child's Future School</h2>
-        <p>
+        <h2 data-i18n="home.cta.heading">Come, Visit Your Child's Future School</h2>
+        <p data-i18n="home.cta.sub">
           Satna Road, Village Gadauli, Amarpatan — District Maihar, Madhya Pradesh.
           Call us, message on WhatsApp, or just drop in.
         </p>
         <div class="hero-actions">
           <a class="btn btn-green" href="https://wa.me/917470418118" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.7-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1a8 8 0 0 1-2.4-1.5 9 9 0 0 1-1.6-2c-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.1c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3zM12 0a12 12 0 0 0-10.3 18.2L0 24l5.9-1.6A12 12 0 1 0 12 0zm0 22a10 10 0 0 1-5.1-1.4l-.4-.2-3.5 1 1-3.4-.3-.4A10 10 0 1 1 12 22z"/></svg>
-            WhatsApp the Helpline
+            <span data-i18n="home.cta.wa">WhatsApp the Helpline</span>
           </a>
-          <a class="btn btn-orange" href="contact.html">Map &amp; Contact Details</a>
+          <a class="btn btn-orange" href="contact.html" data-i18n="home.cta.map">Map &amp; Contact Details</a>
         </div>
       </div>
     </section>
@@ -241,7 +250,8 @@
 
   <div id="site-footer"></div>
 
-  <script src="js/site-config.js?v=8"></script>
-  <script src="js/main.js?v=8" defer></script>
+  <script src="js/site-config.js?v=9"></script>
+  <script src="js/i18n.js?v=9" defer></script>
+  <script src="js/main.js?v=9" defer></script>
 </body>
 </html>

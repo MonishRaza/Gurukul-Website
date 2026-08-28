@@ -67,6 +67,32 @@ body {
 
 img { max-width: 100%; display: block; }
 
+/* ---------- Hindi typography (v9) ----------
+   Playfair Display / Poppins have no Devanagari glyphs, so when the visitor
+   switches to हिंदी the browser needs deliberate Devanagari fallbacks —
+   otherwise every platform picks a different default. Nirmala UI ships with
+   Windows, Noto Sans Devanagari covers Android; the system falls back
+   gracefully elsewhere. */
+html[lang="hi"] body {
+  font-family: "Poppins", "Nirmala UI", "Noto Sans Devanagari", "Mangal", "Segoe UI", system-ui, sans-serif;
+  line-height: 1.75;
+}
+html[lang="hi"] h1,
+html[lang="hi"] h2,
+html[lang="hi"] h3,
+html[lang="hi"] .hero h1,
+html[lang="hi"] .section-head h2 {
+  font-family: "Nirmala UI", "Noto Sans Devanagari", "Mangal", Georgia, serif;
+  line-height: 1.4;
+}
+/* Latin small-caps styling looks wrong on Devanagari — switch it off. */
+html[lang="hi"] .site-nav a,
+html[lang="hi"] .site-nav a.nav-staff,
+html[lang="hi"] .eyebrow,
+html[lang="hi"] .lang-btn { text-transform: none; letter-spacing: normal; }
+/* Hindi headings render taller — ease the hero down slightly. */
+html[lang="hi"] .hero h1 { font-size: clamp(2rem, 5.2vw, 3.2rem); }
+
 /* the hidden attribute always wins, even over display:flex/grid elsewhere */
 [hidden] { display: none !important; }
 
@@ -234,6 +260,42 @@ html.js .reveal:nth-child(5) { transition-delay: 0.32s; }
   opacity: 0.9;
   margin-left: 0.15rem;
 }
+
+/* ---------- language toggle (EN | हिंदी) — lives in the topbar ---------- */
+
+.lang-slot { display: inline-flex; align-items: center; }
+
+.lang-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.14rem 0.3rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+}
+
+.lang-btn {
+  border: 0;
+  background: transparent;
+  color: #d8d8dc;
+  font: inherit;
+  font-size: 0.78rem;
+  line-height: 1;
+  padding: 0.28rem 0.55rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.lang-btn:hover { color: #fff; background: rgba(255, 255, 255, 0.12); }
+.lang-btn[aria-pressed="true"] {
+  color: #fff;
+  background: var(--orange);
+  font-weight: 600;
+}
+
+.lang-sep { color: rgba(255, 255, 255, 0.35); font-size: 0.75rem; }
 
 /* ---------- hero (template-style: full-bleed, centred logo + slogan) ---------- */
 
@@ -1166,6 +1228,16 @@ html.js .reveal:nth-child(5) { transition-delay: 0.32s; }
 .social-btn.whatsapp { color: var(--wa-green-dark); }
 
 /* ---------- gallery ---------- */
+
+/* "Photo Albums" heading above the tab strip — makes it obvious that the
+   tab thumbnails below are selectable albums. */
+.albums-heading {
+  text-align: center;
+  font-size: 1.05rem;
+  letter-spacing: 0.02em;
+  color: var(--charcoal);
+  margin-bottom: 1.1rem;
+}
 
 .album-tabs {
   display: flex;

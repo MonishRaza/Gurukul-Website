@@ -3,11 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Photo Gallery — Gurukul Academy Higher Secondary School</title>
+  <title data-i18n="title.gallery">Photo Gallery — Gurukul Academy Higher Secondary School</title>
   <meta name="description" content="Photos from Gurukul Academy Higher Secondary School — over a decade of annual days, classrooms, sports and celebrations.">
   <link rel="icon" type="image/png" href="images/logo.png">
-  <link rel="stylesheet" href="css/style.css?v=7">
-  <script>document.documentElement.className += " js";</script>
+  <link rel="stylesheet" href="css/style.css?v=9">
+  <script>
+    document.documentElement.className += " js";
+    // Anti-FOUC: apply the stored language before the page paints.
+    try {
+      if (localStorage.getItem("gurukul_lang") === "hi") {
+        document.documentElement.setAttribute("lang", "hi");
+        document.documentElement.classList.add("lang-hi");
+      }
+    } catch (e) {}
+  </script>
 </head>
 <body data-page="gallery">
 
@@ -20,17 +29,17 @@
       </span>
       <span class="brand-text">
         <strong>Gurukul Academy</strong>
-        <small>Higher Secondary School &middot; Est. 2013</small>
+        <small data-i18n="brand.small">Higher Secondary School &middot; Est. 2013</small>
       </span>
     </a>
     <nav class="site-nav" aria-label="Main navigation">
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="gallery.html">Gallery</a>
-      <a href="index.html#social">Social Presence</a>
-      <a href="contact.html">Contact</a>
-      <a href="feedback.html">Feedback</a>
-      <a class="nav-staff" href="https://app.gurukulamarpatan.in" target="_blank" rel="noopener">Staff Portal</a>
+      <a href="index.html" data-i18n="nav.home">Home</a>
+      <a href="about.html" data-i18n="nav.about">About</a>
+      <a href="gallery.html" data-i18n="nav.gallery">Gallery</a>
+      <a href="index.html#social" data-i18n="nav.social">Social Presence</a>
+      <a href="contact.html" data-i18n="nav.contact">Contact</a>
+      <a href="feedback.html" data-i18n="nav.feedback">Feedback</a>
+      <a class="nav-staff" href="https://app.gurukulamarpatan.in" target="_blank" rel="noopener" data-i18n="nav.staffPlain">Staff Portal</a>
     </nav>
   </div>
 </header>
@@ -38,17 +47,18 @@
   <main>
     <section class="hero" style="padding:3.4rem 0;">
       <div class="container">
-        <h1>Photo Gallery</h1>
-        <p class="tagline">Thirteen years of assemblies, annual days, labs, sports and celebrations — a school remembered in pictures.</p>
+        <h1 data-i18n="gallery.hero.title">Photo Gallery</h1>
+        <p class="tagline" data-i18n="gallery.hero.sub">Thirteen years of assemblies, annual days, labs, sports and celebrations — a school remembered in pictures.</p>
       </div>
     </section>
 
     <section class="section">
       <div class="container">
-        <div class="album-tabs" id="album-tabs" role="tablist" aria-label="Photo albums"></div>
+        <h2 class="albums-heading" data-i18n="gallery.albumsHeading">Photo Albums</h2>
+        <div class="album-tabs" id="album-tabs" role="tablist" aria-label="Photo albums" data-i18n-aria="gallery.albumsAria"></div>
         <h2 class="album-title" id="album-title"></h2>
         <div class="gallery-grid" id="album-grid"></div>
-        <p class="muted" style="text-align:center; margin-top:1.6rem;">
+        <p class="muted" style="text-align:center; margin-top:1.6rem;" data-i18n-html="gallery.shareHtml">
           Have old school photos to share? Send them to us on
           <a href="contact.html">WhatsApp</a> — we would love to add them.
         </p>
@@ -57,15 +67,15 @@
   </main>
 
   <!-- ============ LIGHTBOX ============ -->
-  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
-    <button class="lightbox-close" id="lightbox-close" aria-label="Close">
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer" data-i18n-aria="gallery.viewerAria">
+    <button class="lightbox-close" id="lightbox-close" aria-label="Close" data-i18n-aria="gallery.close">
       <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m19 6.4L17.6 5 12 10.6 6.4 5 5 6.4 10.6 12 5 17.6 6.4 19l5.6-5.6 5.6 5.6 1.4-1.4L13.4 12z"/></svg>
     </button>
-    <button class="lightbox-prev" id="lightbox-prev" aria-label="Previous photo">
+    <button class="lightbox-prev" id="lightbox-prev" aria-label="Previous photo" data-i18n-aria="gallery.prev">
       <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M15.4 4.6 8 12l7.4 7.4 1.4-1.4L10.8 12l6-6z"/></svg>
     </button>
     <img id="lightbox-img" src="" alt="">
-    <button class="lightbox-next" id="lightbox-next" aria-label="Next photo">
+    <button class="lightbox-next" id="lightbox-next" aria-label="Next photo" data-i18n-aria="gallery.next">
       <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8.6 4.6 7.2 6l6 6-6 6 1.4 1.4L16 12z"/></svg>
     </button>
     <div class="lightbox-caption" id="lightbox-caption"></div>
@@ -73,7 +83,8 @@
 
   <div id="site-footer"></div>
 
-  <script src="js/site-config.js?v=7"></script>
-  <script src="js/main.js?v=7" defer></script>
+  <script src="js/site-config.js?v=9"></script>
+  <script src="js/i18n.js?v=9" defer></script>
+  <script src="js/main.js?v=9" defer></script>
 </body>
 </html>

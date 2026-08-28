@@ -22,6 +22,9 @@ var SITE_CONFIG = {
   schoolName: "Gurukul Academy Higher Secondary School",
   shortName: "Gurukul Academy",
   tagline: "Knowledge · Discipline · Character",
+  // Hindi variants used when a visitor switches the site to हिंदी (v9).
+  schoolNameHi: "गुरुकुल अकादमी उच्चतर माध्यमिक विद्यालय",
+  taglineHi: "ज्ञान · अनुशासन · चरित्र",
   foundedYear: 2013,
   logo: "images/logo.png",          // Replace with your own logo (e.g. images/logo.png) and update this path
   heroImage: "",                    // Optional: put a wide school photo at images/hero.jpg and set
@@ -44,7 +47,9 @@ var SITE_CONFIG = {
   // Format: country code + number, digits only (no +, spaces or dashes).
   whatsapp: {
     number: "917470418118",         // Helpline / feedback number (WhatsApp only)
-    message: "Hello Gurukul Academy Amarpatan, I have a question about the school."
+    message: "Hello Gurukul Academy Amarpatan, I have a question about the school.",
+    // Pre-filled chat text when the site is being viewed in Hindi.
+    messageHi: "नमस्ते गुरुकुल अकादमी अमरपाटन, मुझे विद्यालय के बारे में जानकारी चाहिए।"
   },
 
   /* ---------- Social media ---------- */
@@ -64,13 +69,20 @@ var SITE_CONFIG = {
   /* ---------- YouTube videos (home page) ---------- */
   // Real uploads from the school's channel @gurukulacademy876.
   // Add more with the video's ID from its YouTube link.
+  // titleHi is shown when the site is viewed in Hindi.
   youtubeVideos: [
-    { id: "3Zd9xY23hkg", title: "Discover the Spirit of Excellence — Official School Promo Video 2025" },
-    { id: "yj4RaZx9_TI", title: "Proud Girls of Gurukul Academy Hr. Sec. School" },
-    { id: "5GNxw6k3DI8", title: "Grand March Past — Discipline & Unity in Action" },
-    { id: "4FczjYFcD4I", title: "Student Cricket Match" },
-    { id: "qY16-bGcoz8", title: "Melodious Tribute on Independence Day" },
-    { id: "r885CrRJPIo", title: "Indian Army Act — Tribute Performance" }
+    { id: "3Zd9xY23hkg", title: "Discover the Spirit of Excellence — Official School Promo Video 2025",
+      titleHi: "उत्कृष्टता की पहचान — आधिकारिक प्रोमो वीडियो 2025" },
+    { id: "yj4RaZx9_TI", title: "Proud Girls of Gurukul Academy Hr. Sec. School",
+      titleHi: "गुरुकुल अकादमी की गौरवशाली बेटियाँ" },
+    { id: "5GNxw6k3DI8", title: "Grand March Past — Discipline & Unity in Action",
+      titleHi: "भव्य मार्च पास्ट — अनुशासन और एकता" },
+    { id: "4FczjYFcD4I", title: "Student Cricket Match",
+      titleHi: "विद्यार्थी क्रिकेट मैच" },
+    { id: "qY16-bGcoz8", title: "Melodious Tribute on Independence Day",
+      titleHi: "स्वतंत्रता दिवस पर सुरीली प्रस्तुति" },
+    { id: "r885CrRJPIo", title: "Indian Army Act — Tribute Performance",
+      titleHi: "भारतीय सेना अधिनियम — श्रद्धांजलि प्रस्तुति" }
   ],
 
   /* ---------- Testimonials (home page) ---------- */
@@ -93,10 +105,12 @@ var SITE_CONFIG = {
   //   3. Add an entry below. Files not listed yet are fine — an
   //      album with no photos shows placeholder tiles until you
   //      add the file names.
+  // titleHi / yearHi are the Hindi names shown when the site is in हिंदी.
   albums: [
     {
       id: "founding-years",
       title: "The Founding Years",
+      titleHi: "स्थापना के वर्ष",
       year: "2013 – 2015",
       folder: "images/founding-years",
       photos: [
@@ -130,6 +144,7 @@ var SITE_CONFIG = {
     {
       id: "sports-day-2015",
       title: "Grand Sports Day",
+      titleHi: "विशाल खेल दिवस",
       year: "2015",
       folder: "images/sports-day-2015",
       photos: [
@@ -206,6 +221,7 @@ var SITE_CONFIG = {
     {
       id: "annual-day-2018-19",
       title: "Annual Day Celebrations",
+      titleHi: "वार्षिकोत्सव समारोह",
       year: "2018 – 19",
       folder: "images/annual-day-2018-19",
       photos: [
@@ -257,6 +273,7 @@ var SITE_CONFIG = {
     {
       id: "annual-function-2023",
       title: "Annual Functions",
+      titleHi: "वार्षिक समारोह",
       year: "2014 – 2023",
       folder: "images/annual-function-2023",
       photos: [
@@ -316,7 +333,9 @@ var SITE_CONFIG = {
     {
       id: "republic-day",
       title: "Patriotic Performances",
+      titleHi: "देशभक्ति प्रस्तुतियाँ",
       year: "Annual Function 2014",
+      yearHi: "वार्षिकोत्सव 2014",
       folder: "images/republic-day",
       photos: [
         "republic-day-001.jpg",
@@ -334,6 +353,7 @@ var SITE_CONFIG = {
     {
       id: "farewell-2025",
       title: "Farewell Ceremony",
+      titleHi: "विदाई समारोह",
       year: "2025",
       folder: "images/farewell-2025",
       photos: [
@@ -368,7 +388,9 @@ var SITE_CONFIG = {
     {
       id: "events-achievements",
       title: "Events & Achievements",
+      titleHi: "कार्यक्रम व उपलब्धियाँ",
       year: "Across the years",
+      yearHi: "विभिन्न वर्षों में",
       folder: "images/events-achievements",
       photos: [
         "events-achievements-004.jpg",
@@ -398,13 +420,17 @@ var SITE_CONFIG = {
   //   Edit the school's Google Sheet ("Gurukul Announcements", published to
   //   web as CSV) — add a row with the text in the "Text" column and an
   //   optional date in the "Date" column. The homepage shows it in ~1 minute.
+  //   Optional: a "Text_hi" column carries the Hindi announcement for
+  //   visitors using the हिंदी toggle (without it, English is shown).
   //   The URL below is that sheet's publish link — do not turn off
   //   File → Share → Publish to web, or the sheet stops updating the site.
   //   The two generic items in `announcements` below are the permanent
   //   fallback shown if the sheet can't be fetched.
   announcementsSheetUrl: "https://docs.google.com/spreadsheets/d/e/2PACX-1vSJYsNE4lzI7B1wfDlauWPaH8s-RQJudFcHqm3qumqOj1KqxEESjqIXTAA4rHpUClnWpvsm1gN0oY5L/pub?output=csv",
   announcements: [
-    { date: "TODO", text: "Admissions open for the new academic session. Contact the school office for details." },
-    { date: "TODO", text: "Follow the school on Facebook, Instagram and YouTube for the latest photos and videos." }
+    { date: "TODO", text: "Admissions open for the new academic session. Contact the school office for details.",
+      textHi: "नए शैक्षणिक सत्र के लिए प्रवेश प्रारंभ। विवरण हेतु विद्यालय कार्यालय से संपर्क करें।" },
+    { date: "TODO", text: "Follow the school on Facebook, Instagram and YouTube for the latest photos and videos.",
+      textHi: "ताज़ा फोटो और वीडियो के लिए विद्यालय को Facebook, Instagram और YouTube पर फ़ॉलो करें।" }
   ]
 };

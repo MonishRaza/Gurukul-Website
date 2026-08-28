@@ -35,11 +35,27 @@
 
   function waLink() {
     var num = String(C.whatsapp.number || "").replace(/[^0-9]/g, "");
-    return "https://wa.me/" + num + "?text=" + encodeURIComponent(C.whatsapp.message || "");
+    var msg = pick(C.whatsapp, "message", "messageHi") || C.whatsapp.message || "";
+    return "https://wa.me/" + num + "?text=" + encodeURIComponent(msg);
   }
 
   function telLink(phone) {
     return "tel:" + String(phone).replace(/[^+0-9]/g, "");
+  }
+
+  // i18n helpers — English fallbacks keep the site whole if i18n.js is missing.
+  function t(key, fallback, n) {
+    return window.SITE_LANG ? window.SITE_LANG.t(key, fallback, n) : fallback;
+  }
+  // pick(obj, "title", "titleHi") → Hindi variant when the site is in Hindi.
+  function pick(obj, enKey, hiKey) {
+    if (!obj) return "";
+    if (window.SITE_LANG && window.SITE_LANG.get() === "hi" && obj[hiKey]) return obj[hiKey];
+    return obj[enKey] || "";
+  }
+  // Current language (defaults to "en" when i18n.js didn't load).
+  function lang() {
+    return window.SITE_LANG ? window.SITE_LANG.get() : "en";
   }
 
   /* Inline SVG icons (no external icon library needed) */
@@ -93,8 +109,10 @@
         '<div class="container topbar-inner">' +
           '<span class="topbar-item">' + ICON.phone + " <a href=\"" + telLink(C.phone) + '">' + esc(C.phone) + "</a></span>" +
           '<span class="topbar-item">' + ICON.mail + " <a href=\"mailto:" + esc(C.email) + '">' + esc(C.email) + "</a></span>" +
+          '<div class="lang-slot" id="lang-slot"></div>' +
           '<span class="topbar-social">' + socialLinksHtml("social-link") + "</span>" +
         "</div>";
+      if (window.SITE_LANG) window.SITE_LANG.mount(document.getElementById("lang-slot"));
     }
 
     var current = document.body.getAttribute("data-page") || "";
@@ -140,8 +158,8 @@
       '<div class="footer-inner">' +
         '<img class="footer-logo" src="' + esc(C.logo) + '" alt="' + esc(C.shortName) + ' logo" ' +
           'onerror="this.style.display=\'none\'">' +
-        '<div class="footer-name">' + esc(C.schoolName) + "</div>" +
-        '<p class="footer-tagline">' + esc(C.tagline) + "</p>" +
+        '<div class="footer-name">' + esc(pick(C, "schoolName", "schoolNameHi")) + "</div>" +
+        '<p class="footer-tagline">' + esc(pick(C, "tagline", "taglineHi")) + "</p>" +
         '<div class="footer-social">' + socialLinksHtml("social-link") + "</div>" +
         '<p class="footer-contact-line">' + C.addressLines.map(esc).join(", ") + "</p>" +
         '<p class="footer-contact-line">' +
@@ -149,27 +167,32 @@
           (C.phoneAlt ? ' &nbsp;·&nbsp; <a href="' + telLink(C.phoneAlt) + '">' + esc(C.phoneAlt) + "</a>" : "") +
           ' &nbsp;·&nbsp; <a href="mailto:' + esc(C.email) + '">' + esc(C.email) + "</a>" +
         "</p>" +
-        '<p class="footer-contact-line"><a href="' + waLink() + '" target="_blank" rel="noopener">Chat on WhatsApp</a></p>' +
+        '<p class="footer-contact-line"><a href="' + waLink() + '" target="_blank" rel="noopener">' +
+          t("footer.chatWhatsApp", "Chat on WhatsApp") + "</a></p>" +
         '<ul class="footer-links">' +
           PAGES.map(function (p) {
-            return '<li><a href="' + p.href + '">' + p.label + "</a></li>";
+            var key = p.id === "staff-portal" ? "nav.staff" : "nav." + p.id;
+            return '<li><a href="' + p.href + '">' + esc(t(key, p.label)) + "</a></li>";
           }).join("") +
         "</ul>" +
-        '<p class="footer-bottom">© ' + year + " " + esc(C.schoolName) +
-        " · DISE Code: " + esc(C.diseCode) + "</p>" +
+        '<p class="footer-bottom">© ' + year + " " + esc(pick(C, "schoolName", "schoolNameHi")) +
+        " · " + t("footer.diseLabel", "DISE Code:") + " " + esc(C.diseCode) + "</p>" +
       "</div>";
   }
 
   /* ---------- floating WhatsApp button ---------- */
 
   function buildWhatsAppButton() {
+    // Remove any previous float first so language repaints don't stack them.
+    var existing = document.querySelectorAll(".wa-float");
+    existing.forEach(function (el) { el.parentNode.removeChild(el); });
     var btn = document.createElement("a");
     btn.className = "wa-float";
     btn.href = waLink();
     btn.target = "_blank";
     btn.rel = "noopener";
-    btn.setAttribute("aria-label", "Chat with us on WhatsApp");
-    btn.innerHTML = ICON.whatsapp + '<span class="wa-tooltip">Chat with us</span>';
+    btn.setAttribute("aria-label", t("wa.floatAria", "Chat with us on WhatsApp"));
+    btn.innerHTML = ICON.whatsapp + '<span class="wa-tooltip">' + t("wa.tooltip", "Chat with us") + "</span>";
     document.body.appendChild(btn);
   }
 
@@ -187,11 +210,11 @@
     grid.innerHTML = videos.map(function (v) {
       return '<a class="video-card" href="https://www.youtube.com/watch?v=' + esc(v.id) + '" target="_blank" rel="noopener">' +
         '<span class="video-thumb">' +
-          '<img src="https://i.ytimg.com/vi/' + esc(v.id) + '/hqdefault.jpg" alt="' + esc(v.title) + '" loading="lazy">' +
+          '<img src="https://i.ytimg.com/vi/' + esc(v.id) + '/hqdefault.jpg" alt="' + esc(pick(v, "title", "titleHi")) + '" loading="lazy">' +
           '<span class="video-play"><span>' + ICON.play + "</span></span>" +
         "</span>" +
-        '<span class="video-title">' + esc(v.title) + "</span>" +
-        '<span class="video-source">' + ICON.youtube + " Watch on YouTube</span>" +
+        '<span class="video-title">' + esc(pick(v, "title", "titleHi")) + "</span>" +
+        '<span class="video-source">' + ICON.youtube + " " + t("home.videos.watch", "Watch on YouTube") + "</span>" +
         "</a>";
     }).join("");
     if (!videos.length) grid.closest(".section").hidden = true;
@@ -207,7 +230,7 @@
         fb.innerHTML = '<iframe class="fb-frame" title="Facebook posts — ' + esc(C.shortName) + '" src="' + src +
           '" loading="lazy" allow="encrypted-media" referrerpolicy="strict-origin-when-cross-origin"></iframe>';
       } else {
-        fb.innerHTML = '<p class="muted">Add your Facebook page URL in <code>js/site-config.js</code>.</p>';
+        fb.innerHTML = '<p class="muted">' + t("home.muted.fbHint", 'Add your Facebook page URL in <code>js/site-config.js</code>.') + "</p>";
       }
     }
   }
@@ -245,7 +268,7 @@
     var date = a.date && String(a.date).indexOf("TODO") === -1 ? String(a.date).trim() : "";
     return '<li class="announcement">' +
       (date ? '<span class="announcement-date">' + esc(date) + "</span>" : "") +
-      "<p>" + esc(a.text) + "</p></li>";
+      "<p>" + esc(pick(a, "text", "textHi") || a.text) + "</p></li>";
   }
 
   // Minimal CSV line parser: handles quoted fields with commas/escaped quotes.
@@ -268,53 +291,75 @@
 
   // Find the row containing "Date" and "Text" header cells (any position,
   // any row among the first few), so the admin can insert extra columns or
-  // rows at the top of the sheet without breaking it.
+  // rows at the top of the sheet without breaking it. An optional "Text_hi"
+  // column carries the Hindi announcement; without it English is shown.
   function sheetRowsToAnnouncements(csv) {
     var lines = String(csv).split(/\r\n|\n|\r/).filter(function (l) { return l.trim() !== ""; });
     if (lines.length < 2) return null;
-    var head = null, dCol = -1, tCol = -1, start = -1;
+    var head = null, dCol = -1, tCol = -1, hiCol = -1, start = -1;
     for (var h = 0; h < Math.min(lines.length, 5); h++) {
       var cells = parseCsvLine(lines[h]).map(function (c) { return c.trim().toLowerCase(); });
       dCol = cells.indexOf("date");
       tCol = cells.indexOf("text");
+      hiCol = cells.indexOf("text_hi");
       if (tCol > -1) { head = cells; start = h + 1; break; }
     }
     if (!head) return null;
-    var out = [], text, date;
+    var out = [], text, textHi, date;
     for (var k = start; k < lines.length && out.length < 8; k++) {
       var row = parseCsvLine(lines[k]);
       text = (row[tCol] || "").trim();
       if (!text) continue;
+      textHi = hiCol > -1 ? (row[hiCol] || "").trim() : "";
       date = dCol > -1 ? (row[dCol] || "").trim() : "";
-      out.push({ date: date, text: text });
+      out.push({ date: date, text: text, textHi: textHi });
     }
     return out.length ? out : null;
   }
 
-  function renderHome() {
+  // Last rows parsed from the Google Sheet — kept so the language toggle can
+  // repaint announcements instantly without re-fetching.
+  var lastAnnouncements = null;
+
+  function paintAnnouncements() {
     var list = document.getElementById("announcements-list");
-    if (list) {
-      // Instant fallback content, then upgrade to the live Google Sheet data.
-      list.innerHTML = C.announcements.map(announcementItemHtml).join("");
-      if (C.announcementsSheetUrl && typeof XMLHttpRequest !== "undefined") {
-        var xhr = new XMLHttpRequest();
-        xhr.open("GET", C.announcementsSheetUrl, true);
-        xhr.onload = function () {
-          var rows = xhr.status === 200 ? sheetRowsToAnnouncements(xhr.responseText) : null;
-          if (rows) list.innerHTML = rows.map(announcementItemHtml).join("");
-        };
-        xhr.send();
-      }
-    }
+    if (!list) return;
+    var rows = lastAnnouncements || C.announcements || [];
+    list.innerHTML = rows.map(announcementItemHtml).join("");
+  }
+
+  function paintHome() {
+    paintAnnouncements();
     renderYouTube();
     renderSocialWall();
     renderTestimonials();
     var social = document.getElementById("home-social");
     if (social) {
       social.innerHTML = socialLinksHtml("social-btn") ||
-        '<p class="muted">Add your YouTube, Instagram and Facebook links in <code>js/site-config.js</code> to show them here.</p>';
+        '<p class="muted">' + t("home.muted.configHint", 'Add your YouTube, Instagram and Facebook links in <code>js/site-config.js</code> to show them here.') + "</p>";
     }
   }
+
+  function renderHome() {
+    paintHome();
+    pageRepaint = paintHome;
+    if (C.announcementsSheetUrl && typeof XMLHttpRequest !== "undefined") {
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", C.announcementsSheetUrl, true);
+      xhr.onload = function () {
+        var rows = xhr.status === 200 ? sheetRowsToAnnouncements(xhr.responseText) : null;
+        if (rows) {
+          lastAnnouncements = rows;
+          paintAnnouncements();
+        }
+      };
+      xhr.send();
+    }
+  }
+
+  // Set by the current page's renderer so the language toggle can repaint
+  // JS-rendered sections without re-fetching or re-binding listeners.
+  var pageRepaint = null;
 
   /* ---------- gallery + lightbox ---------- */
 
@@ -341,14 +386,18 @@
     var current = 0;
     var lightboxPhotos = [];
 
-    tabsHost.innerHTML = albums.map(function (a, i) {
-      var count = (a.photos || []).length;
-      var meta = count ? count + " photo" + (count > 1 ? "s" : "") : "coming soon";
-      return '<button class="album-tab' + (i === 0 ? " active" : "") + '" data-index="' + i + '">' +
-        '<span class="album-tab-title">' + esc(a.title) + "</span>" +
-        '<span class="album-tab-meta">' + esc(a.year || "") + (meta ? " · " + meta : "") + "</span>" +
-        "</button>";
-    }).join("");
+    // Tab strip — rebuilt on language change (title/year/photo-count text).
+    function paintTabs() {
+      tabsHost.innerHTML = albums.map(function (a, i) {
+        var count = (a.photos || []).length;
+        var meta = count ? t("gallery.photoCount", count + " photo" + (count > 1 ? "s" : ""), count) : t("gallery.comingSoon", "coming soon");
+        return '<button class="album-tab' + (i === current ? " active" : "") + '" role="tab"' +
+          ' aria-selected="' + (i === current) + '" aria-controls="album-grid" data-index="' + i + '">' +
+          '<span class="album-tab-title">' + esc(pick(a, "title", "titleHi")) + "</span>" +
+          '<span class="album-tab-meta">' + esc(pick(a, "year", "yearHi") || "") + (meta ? " · " + meta : "") + "</span>" +
+          "</button>";
+      }).join("");
+    }
 
     function show(i) {
       current = i;
@@ -359,8 +408,9 @@
 
       tabsHost.querySelectorAll(".album-tab").forEach(function (t, ti) {
         t.classList.toggle("active", ti === i);
+        t.setAttribute("aria-selected", ti === i ? "true" : "false");
       });
-      if (titleHost) titleHost.textContent = album.title + (album.year ? " · " + album.year : "");
+      if (titleHost) titleHost.textContent = pick(album, "title", "titleHi") + (album.year ? " · " + (pick(album, "year", "yearHi") || album.year) : "");
 
       if (!lightboxPhotos.length) {
         gridHost.innerHTML =
@@ -370,18 +420,27 @@
                 return '<img src="' + placeholderDataUri(album.title) + '" alt="" loading="lazy">';
               }).join("") +
             "</div>" +
-            '<p class="muted">Photos for this album will appear here. Drop images into <code>' +
-            esc(album.folder) + "/</code> and list their file names in <code>js/site-config.js</code>.</p>" +
+            '<p class="muted">' + t("gallery.emptyTitle", "Photos for this album will appear here.") +
+            " " + '<span class="howto">Drop images into <code>' +
+            esc(album.folder) + "/</code> and list their file names in <code>js/site-config.js</code>.</span></p>" +
           "</div>";
         return;
       }
 
       gridHost.innerHTML = lightboxPhotos.map(function (p, pi) {
-        return '<figure class="gallery-item" data-index="' + pi + '" tabindex="0" role="button" aria-label="Open photo">' +
-          '<img src="' + esc(p.src) + '" alt="' + esc(album.title + " — photo " + (pi + 1)) + '" loading="lazy">' +
+        return '<figure class="gallery-item" data-index="' + pi + '" tabindex="0" role="button" aria-label="' +
+          esc(t("gallery.openPhoto", "Open photo")) + '">' +
+          '<img src="' + esc(p.src) + '" alt="' + esc(pick(album, "title", "titleHi") + " — " + t("gallery.photoAlt", "photo") + " " + (pi + 1)) + '" loading="lazy">' +
           "</figure>";
       }).join("");
     }
+
+    // Repaint everything for the current language, keeping the selected album.
+    function repaintGallery() {
+      paintTabs();
+      show(current);
+    }
+    pageRepaint = repaintGallery;
 
     tabsHost.addEventListener("click", function (e) {
       var btn = e.target.closest(".album-tab");
@@ -420,7 +479,7 @@
       var p = lightboxPhotos[lbIndex];
       if (!p) return;
       lbImg.src = p.src;
-      lbCaption.textContent = albums[current].title + " — " + (lbIndex + 1) + " / " + lightboxPhotos.length;
+      lbCaption.textContent = pick(albums[current], "title", "titleHi") + " — " + (lbIndex + 1) + " / " + lightboxPhotos.length;
     }
     function step(dir) {
       if (!lightboxPhotos.length) return;
@@ -441,6 +500,7 @@
       if (e.key === "ArrowRight") step(1);
     });
 
+    paintTabs();
     show(0);
   }
 
@@ -469,12 +529,12 @@
     var map = el("contact-map");
     if (map) {
       if (C.mapEmbedUrl && !isPlaceholder(C.mapEmbedUrl)) {
-        map.innerHTML = '<iframe title="Map — ' + esc(C.schoolName) + '" src="' + esc(C.mapEmbedUrl) +
+        map.innerHTML = '<iframe title="' + esc(t("contact.mapHeading", "Map") + " — " + pick(C, "schoolName", "schoolNameHi")) + '" src="' + esc(C.mapEmbedUrl) +
           '" width="100%" height="380" style="border:0" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>';
       } else {
         map.innerHTML = '<div class="map-placeholder">' + ICON.pin +
-          '<p>The map will appear here once you paste the Google&nbsp;Maps embed URL into <code>js/site-config.js</code>.</p>' +
-          '<p class="muted">Google Maps → search the school → Share → “Embed a map” → copy the <code>src</code> link.</p></div>';
+          '<p>' + t("contact.muted.mapHint", "The map will appear here once you paste the Google&nbsp;Maps embed URL into <code>js/site-config.js</code>.") + "</p>" +
+          '<p class="muted">' + t("contact.muted.mapHow", "Google Maps → search the school → Share → “Embed a map” → copy the <code>src</code> link.") + "</p></div>";
       }
     }
 
@@ -492,7 +552,7 @@
     var social = el("contact-social");
     if (social) {
       social.innerHTML = socialLinksHtml("social-btn") ||
-        '<p class="muted">Add your social media URLs in <code>js/site-config.js</code>.</p>';
+        '<p class="muted">' + t("contact.muted.configHint", "Add your social media URLs in <code>js/site-config.js</code>.") + "</p>";
     }
   }
 
@@ -555,6 +615,10 @@
   }
 
   document.addEventListener("DOMContentLoaded", function () {
+    // Apply the stored/URL language to the static HTML before anything renders,
+    // so the header/footer/sections are built already in the right language.
+    if (window.SITE_LANG) window.SITE_LANG.set(window.SITE_LANG.get(), false);
+
     buildHeader();
     buildFooter();
     buildWhatsAppButton();
@@ -566,5 +630,15 @@
     if (page === "gallery") renderGallery();
     if (page === "contact") renderContact();
     if (page === "feedback") renderFeedback();
+
+    // Language toggle → rebuild everything that JS rendered.
+    if (window.SITE_LANG) {
+      window.SITE_LANG.onChange(function () {
+        buildHeader();
+        buildFooter();
+        buildWhatsAppButton();
+        if (pageRepaint) pageRepaint();
+      });
+    }
   });
 })();
