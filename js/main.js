@@ -43,6 +43,7 @@
     mail: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>',
     pin: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>',
     download: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 16 6 10h4V3h4v7h4l-6 6zm-8 2h16v3H4v-3z"/></svg>',
+    play: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>',
     camera: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 3 7.2 5H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-3.2L15 3H9zm3 5a5.5 5.5 0 1 1 0 11 5.5 5.5 0 0 1 0-11zm0 2a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7z"/></svg>',
     chevronL: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M15.4 4.6 8 12l7.4 7.4 1.4-1.4L10.8 12l6-6z"/></svg>',
     chevronR: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8.6 4.6 7.2 6l6 6-6 6 1.4 1.4L16 12z"/></svg>',
@@ -179,7 +180,62 @@
      PAGE-SPECIFIC RENDERING
      ============================================================ */
 
-  /* ---------- home: announcements + social ---------- */
+  /* ---------- home: announcements + youtube + social wall + testimonials ---------- */
+
+  function renderYouTube() {
+    var grid = document.getElementById("yt-videos");
+    if (!grid) return;
+    var featured = "3Zd9xY23hkg"; // shown as the embedded promo above the grid
+    var videos = (C.youtubeVideos || []).filter(function (v) { return v.id !== featured; });
+    grid.innerHTML = videos.map(function (v) {
+      return '<a class="video-card" href="https://www.youtube.com/watch?v=' + esc(v.id) + '" target="_blank" rel="noopener">' +
+        '<span class="video-thumb">' +
+          '<img src="https://i.ytimg.com/vi/' + esc(v.id) + '/hqdefault.jpg" alt="' + esc(v.title) + '" loading="lazy">' +
+          '<span class="video-play"><span>' + ICON.play + "</span></span>" +
+        "</span>" +
+        '<span class="video-title">' + esc(v.title) + "</span>" +
+        '<span class="video-source">' + ICON.youtube + " Watch on YouTube</span>" +
+        "</a>";
+    }).join("");
+    if (!videos.length) grid.closest(".section").hidden = true;
+  }
+
+  function renderSocialWall() {
+    var fb = document.getElementById("fb-feed");
+    if (fb) {
+      if (C.social.facebook) {
+        var src = "https://www.facebook.com/plugins/page.php?href=" +
+          encodeURIComponent(C.social.facebook) +
+          "&tabs=timeline&width=500&height=620&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=";
+        fb.innerHTML = '<iframe class="fb-frame" title="Facebook posts — ' + esc(C.shortName) + '" src="' + src +
+          '" loading="lazy" allow="encrypted-media" referrerpolicy="strict-origin-when-cross-origin"></iframe>';
+      } else {
+        fb.innerHTML = '<p class="muted">Add your Facebook page URL in <code>js/site-config.js</code>.</p>';
+      }
+    }
+  }
+
+  function renderTestimonials() {
+    var section = document.getElementById("testimonials");
+    var grid = document.getElementById("testimonials-grid");
+    if (!section || !grid) return;
+    var list = C.testimonials || [];
+    if (!list.length) { section.hidden = true; return; }
+    section.hidden = false;
+    grid.innerHTML = list.map(function (t) {
+      var initials = (t.name || "?").split(/\s+/).map(function (w) { return w[0]; }).slice(0, 2).join("").toUpperCase();
+      var stars = "★".repeat(Math.max(1, Math.min(5, t.rating || 5))) + "☆".repeat(5 - Math.max(1, Math.min(5, t.rating || 5)));
+      return '<figure class="testimonial">' +
+        '<span class="quote-mark">”</span>' +
+        '<div class="stars" aria-label="' + (t.rating || 5) + ' out of 5 stars">' + stars + "</div>" +
+        "<p>" + esc(t.text) + "</p>" +
+        '<figcaption class="who">' +
+          '<span class="avatar">' + esc(initials) + "</span>" +
+          "<span><b>" + esc(t.name) + "</b><small>" + esc(t.role || "") + "</small></span>" +
+        "</figcaption>" +
+        "</figure>";
+    }).join("");
+  }
 
   function renderHome() {
     var list = document.getElementById("announcements-list");
@@ -190,6 +246,9 @@
           "<p>" + esc(a.text) + "</p></li>";
       }).join("");
     }
+    renderYouTube();
+    renderSocialWall();
+    renderTestimonials();
     var social = document.getElementById("home-social");
     if (social) {
       social.innerHTML = socialLinksHtml("social-btn") ||
@@ -359,6 +418,14 @@
       }
     }
 
+    var dir = el("contact-directions");
+    if (dir) {
+      dir.href = C.mapDirectionsUrl ||
+        "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(C.schoolName + " " + C.addressLines.join(" "));
+      dir.target = "_blank";
+      dir.rel = "noopener";
+    }
+
     var wa = el("contact-whatsapp");
     if (wa) wa.href = waLink();
 
@@ -438,12 +505,40 @@
     if (subject) subject.value = "Website Feedback — " + C.shortName;
   }
 
+  /* ---------- scroll effects ---------- */
+
+  function initScrollEffects() {
+    var header = document.getElementById("site-header");
+    if (header) {
+      var onScroll = function () {
+        header.classList.toggle("scrolled", window.scrollY > 8);
+      };
+      window.addEventListener("scroll", onScroll, { passive: true });
+      onScroll();
+    }
+
+    if (!("IntersectionObserver" in window)) {
+      document.querySelectorAll(".reveal").forEach(function (el) { el.classList.add("visible"); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
+  }
+
   /* ---------- boot ---------- */
 
   document.addEventListener("DOMContentLoaded", function () {
     buildHeader();
     buildFooter();
     buildWhatsAppButton();
+    initScrollEffects();
 
     var page = document.body.getAttribute("data-page");
     if (page === "home") renderHome();

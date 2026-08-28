@@ -49,9 +49,30 @@ const SITE_CONFIG = {
     facebook: "https://www.facebook.com/gurukulacademyamarpatan/"
   },
 
-  /* ---------- Google Map (contact page) ---------- */
-  // Keyless embed centred on the school's coordinates from its Google Maps listing.
-  mapEmbedUrl: "https://maps.google.com/maps?q=24.3352318,80.9548135&z=17&hl=en&output=embed",
+  /* ---------- Map (contact page) ---------- */
+  // The embedded map uses OpenStreetMap (loads reliably, no API key).
+  mapEmbedUrl: "https://www.openstreetmap.org/export/embed.html?bbox=80.9352%2C24.3282%2C80.9748%2C24.3422&layer=mapnik&marker=24.3352318%2C80.9548135",
+  // "Get directions" button — opens Google Maps navigation to the school.
+  mapDirectionsUrl: "https://www.google.com/maps/place/Gurukul+Academy+Higher+Secondary+School+Amarpatan/@24.3352318,80.9522386,17z",
+
+  /* ---------- YouTube videos (home page) ---------- */
+  // Real uploads from the school's channel @gurukulacademy876.
+  // Add more with the video's ID from its YouTube link.
+  youtubeVideos: [
+    { id: "3Zd9xY23hkg", title: "Discover the Spirit of Excellence — Official School Promo Video 2025" },
+    { id: "yj4RaZx9_TI", title: "Proud Girls of Gurukul Academy Hr. Sec. School" },
+    { id: "5GNxw6k3DI8", title: "Grand March Past — Discipline & Unity in Action" },
+    { id: "4FczjYFcD4I", title: "Student Cricket Match" },
+    { id: "qY16-bGcoz8", title: "Melodious Tribute on Independence Day" },
+    { id: "r885CrRJPIo", title: "Indian Army Act — Tribute Performance" }
+  ],
+
+  /* ---------- Testimonials (home page) ---------- */
+  // ★ Add REAL feedback from parents/students here (Google reviews,
+  //   JustDial or messages you receive). Each entry:
+  //   { name: "…", role: "Parent of Class 6 student", text: "…", rating: 5 }
+  // The section stays hidden until at least one is added.
+  testimonials: [],
 
   /* ---------- School app ---------- */
   // The app is a web app — it opens in any browser and is always the
