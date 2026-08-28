@@ -79,7 +79,8 @@
     { href: "gallery.html", label: "Gallery", id: "gallery" },
     { href: "index.html#social", label: "Social Presence", id: "social" },
     { href: "contact.html", label: "Contact", id: "contact" },
-    { href: "feedback.html", label: "Feedback", id: "feedback" }
+    { href: "feedback.html", label: "Feedback", id: "feedback" },
+    { href: "https://app.gurukulamarpatan.in", label: "Staff Portal ↗", id: "staff-portal", external: true }
   ];
 
   function buildHeader() {

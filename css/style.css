@@ -207,6 +207,34 @@ html.js .reveal:nth-child(5) { transition-delay: 0.32s; }
   background: var(--orange);
 }
 
+/* Staff Portal nav entry — a saffron pill CTA, distinct from regular links.
+   Points to the attendance app on the app. subdomain (target=_blank). */
+.site-nav a.nav-staff {
+  margin-left: 0.6rem;
+  padding: 0.5rem 0.95rem;
+  color: #fff;
+  background: linear-gradient(135deg, var(--orange), var(--orange-dark));
+  border: 1px solid var(--orange-dark);
+  box-shadow: var(--shadow-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.84rem;
+}
+.site-nav a.nav-staff:hover {
+  color: #fff;
+  background: linear-gradient(135deg, var(--orange-dark), #b96400);
+  filter: brightness(1.04);
+}
+.site-nav a.nav-staff:active {
+  transform: translateY(1px);
+}
+.site-nav a.nav-staff::after {
+  content: " ↗";
+  font-weight: 400;
+  opacity: 0.9;
+  margin-left: 0.15rem;
+}
+
 /* ---------- hero (template-style: full-bleed, centred logo + slogan) ---------- */
 
 .hero {
