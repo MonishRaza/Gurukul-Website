@@ -177,13 +177,20 @@ working. Logo: white border + saffron ring glow on the hero.
 
 ## 8. Known pending items
 
-- [ ] **FormSubmit activation** — one test submission on feedback.html +
-      click Activate in the email to gurukulamarpatan@gmail.com.
+- [x] **FormSubmit activation** — DONE (2026-08-28): user submitted the test +
+      clicked Activate in the email to gurukulamarpatan@gmail.com. The form
+      now delivers to the school inbox.
 - [ ] Announcement dates still `"TODO"` in site-config.js.
 - [ ] Optional hero photo (`heroImage` in config — wide school photo).
 - [ ] Testimonials: section auto-hides until REAL entries added (never
       fabricate — no public reviews exist).
-- [ ] Custom domain (~₹800–900/yr) chosen but unnamed; README documents DNS.
+- [ ] Custom domain — **purchased 2026-08-28**, pending registrant
+      verification (confirmation email within ~30–40 min of registration).
+      Once verified: set the domain in repo Settings → Pages (or add a
+      `CNAME` file), add the registrar's DNS records (A records for the
+      apex → 185.199.108–111.153, CNAME for `www` →
+      `monishraza.github.io`), then enable Enforce HTTPS. README documents
+      the DNS steps.
 
 ## 9. Do-nots
 
