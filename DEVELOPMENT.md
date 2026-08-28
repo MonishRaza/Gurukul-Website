@@ -246,7 +246,14 @@ working. Logo: white border + saffron ring glow on the hero.
       of the repo on purpose): regenerate its 10 screenshots if the site's
       design changes significantly. Source + screenshot tooling in
       `%TEMP%\gurukul-v9\demo\` (regenerable via §4.5 headless captures +
-      System.Drawing crops).
+      System.Drawing crops). ⚠ When regenerating, keep the document head
+      intact: `<!DOCTYPE html>` + `<html lang="hi" translate="no">` +
+      `<meta charset>` + viewport + `<meta name="google" content="notranslate">`.
+      Without those, Chrome on phones mis-detects the mixed Hindi/English
+      page (once as Corsican!) and auto-translates it into gibberish.
+      Note: headless Edge can't screenshot below ~500px window width
+      (min-window clamp) — for true 420px checks, render the page inside a
+      420px-wide iframe and screenshot the wrapper.
 
 ## 9. Account map (all technical accounts — monishamarpatan@gmail.com)
 
