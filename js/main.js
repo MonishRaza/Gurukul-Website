@@ -74,7 +74,6 @@
     { href: "about.html", label: "About", id: "about" },
     { href: "gallery.html", label: "Gallery", id: "gallery" },
     { href: "index.html#social", label: "Social Presence", id: "social" },
-    { href: "app.html", label: "School App", id: "app" },
     { href: "contact.html", label: "Contact", id: "contact" },
     { href: "feedback.html", label: "Feedback", id: "feedback" }
   ];
@@ -100,7 +99,6 @@
       "about.html": "about",
       "gallery.html": "gallery",
       "index.html#social": "social",
-      "app.html": "app",
       "contact.html": "contact",
       "feedback.html": "feedback"
     };
@@ -432,57 +430,6 @@
     }
   }
 
-  /* ---------- app page ---------- */
-
-  function renderApp() {
-    var el = function (id) { return document.getElementById(id); };
-    var app = C.app;
-
-    if (el("app-name")) el("app-name").textContent = app.name;
-    if (el("app-version")) el("app-version").textContent = app.version;
-    if (el("app-desc")) el("app-desc").textContent = app.description;
-
-    var apkSection = el("app-apk-section");
-    var openBtn = el("app-open");
-
-    if (app.webAppUrl) {
-      // Web-app mode: primary button opens the live app
-      if (openBtn) {
-        openBtn.href = app.webAppUrl;
-        openBtn.target = "_blank";
-        openBtn.rel = "noopener";
-      }
-      if (apkSection) apkSection.hidden = true;
-    } else if (app.apkPath) {
-      // APK mode (optional, if ever published)
-      if (apkSection) apkSection.hidden = false;
-      if (openBtn) openBtn.hidden = true;
-      var dl = el("app-download");
-      if (dl) {
-        dl.href = app.apkPath;
-        dl.setAttribute("download", "");
-      }
-      var missing = el("app-missing");
-      fetch(app.apkPath, { method: "HEAD" }).then(function (r) {
-        if (!r.ok) throw new Error("not found");
-        var size = r.headers.get("content-length");
-        if (el("app-size") && size) el("app-size").textContent = "APK · " + (size / 1048576).toFixed(1) + " MB";
-      }).catch(function () {
-        if (missing) missing.hidden = false;
-        if (dl) dl.classList.add("disabled");
-      });
-    }
-
-    var shots = el("app-screenshots");
-    if (shots) {
-      shots.innerHTML = (app.screenshots && app.screenshots.length)
-        ? app.screenshots.map(function (s) {
-            return '<img class="app-shot" src="' + esc(s) + '" alt="App screenshot" loading="lazy">';
-          }).join("")
-        : "";
-    }
-  }
-
   /* ---------- feedback page ---------- */
 
   function renderFeedback() {
@@ -552,7 +499,6 @@
     if (page === "home") renderHome();
     if (page === "gallery") renderGallery();
     if (page === "contact") renderContact();
-    if (page === "app") renderApp();
     if (page === "feedback") renderFeedback();
   });
 })();

@@ -21,7 +21,7 @@ const SITE_CONFIG = {
   shortName: "Gurukul Academy",
   tagline: "Knowledge · Discipline · Character",
   foundedYear: 2013,
-  logo: "images/logo.svg",          // Replace with your own logo (e.g. images/logo.png) and update this path
+  logo: "images/logo.png",          // Replace with your own logo (e.g. images/logo.png) and update this path
   heroImage: "",                    // Optional: put a wide school photo at images/hero.jpg and set
                                     // heroImage: "images/hero.jpg" — the homepage hero becomes a
                                     // full-bleed photo with a dark overlay (template landing look)
@@ -53,8 +53,9 @@ const SITE_CONFIG = {
   },
 
   /* ---------- Map (contact page) ---------- */
-  // The embedded map uses OpenStreetMap (loads reliably, no API key).
-  mapEmbedUrl: "https://www.openstreetmap.org/export/embed.html?bbox=80.9352%2C24.3282%2C80.9748%2C24.3422&layer=mapnik&marker=24.3352318%2C80.9548135",
+  // Google Maps embed — keyless, shows the school's own place card.
+  // Built from Google Maps → Share → "Embed a map" (the src link).
+  mapEmbedUrl: "https://www.google.com/maps/embed?origin=mfe&pb=!1m2!2m1!1sGurukul+Academy+Higher+Secondary+School+Amarpatan",
   // "Get directions" button — opens Google Maps navigation to the school.
   mapDirectionsUrl: "https://www.google.com/maps/place/Gurukul+Academy+Higher+Secondary+School+Amarpatan/@24.3352318,80.9522386,17z",
 
@@ -78,17 +79,10 @@ const SITE_CONFIG = {
   testimonials: [],
 
   /* ---------- School app ---------- */
-  // The app is a web app — it opens in any browser and is always the
-  // latest version. An APK download can be added later if ever needed:
-  // put the .apk in downloads/ and set apkPath below.
-  app: {
-    name: "Gurukul Attendance",
-    webAppUrl: "https://gurukul-amarpatan-attendance.web.app/",
-    version: "Web app · always up to date",
-    apkPath: "",                    // e.g. "downloads/gurukul-attendance.apk" (optional)
-    description: "The official attendance app of Gurukul Academy Amarpatan. It opens straight in your browser — no installation, and every update is live instantly.",
-    screenshots: []                 // Optional: paths to app screenshots, e.g. ["images/app/screenshot-1.png"]
-  },
+  // Removed from the website on the school's request (2026-08).
+  // To bring it back, an entry like this can be restored and the
+  // app page re-added:
+  //   app: { name: "Gurukul Attendance", webAppUrl: "https://gurukul-amarpatan-attendance.web.app/" }
 
   /* ---------- Photo albums (gallery page) ---------- */
   // How to add an album:
@@ -125,6 +119,6 @@ const SITE_CONFIG = {
   // Add or edit items freely — they appear on the home page.
   announcements: [
     { date: "TODO", text: "Admissions open for the new academic session. Contact the school office for details." },
-    { date: "TODO", text: "Download our official mobile app from the website — notices and results on your phone." }
+    { date: "TODO", text: "Follow the school on Facebook, Instagram and YouTube for the latest photos and videos." }
   ]
 };

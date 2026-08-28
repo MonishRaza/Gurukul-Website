@@ -14,8 +14,8 @@ it runs on **GitHub Pages** (or Netlify / Cloudflare Pages, also free).
 ## ★ Editing the site — the one file to know
 
 **`js/site-config.js`** holds *everything*: school name, address, phone,
-email, DISE code, WhatsApp number, social links, map, announcements,
-photo albums and the app download. Open it in any text editor (even
+email, DISE code, WhatsApp number, social links, map, announcements
+and the photo albums. Open it in any text editor (even
 Notepad), change the values marked `TODO`, save — the whole website
 updates. You never need to touch the HTML pages for these details.
 
@@ -30,7 +30,7 @@ All of these go into `js/site-config.js` unless noted:
 - [ ] **Full address** (`addressLines`) and **Google Maps embed URL** (`mapEmbedUrl`)
 - [ ] **DISE code**
 - [ ] **Social links** — YouTube, Instagram, Facebook
-- [ ] **School logo** — save as `images/logo.png` (or replace `images/logo.svg`) and update the `logo:` path
+- [x] **School logo** — done: `images/logo.png` (circular badge, cropped & made transparent from `my-content\1-logo`)
 - [ ] **Photos** — see "Adding photos to the gallery" below
 - [ ] Optional: edit the placeholder text in `about.html` (Our Story, Mission, Facilities, Board) with the school's real story
 
@@ -66,15 +66,11 @@ The gallery, album tabs and lightbox update automatically. Photos are
 lazy-loaded, so even large albums stay fast. Until you add photos, the
 album shows placeholder tiles — visitors never see a broken page.
 
-## The school app
+## The school app (removed)
 
-The app ("Gurukul Attendance") is a **web app** at
-https://gurukul-amarpatan-attendance.web.app/ — it is linked from the
-"Our App" page and is always the latest version. No files to maintain.
-
-If an APK version is ever wanted: copy the `.apk` into `downloads/`,
-then in `js/site-config.js` set `apkPath: "downloads/<file-name>.apk"`.
-The APK section on the app page appears automatically.
+The school app section was removed from the website on the school's
+request (Aug 2026). To bring it back, restore the `app:` block in
+`js/site-config.js` (kept there as a comment) and re-create `app.html`.
 
 ## Running the site on your computer
 
