@@ -10,7 +10,11 @@
 (function () {
   "use strict";
 
-  var C = window.SITE_CONFIG;
+  var C = window.SITE_CONFIG || (typeof SITE_CONFIG !== "undefined" ? SITE_CONFIG : null);
+  if (!C) {
+    // Config missing — leave the static HTML as-is rather than crashing.
+    return;
+  }
 
   // Older phone browsers lack NodeList.forEach — provide it so nothing throws.
   if (window.NodeList && !NodeList.prototype.forEach) {
@@ -117,11 +121,9 @@
     var host = document.getElementById("site-header");
     if (!host) return;
     var logo = host.querySelector(".brand-logo");
-    var mono = host.querySelector(".brand-monogram");
-    if (logo && mono) {
+    if (logo) {
       logo.addEventListener("error", function () {
         logo.style.display = "none";
-        mono.hidden = false;
       });
     }
   }

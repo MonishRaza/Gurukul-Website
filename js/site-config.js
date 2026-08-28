@@ -14,7 +14,9 @@
    See README.md for step-by-step instructions.
    ============================================================ */
 
-const SITE_CONFIG = {
+// NOTE: must be var/function-scope-assignable so it lands on window.SITE_CONFIG
+// (a top-level `const` does NOT attach to window, which broke all page rendering)
+var SITE_CONFIG = {
 
   /* ---------- School identity ---------- */
   schoolName: "Gurukul Academy Higher Secondary School",

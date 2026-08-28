@@ -1,35 +1,50 @@
 /* ============================================================
-   GURUKUL ACADEMY — STYLESHEET  (v4 — "restaurant template" look)
-   Layout & visual language adapted from the MIT-licensed
-   Restaurant-Website-Template (marynganga) — full-bleed hero with
-   centred logo, image-tile strip, bordered photo boxes, orange
-   #F15A29 accent, solid-orange footer.
+   GURUKUL ACADEMY — STYLESHEET  (v6 — Indian tricolour theme)
+   Layout adapted from the MIT-licensed Restaurant-Website-Template
+   (marynganga). Palette: tiranga saffron → white → green, with the
+   Ashoka Chakra's navy blue. Colours are blended as soft blurred
+   gradients and glows — never hard stripes.
    ============================================================ */
 
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap");
 
 :root {
-  --orange: #f15a29;
-  --orange-dark: #d44a1c;
-  --orange-deep: #b23d14;
-  --orange-pale: #fdeee7;
-  --charcoal: #23232a;
-  --charcoal-2: #2e2e37;
+  /* tiranga */
+  --saffron: #ff9933;
+  --saffron-deep: #e07b00;
+  --saffron-soft: #fff3e4;
+  --india-green: #138808;
+  --green-deep: #0d6804;
+  --green-soft: #eaf6e8;
+  /* ashoka chakra navy */
+  --chakra: #06038d;
+  --chakra-deep: #04025c;
+  --chakra-soft: #ececf8;
+
   --ink: #2b2b2b;
   --ink-soft: #555555;
   --muted: #7a7a7a;
   --paper: #ffffff;
   --bg: #ffffff;
-  --bg-alt: #f7f7f7;
-  --line: #e5e5e5;
-  --grey-strip: #efefef;
+  --bg-alt: #faf9f6;
+  --line: #e7e4de;
+  --grey-strip: #f5f3ef;
+
+  --accent: var(--saffron);
+  --accent-dark: var(--saffron-deep);
+  --orange: var(--saffron);          /* legacy aliases */
+  --orange-dark: var(--saffron-deep);
+  --orange-pale: var(--saffron-soft);
+  --charcoal: var(--chakra-deep);    /* legacy aliases → chakra navy */
+  --charcoal-2: var(--chakra);
+
   --wa-green: #25d366;
   --wa-green-dark: #1ebe5b;
   --radius: 6px;
   --radius-lg: 8px;
-  --shadow-sm: 2px 2px 7px 2px rgba(0, 0, 0, 0.10);
-  --shadow-md: 4px 6px 18px rgba(0, 0, 0, 0.14);
-  --shadow-lg: 6px 10px 34px rgba(0, 0, 0, 0.20);
+  --shadow-sm: 2px 2px 7px 2px rgba(6, 3, 60, 0.10);
+  --shadow-md: 4px 6px 18px rgba(6, 3, 60, 0.14);
+  --shadow-lg: 6px 10px 34px rgba(6, 3, 60, 0.20);
   --font: "Poppins", "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
   --font-serif: "Playfair Display", Georgia, "Times New Roman", serif;
 }
@@ -41,13 +56,19 @@ html { scroll-behavior: smooth; }
 body {
   font-family: var(--font);
   color: var(--ink);
-  background: var(--bg);
+  background:
+    radial-gradient(1100px 520px at 100% 0%, rgba(255, 153, 51, 0.06), transparent 60%),
+    radial-gradient(1100px 520px at 0% 100%, rgba(19, 136, 8, 0.06), transparent 60%),
+    #ffffff;
   line-height: 1.65;
   min-height: 100vh;
   overflow-x: hidden;
 }
 
 img { max-width: 100%; display: block; }
+
+/* the hidden attribute always wins, even over display:flex/grid elsewhere */
+[hidden] { display: none !important; }
 
 a { color: var(--orange-dark); }
 
@@ -122,7 +143,8 @@ html.js .reveal:nth-child(5) { transition-delay: 0.32s; }
   background: rgba(255, 255, 255, 0.96);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  border-bottom: 3px solid var(--orange);
+  border-bottom: 3px solid;
+  border-image: linear-gradient(90deg, var(--saffron), #ffffff 50%, var(--india-green)) 1;
   transition: box-shadow 0.25s ease;
 }
 #site-header.scrolled { box-shadow: var(--shadow-md); }
@@ -154,21 +176,6 @@ html.js .reveal:nth-child(5) { transition-delay: 0.32s; }
   object-fit: cover;
   background: var(--bg-alt);
   border: 2px solid var(--orange);
-}
-
-.brand-monogram {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 54px;
-  height: 54px;
-  border-radius: 50%;
-  background: var(--orange);
-  color: #fff;
-  font-family: var(--font-serif);
-  font-size: 1.3rem;
-  font-weight: bold;
-  border: 2px solid var(--orange-dark);
 }
 
 .brand-text { display: flex; flex-direction: column; line-height: 1.25; min-width: 0; }
@@ -208,8 +215,10 @@ html.js .reveal:nth-child(5) { transition-delay: 0.32s; }
   text-align: center;
   padding: 6rem 0 7rem;
   background:
-    radial-gradient(900px 480px at 50% -20%, rgba(241, 90, 41, 0.38), transparent 62%),
-    linear-gradient(165deg, var(--charcoal) 0%, var(--charcoal-2) 70%, #3a2a24 100%);
+    radial-gradient(820px 420px at 14% -12%, rgba(255, 153, 51, 0.42), transparent 60%),
+    radial-gradient(760px 430px at 88% 112%, rgba(19, 136, 8, 0.42), transparent 60%),
+    radial-gradient(560px 300px at 50% 55%, rgba(255, 255, 255, 0.10), transparent 65%),
+    linear-gradient(165deg, var(--chakra-deep) 0%, var(--chakra) 55%, #0a0a6e 100%);
   overflow: hidden;
 }
 
@@ -243,8 +252,11 @@ html.js .reveal:nth-child(5) { transition-delay: 0.32s; }
   border-radius: 50%;
   object-fit: cover;
   margin: 0 auto 1.3rem;
-  border: 3px solid var(--orange);
-  box-shadow: 0 0 0 6px rgba(241, 90, 41, 0.22), var(--shadow-md);
+  border: 3px solid #ffffff;
+  box-shadow:
+    0 0 0 5px rgba(255, 153, 51, 0.45),
+    0 0 34px rgba(255, 153, 51, 0.35),
+    var(--shadow-md);
   background: #fff;
 }
 
@@ -256,9 +268,9 @@ html.js .reveal:nth-child(5) { transition-delay: 0.32s; }
   font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: #ffd9c9;
-  border: 1px solid rgba(241, 90, 41, 0.55);
-  background: rgba(241, 90, 41, 0.14);
+  color: #ffd9ae;
+  border: 1px solid rgba(255, 153, 51, 0.55);
+  background: rgba(255, 153, 51, 0.14);
   border-radius: 999px;
   padding: 0.35rem 1.1rem;
   margin-bottom: 1.4rem;
@@ -273,12 +285,12 @@ html.js .reveal:nth-child(5) { transition-delay: 0.32s; }
   text-wrap: balance;
 }
 
-.hero h1 .accent { color: var(--orange); }
+.hero h1 .accent { color: var(--saffron); }
 
 .hero .slogan {
   font-style: italic;
   font-weight: 600;
-  color: #ffd9c9;
+  color: #ffd9ae;
   font-size: 1.12rem;
   letter-spacing: 0.02em;
   margin: 0.6rem auto 0;
@@ -338,13 +350,25 @@ html.js .reveal:nth-child(5) { transition-delay: 0.32s; }
 
 .explore-tile:hover { opacity: 0.72; color: var(--orange); }
 
-.tile-info { background: var(--grey-strip); color: var(--ink); }
-.tile-info .tile-big { color: var(--charcoal); }
-.tile-info:hover { color: var(--orange); }
-.tile-info:hover .tile-big { color: var(--orange); }
+.tile-info {
+  background:
+    radial-gradient(220px 140px at 80% 15%, rgba(19, 136, 8, 0.14), transparent 65%),
+    radial-gradient(240px 150px at 15% 90%, rgba(255, 153, 51, 0.22), transparent 65%),
+    var(--saffron-soft);
+  color: var(--ink);
+}
+.tile-info .tile-big { color: var(--chakra); }
+.tile-info:hover { color: var(--chakra); }
+.tile-info:hover .tile-big { color: var(--chakra-deep); }
 
-.tile-accent { background: var(--orange); color: #fff; }
-.tile-accent:hover { color: var(--charcoal); }
+.tile-accent {
+  background:
+    radial-gradient(260px 180px at 85% 100%, rgba(19, 136, 8, 0.55), transparent 65%),
+    radial-gradient(260px 180px at 10% 0%, rgba(255, 255, 255, 0.30), transparent 60%),
+    linear-gradient(135deg, var(--saffron), var(--saffron-deep));
+  color: #fff;
+}
+.tile-accent:hover { color: #fff; filter: brightness(1.06); }
 
 .tile-photo {
   background-size: cover;
@@ -383,13 +407,13 @@ html.js .reveal:nth-child(5) { transition-delay: 0.32s; }
 
 .btn-orange,
 .btn-gold {
-  background: var(--orange);
+  background: linear-gradient(135deg, var(--saffron), var(--saffron-deep));
   color: #fff;
-  border-color: var(--orange);
-  box-shadow: 0 6px 16px rgba(241, 90, 41, 0.35);
+  border-color: var(--saffron-deep);
+  box-shadow: 0 6px 16px rgba(224, 123, 0, 0.35);
 }
 .btn-orange:hover,
-.btn-gold:hover { background: var(--orange-dark); border-color: var(--orange-dark); filter: none; }
+.btn-gold:hover { filter: brightness(1.05); }
 
 .btn-outline {
   background: transparent;
@@ -398,16 +422,16 @@ html.js .reveal:nth-child(5) { transition-delay: 0.32s; }
 }
 .btn-outline:hover { background: rgba(255, 255, 255, 0.14); }
 
-/* template's signature button: white with orange border */
+/* template's signature button: white with saffron border */
 .btn-ghost-orange {
   background: #fff;
-  color: var(--orange);
-  border: 1px solid var(--orange);
+  color: var(--saffron-deep);
+  border: 1px solid var(--saffron);
 }
-.btn-ghost-orange:hover { background: var(--orange-pale); color: var(--orange-dark); }
+.btn-ghost-orange:hover { background: var(--saffron-soft); color: var(--saffron-deep); }
 
-.btn-blue { background: var(--charcoal-2); color: #fff; }
-.btn-blue:hover { background: var(--charcoal); }
+.btn-blue { background: linear-gradient(135deg, var(--chakra), var(--chakra-deep)); color: #fff; }
+.btn-blue:hover { filter: brightness(1.12); }
 
 .btn-green { background: linear-gradient(135deg, var(--wa-green), var(--wa-green-dark)); color: #fff; }
 .btn-green:hover { filter: brightness(1.05); }
@@ -422,11 +446,12 @@ html.js .reveal:nth-child(5) { transition-delay: 0.32s; }
 .section-head { text-align: center; margin-bottom: 2.6rem; }
 .section-head h2 { font-size: clamp(1.6rem, 3.4vw, 2.2rem); }
 .section-head .rule {
-  width: 74px;
-  height: 4px;
+  width: 96px;
+  height: 5px;
   border-radius: 3px;
   margin: 0.8rem auto 1rem;
-  background: var(--orange);
+  background: linear-gradient(90deg, var(--saffron), #ffd9ae 35%, #cde8c8 65%, var(--india-green));
+  box-shadow: 0 0 10px rgba(255, 153, 51, 0.35);
 }
 .section-head .eyebrow {
   display: block;
@@ -448,11 +473,12 @@ html.js .reveal:nth-child(5) { transition-delay: 0.32s; }
 .card {
   background: var(--paper);
   border: 1px solid var(--line);
-  border-top: 4px solid var(--orange);
+  border-top: 4px solid;
+  border-image: linear-gradient(90deg, var(--saffron), #fff 50%, var(--india-green)) 1;
   border-radius: var(--radius);
   padding: 1.9rem 1.7rem;
   box-shadow: var(--shadow-sm);
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
   position: relative;
   overflow: hidden;
 }
@@ -462,8 +488,10 @@ html.js .reveal:nth-child(5) { transition-delay: 0.32s; }
   width: 52px;
   height: 52px;
   border-radius: 50%;
-  background: var(--orange-pale);
-  color: var(--orange);
+  background:
+    radial-gradient(60px 60px at 70% 25%, rgba(19, 136, 8, 0.16), transparent 70%),
+    var(--saffron-soft);
+  color: var(--saffron-deep);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -473,13 +501,16 @@ html.js .reveal:nth-child(5) { transition-delay: 0.32s; }
 .card h3 { font-size: 1.18rem; margin-bottom: 0.45rem; }
 .card p { color: var(--ink-soft); font-size: 0.94rem; }
 
-/* ---------- stats band (solid orange block, like the template) ---------- */
+/* ---------- stats band (chakra navy with tricolour glows) ---------- */
 
 .stats {
   position: relative;
   color: #fff;
   padding: 2.8rem 0;
-  background: var(--orange);
+  background:
+    radial-gradient(620px 300px at 12% 0%, rgba(255, 153, 51, 0.40), transparent 62%),
+    radial-gradient(620px 300px at 88% 100%, rgba(19, 136, 8, 0.45), transparent 62%),
+    linear-gradient(120deg, var(--chakra-deep), var(--chakra));
 }
 .stats-grid {
   display: grid;
@@ -491,22 +522,23 @@ html.js .reveal:nth-child(5) { transition-delay: 0.32s; }
   display: block;
   font-family: var(--font-serif);
   font-size: 2.1rem;
-  color: #fff;
+  color: var(--saffron);
   line-height: 1.15;
 }
-.stat span { font-size: 0.86rem; color: #ffe3d6; letter-spacing: 0.04em; }
+.stat span { font-size: 0.86rem; color: #dfe3f6; letter-spacing: 0.04em; }
 
 /* dark variant for the closing CTA band */
 .band-dark {
   background:
-    radial-gradient(700px 340px at 50% 120%, rgba(241, 90, 41, 0.4), transparent 65%),
-    var(--charcoal);
+    radial-gradient(560px 300px at 16% 110%, rgba(255, 153, 51, 0.38), transparent 62%),
+    radial-gradient(560px 300px at 84% -10%, rgba(19, 136, 8, 0.40), transparent 62%),
+    linear-gradient(120deg, var(--chakra-deep), var(--chakra));
   color: #fff;
   text-align: center;
   padding: 3.6rem 0;
 }
 .band-dark h2 { color: #fff; font-size: clamp(1.5rem, 3.4vw, 2.1rem); }
-.band-dark p { color: #d8d5d3; max-width: 56ch; margin: 0.8rem auto 1.6rem; }
+.band-dark p { color: #d8daf0; max-width: 56ch; margin: 0.8rem auto 1.6rem; }
 
 /* ---------- announcements ---------- */
 
@@ -707,7 +739,7 @@ html.js .reveal:nth-child(5) { transition-delay: 0.32s; }
   width: 42px;
   height: 42px;
   border-radius: 50%;
-  background: var(--orange);
+  background: var(--chakra);
   color: #fff;
   font-weight: 700;
   display: flex;
@@ -716,7 +748,7 @@ html.js .reveal:nth-child(5) { transition-delay: 0.32s; }
   font-size: 0.95rem;
   flex: none;
 }
-.testimonial .who b { display: block; color: var(--orange-dark); font-size: 0.92rem; line-height: 1.3; }
+.testimonial .who b { display: block; color: var(--chakra); font-size: 0.92rem; line-height: 1.3; }
 .testimonial .who small { color: var(--muted); font-size: 0.78rem; }
 
 /* ---------- contact ---------- */
@@ -830,7 +862,7 @@ html.js .reveal:nth-child(5) { transition-delay: 0.32s; }
   width: 1.8rem;
   height: 1.8rem;
   border-radius: 50%;
-  background: var(--orange);
+  background: var(--chakra);
   color: #fff;
   font-weight: 700;
   font-size: 0.9rem;
@@ -898,8 +930,8 @@ html.js .reveal:nth-child(5) { transition-delay: 0.32s; }
 .form-field select:focus,
 .form-field textarea:focus {
   outline: none;
-  border-color: var(--orange);
-  box-shadow: 0 0 0 3px rgba(241, 90, 41, 0.16);
+  border-color: var(--chakra);
+  box-shadow: 0 0 0 3px rgba(255, 153, 51, 0.20);
   background: #fff;
 }
 .form-field textarea { resize: vertical; min-height: 130px; }
@@ -987,7 +1019,10 @@ html.js .reveal:nth-child(5) { transition-delay: 0.32s; }
 /* ---------- footer (template style: solid orange, centred) ---------- */
 
 #site-footer {
-  background: var(--orange);
+  background:
+    radial-gradient(700px 320px at 12% 0%, rgba(255, 153, 51, 0.35), transparent 62%),
+    radial-gradient(700px 320px at 88% 100%, rgba(19, 136, 8, 0.35), transparent 62%),
+    linear-gradient(150deg, var(--chakra-deep), var(--chakra));
   color: #fff;
   margin-top: 4.5rem;
 }
@@ -1018,7 +1053,7 @@ html.js .reveal:nth-child(5) { transition-delay: 0.32s; }
 
 .footer-tagline {
   font-style: italic;
-  color: #ffe0d2;
+  color: #ffd9ae;
   margin: 0.4rem 0 1.2rem;
 }
 
@@ -1038,7 +1073,7 @@ html.js .reveal:nth-child(5) { transition-delay: 0.32s; }
   display: inline-flex;
   color: #fff;
 }
-.footer-social .social-link:hover { background: #fff; color: var(--orange); transform: translateY(-2px); }
+.footer-social .social-link:hover { background: #fff; color: var(--chakra); transform: translateY(-2px); }
 .footer-social .social-link svg { width: 19px; height: 19px; }
 
 .footer-contact-line {
@@ -1068,7 +1103,7 @@ html.js .reveal:nth-child(5) { transition-delay: 0.32s; }
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
-.footer-links a:hover { color: var(--charcoal); }
+.footer-links a:hover { color: var(--saffron); }
 
 .footer-bottom {
   font-size: 0.8rem;
