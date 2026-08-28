@@ -234,14 +234,77 @@
     }).join("");
   }
 
+  /* ---------- announcements ----------
+     Source of truth is a Google Sheet ("Publish to web" CSV, see
+     announcementsSheetUrl in site-config.js). The admin posts new rows in the
+     sheet; the homepage picks them up without any code change. The two
+     built-in C.announcements render instantly and stay as the fallback if the
+     sheet can't be fetched. */
+
+  function announcementItemHtml(a) {
+    var date = a.date && String(a.date).indexOf("TODO") === -1 ? String(a.date).trim() : "";
+    return '<li class="announcement">' +
+      (date ? '<span class="announcement-date">' + esc(date) + "</span>" : "") +
+      "<p>" + esc(a.text) + "</p></li>";
+  }
+
+  // Minimal CSV line parser: handles quoted fields with commas/escaped quotes.
+  function parseCsvLine(line) {
+    var out = [], cur = "", inQ = false, i, ch;
+    for (i = 0; i < line.length; i++) {
+      ch = line.charAt(i);
+      if (inQ) {
+        if (ch === '"') {
+          if (line.charAt(i + 1) === '"') { cur += '"'; i++; }
+          else inQ = false;
+        } else cur += ch;
+      } else if (ch === '"') inQ = true;
+      else if (ch === ",") { out.push(cur); cur = ""; }
+      else cur += ch;
+    }
+    out.push(cur);
+    return out;
+  }
+
+  // Find the row containing "Date" and "Text" header cells (any position,
+  // any row among the first few), so the admin can insert extra columns or
+  // rows at the top of the sheet without breaking it.
+  function sheetRowsToAnnouncements(csv) {
+    var lines = String(csv).split(/\r\n|\n|\r/).filter(function (l) { return l.trim() !== ""; });
+    if (lines.length < 2) return null;
+    var head = null, dCol = -1, tCol = -1, start = -1;
+    for (var h = 0; h < Math.min(lines.length, 5); h++) {
+      var cells = parseCsvLine(lines[h]).map(function (c) { return c.trim().toLowerCase(); });
+      dCol = cells.indexOf("date");
+      tCol = cells.indexOf("text");
+      if (tCol > -1) { head = cells; start = h + 1; break; }
+    }
+    if (!head) return null;
+    var out = [], text, date;
+    for (var k = start; k < lines.length && out.length < 8; k++) {
+      var row = parseCsvLine(lines[k]);
+      text = (row[tCol] || "").trim();
+      if (!text) continue;
+      date = dCol > -1 ? (row[dCol] || "").trim() : "";
+      out.push({ date: date, text: text });
+    }
+    return out.length ? out : null;
+  }
+
   function renderHome() {
     var list = document.getElementById("announcements-list");
     if (list) {
-      list.innerHTML = C.announcements.map(function (a) {
-        return '<li class="announcement">' +
-          (a.date && String(a.date).indexOf("TODO") === -1 ? '<span class="announcement-date">' + esc(a.date) + "</span>" : "") +
-          "<p>" + esc(a.text) + "</p></li>";
-      }).join("");
+      // Instant fallback content, then upgrade to the live Google Sheet data.
+      list.innerHTML = C.announcements.map(announcementItemHtml).join("");
+      if (C.announcementsSheetUrl && typeof XMLHttpRequest !== "undefined") {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", C.announcementsSheetUrl, true);
+        xhr.onload = function () {
+          var rows = xhr.status === 200 ? sheetRowsToAnnouncements(xhr.responseText) : null;
+          if (rows) list.innerHTML = rows.map(announcementItemHtml).join("");
+        };
+        xhr.send();
+      }
     }
     renderYouTube();
     renderSocialWall();

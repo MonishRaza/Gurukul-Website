@@ -394,7 +394,15 @@ var SITE_CONFIG = {
   ],
 
   /* ---------- Announcements (home page strip) ---------- */
-  // Add or edit items freely — they appear on the home page.
+  // ★ ADMIN ANNOUNCEMENTS: post new notices WITHOUT touching this file.
+  //   Edit the school's Google Sheet ("Gurukul Announcements", published to
+  //   web as CSV) — add a row with the text in the "Text" column and an
+  //   optional date in the "Date" column. The homepage shows it in ~1 minute.
+  //   The URL below is that sheet's publish link — do not turn off
+  //   File → Share → Publish to web, or the sheet stops updating the site.
+  //   The two generic items in `announcements` below are the permanent
+  //   fallback shown if the sheet can't be fetched.
+  announcementsSheetUrl: "https://docs.google.com/spreadsheets/d/e/2PACX-1vSJYsNE4lzI7B1wfDlauWPaH8s-RQJudFcHqm3qumqOj1KqxEESjqIXTAA4rHpUClnWpvsm1gN0oY5L/pub?output=csv",
   announcements: [
     { date: "TODO", text: "Admissions open for the new academic session. Contact the school office for details." },
     { date: "TODO", text: "Follow the school on Facebook, Instagram and YouTube for the latest photos and videos." }
