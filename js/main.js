@@ -12,6 +12,11 @@
 
   var C = window.SITE_CONFIG;
 
+  // Older phone browsers lack NodeList.forEach — provide it so nothing throws.
+  if (window.NodeList && !NodeList.prototype.forEach) {
+    NodeList.prototype.forEach = Array.prototype.forEach;
+  }
+
   /* ---------- helpers ---------- */
 
   function esc(s) {
@@ -75,46 +80,52 @@
   ];
 
   function buildHeader() {
-    var host = document.getElementById("site-header");
-    if (!host) return;
-    var current = document.body.getAttribute("data-page") || "";
-    // "Social Presence" takes over the active state when viewing the social section of the home page
-    var socialActive = current === "home" && window.location.hash === "#social";
-    var nav = PAGES.map(function (p) {
-      var isActive = (p.id === current && !(current === "home" && window.location.hash === "#social")) ||
-                     (p.id === "social" && socialActive);
-      var active = isActive ? ' aria-current="page" class="active"' : "";
-      return '<a href="' + p.href + '"' + active + ">" + p.label + "</a>";
-    }).join("");
-
-    host.innerHTML =
-      '<div class="topbar">' +
+    // The brand and menu are baked into each page's HTML, so the menu is
+    // visible even if JavaScript never runs. Here we only fill the top
+    // contact bar from the site config and highlight the current page.
+    var topbar = document.getElementById("topbar");
+    if (topbar) {
+      topbar.innerHTML =
         '<div class="container topbar-inner">' +
           '<span class="topbar-item">' + ICON.phone + " <a href=\"" + telLink(C.phone) + '">' + esc(C.phone) + "</a></span>" +
           '<span class="topbar-item">' + ICON.mail + " <a href=\"mailto:" + esc(C.email) + '">' + esc(C.email) + "</a></span>" +
           '<span class="topbar-social">' + socialLinksHtml("social-link") + "</span>" +
-        "</div>" +
-      "</div>" +
-      '<div class="container header-inner">' +
-        '<a class="brand" href="index.html">' +
-          '<span class="brand-logo-wrap">' +
-            '<img class="brand-logo" src="' + esc(C.logo) + '" alt="' + esc(C.shortName) + ' logo">' +
-            '<span class="brand-monogram" hidden>GA</span>' +
-          "</span>" +
-          '<span class="brand-text">' +
-            "<strong>" + esc(C.shortName) + "</strong>" +
-            "<small>Higher Secondary School · Est. " + esc(C.foundedYear) + "</small>" +
-          "</span>" +
-        "</a>" +
-        '<nav class="site-nav" aria-label="Main navigation">' + nav + "</nav>" +
-      "</div>";
+        "</div>";
+    }
 
+    var current = document.body.getAttribute("data-page") || "";
+    var onSocial = current === "home" && window.location.hash === "#social";
+    var pageByHref = {
+      "index.html": "home",
+      "about.html": "about",
+      "gallery.html": "gallery",
+      "index.html#social": "social",
+      "app.html": "app",
+      "contact.html": "contact",
+      "feedback.html": "feedback"
+    };
+    var links = document.querySelectorAll(".site-nav a");
+    for (var i = 0; i < links.length; i++) {
+      var pid = pageByHref[links[i].getAttribute("href") || ""];
+      if (!pid) continue;
+      if (pid === "home" && onSocial) continue;
+      if (pid === "social" && !onSocial) continue;
+      if (pid === current || (pid === "social" && onSocial)) {
+        links[i].className = "active";
+        links[i].setAttribute("aria-current", "page");
+      }
+    }
+
+    var host = document.getElementById("site-header");
+    if (!host) return;
     var logo = host.querySelector(".brand-logo");
     var mono = host.querySelector(".brand-monogram");
-    logo.addEventListener("error", function () {
-      logo.style.display = "none";
-      mono.hidden = false;
-    });
+    if (logo && mono) {
+      logo.addEventListener("error", function () {
+        logo.style.display = "none";
+        mono.hidden = false;
+      });
+    }
   }
 
   /* ---------- footer ---------- */

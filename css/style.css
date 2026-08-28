@@ -68,17 +68,17 @@ code {
 
 ::selection { background: var(--gold-400); color: var(--blue-950); }
 
-/* ---------- scroll reveal ---------- */
+/* ---------- scroll reveal (only when JS is running — html.js) ---------- */
 
-.reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.7s ease, transform 0.7s ease; }
-.reveal.visible { opacity: 1; transform: none; }
-.reveal:nth-child(2) { transition-delay: 0.08s; }
-.reveal:nth-child(3) { transition-delay: 0.16s; }
-.reveal:nth-child(4) { transition-delay: 0.24s; }
-.reveal:nth-child(5) { transition-delay: 0.32s; }
+html.js .reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.7s ease, transform 0.7s ease; }
+html.js .reveal.visible { opacity: 1; transform: none; }
+html.js .reveal:nth-child(2) { transition-delay: 0.08s; }
+html.js .reveal:nth-child(3) { transition-delay: 0.16s; }
+html.js .reveal:nth-child(4) { transition-delay: 0.24s; }
+html.js .reveal:nth-child(5) { transition-delay: 0.32s; }
 
 @media (prefers-reduced-motion: reduce) {
-  .reveal { opacity: 1; transform: none; transition: none; }
+  html.js .reveal { opacity: 1; transform: none; transition: none; }
   html { scroll-behavior: auto; }
 }
 
