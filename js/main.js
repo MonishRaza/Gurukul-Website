@@ -96,7 +96,8 @@
     { href: "index.html#social", label: "Social Presence", id: "social" },
     { href: "contact.html", label: "Contact", id: "contact" },
     { href: "feedback.html", label: "Feedback", id: "feedback" },
-    { href: "https://app.gurukulamarpatan.in", label: "Staff Portal ↗", id: "staff-portal", external: true }
+    { href: "https://app.gurukulamarpatan.in", label: "Staff Portal ↗", id: "staff-portal", external: true },
+    { href: "privacy.html", label: "Privacy Policy", id: "privacy", footerOnly: true }
   ];
 
   function buildHeader() {
@@ -170,7 +171,8 @@
         '<p class="footer-contact-line"><a href="' + waLink() + '" target="_blank" rel="noopener">' +
           t("footer.chatWhatsApp", "Chat on WhatsApp") + "</a></p>" +
         '<ul class="footer-links">' +
-          PAGES.map(function (p) {
+          PAGES.filter(function (p) { return p.footerOnly || !p.headerOnly; })
+          .map(function (p) {
             var key = p.id === "staff-portal" ? "nav.staff" : "nav." + p.id;
             return '<li><a href="' + p.href + '">' + esc(t(key, p.label)) + "</a></li>";
           }).join("") +
