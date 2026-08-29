@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="title.privacy">Privacy Policy — Gurukul Attendance App</title>
+  <meta name="description" data-i18n="privacy.metaDesc" content="How the Gurukul Attendance app collects, uses and protects the data of staff and students at Gurukul Academy, Amarpatan.">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" type="image/png" href="images/logo.png">
+  <link rel="canonical" href="https://gurukulamarpatan.in/privacy.html">
+  <link rel="stylesheet" href="css/style.css?v=9">
+  <script>
+    document.documentElement.className += " js";
+    // Anti-FOUC: apply the stored language before the page paints.
+    try {
+      if (localStorage.getItem("gurukul_lang") === "hi") {
+        document.documentElement.setAttribute("lang", "hi");
+        document.documentElement.classList.add("lang-hi");
+      }
+    } catch (e) {}
+  </script>
+</head>
+<body data-page="privacy">
+
+  <header id="site-header">
+    <div class="topbar" id="topbar"></div>
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-logo-wrap">
+          <img class="brand-logo" src="images/logo.png" alt="Gurukul Academy logo">
+        </span>
+        <span class="brand-text">
+          <strong>Gurukul Academy</strong>
+          <small data-i18n="brand.small">Higher Secondary School &middot; Est. 2013</small>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="index.html" data-i18n="nav.home">Home</a>
+        <a href="about.html" data-i18n="nav.about">About</a>
+        <a href="gallery.html" data-i18n="nav.gallery">Gallery</a>
+        <a href="index.html#social" data-i18n="nav.social">Social Presence</a>
+        <a href="contact.html" data-i18n="nav.contact">Contact</a>
+        <a href="feedback.html" data-i18n="nav.feedback">Feedback</a>
+        <a class="active" href="privacy.html" data-i18n="nav.privacy">Privacy</a>
+        <a class="nav-staff" href="https://app.gurukulamarpatan.in" target="_blank" rel="noopener" data-i18n="nav.staffPlain">Staff Portal</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" style="padding:3.4rem 0;">
+      <div class="container">
+        <h1 data-i18n="privacy.hero.title">Privacy Policy — Gurukul Attendance</h1>
+        <p class="tagline" data-i18n="privacy.hero.sub">What the app collects, why it collects it, and how it is protected.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container" style="max-width:880px;">
+
+        <p data-i18n-html="privacy.intro">
+          This Privacy Policy describes how <strong>Gurukul Academy Higher Secondary School,
+          Amarpatan</strong> ("the School", "we", "us") collects, uses and protects information
+          when you use the <strong>Gurukul Attendance</strong> web and mobile application
+          (the "App"). The App is a staff-only workforce-management tool — it is not a public
+          social product. Parents and students do not log in to the App.
+        </p>
+
+        <p>
+          <span data-i18n="privacy.agreeLine">By using the App you agree to the practices described below. If you do not agree,
+          please do not use the App. Questions can be sent to</span>
+          <a href="mailto:gurukulamarpatan@gmail.com">gurukulamarpatan@gmail.com</a>.
+        </p>
+
+        <h2 style="margin-top:2.2rem;" data-i18n="privacy.h2.scope">1. Who this policy applies to</h2>
+        <p data-i18n="privacy.scope.text">The App is used by:</p>
+        <ul>
+          <li data-i18n="privacy.scope.staff"><strong>School staff</strong> — teachers, class teachers, coordinators, the principal and the school admin/owner. Each staff member logs in with an email and password created by the school admin.</li>
+        </ul>
+        <p data-i18n="privacy.scope.students">
+          Student names, classes and house membership are stored in the App for the purpose
+          of marking class attendance and routing per-student attendance alerts to the
+          appropriate staff Telegram groups. Student-facing data is never exposed through
+          a public login; only authenticated staff can view it.
+        </p>
+
+        <h2 style="margin-top:2.2rem;" data-i18n="privacy.h2.collected">2. Information we collect</h2>
+
+        <h3 style="margin-top:1.4rem;" data-i18n="privacy.h3.account">a) Account information</h3>
+        <ul>
+          <li data-i18n="privacy.collect.account.1">Name, email address, phone number (if provided by the staff member), role (teacher / coordinator / principal / admin), assigned classes and sections, and whether the staff member is permanent or guest.</li>
+          <li data-i18n="privacy.collect.account.2">Passwords are stored only as cryptographic hashes by our identity provider (Firebase Authentication, Google Cloud). We never store or transmit plaintext passwords.</li>
+          <li data-i18n="privacy.collect.account.3">A temporary "must change password" flag is set on first login so the staff member must choose their own password before using the App.</li>
+        </ul>
+
+        <h3 style="margin-top:1.4rem;" data-i18n="privacy.h3.attendance">b) Attendance and leave records</h3>
+        <ul>
+          <li data-i18n="privacy.collect.att.1">Daily clock-in / clock-out timestamps, work mode (on-campus / remote / leave), and the staff member's self-reported remote reason (when applicable).</li>
+          <li data-i18n="privacy.collect.att.2">Leave applications (Casual Leave, Medical Leave, Earned Leave, Compensatory Off, half-day) and their approval status (pending / approved / rejected) along with approver identity and approval timestamp.</li>
+          <li data-i18n="privacy.collect.att.3">Monthly attendance summaries (working days, Sundays, gazetted holidays, present, CL within allowance, LWP deducted, attendance percentage) computed from the records above.</li>
+        </ul>
+
+        <h3 style="margin-top:1.4rem;" data-i18n="privacy.h3.location">c) Location data (only for remote clock-in)</h3>
+        <ul>
+          <li data-i18n-html="privacy.collect.loc.1">When a staff member submits a <strong>remote clock-in request</strong>, the App captures the device's GPS coordinates (latitude, longitude), reported accuracy in metres and the capture timestamp, and stores them together with the request for the school's review and approval.</li>
+          <li data-i18n-html="privacy.collect.loc.2">The App requests location permission <strong>only</strong> at the moment the staff member taps "Capture location" while raising a remote clock-in request. Location is never collected continuously in the background.</li>
+          <li data-i18n="privacy.collect.loc.3">If the staff member denies location permission, the remote clock-in request can still be submitted without GPS — the school simply sees "no GPS" in the request and decides whether to approve on the merits of the reason text.</li>
+        </ul>
+
+        <h3 style="margin-top:1.4rem;" data-i18n="privacy.h3.telegram">d) Notifications via Telegram</h3>
+        <ul>
+          <li data-i18n="privacy.collect.tg.1">For staff who have linked their Telegram account (optional), the App sends per-student attendance alerts ("Present / Absent / Late") to a school-configured Telegram group via the official Telegram Bot API.</li>
+          <li data-i18n="privacy.collect.tg.2">For the parent-attendance-alert feature, parents who have linked their Telegram handle receive one direct message per day per child. Only the parent's chat ID and the matched student are stored on our side.</li>
+          <li data-i18n="privacy.collect.tg.3">No Telegram content from your account is ever read or stored; the App only sends messages and listens for one-way commands you opt in to.</li>
+        </ul>
+
+        <h3 style="margin-top:1.4rem;" data-i18n="privacy.h3.holidays">e) School holiday calendar</h3>
+        <ul>
+          <li data-i18n="privacy.collect.hol.1">A read-only list of Central Government of India and Madhya Pradesh state gazetted holidays, plus school-declared vacation windows (Summer / Winter), is stored in the App's database. This list is used only to compute monthly attendance summaries and contains no personal data.</li>
+        </ul>
+
+        <h3 style="margin-top:1.4rem;" data-i18n="privacy.h3.ads">f) Advertising</h3>
+        <ul>
+          <li data-i18n-html="privacy.collect.ads.1">The free, ad-supported version of the App may display Google Mobile Ads. Google may collect device identifiers, coarse location, and ad-interaction data for ad personalisation as described in <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener">Google's partner-sites policy</a>. The paid school-deployed version of the App does not include advertising.</li>
+        </ul>
+
+        <h2 style="margin-top:2.2rem;" data-i18n="privacy.h2.notCollect">3. What we do NOT collect</h2>
+        <ul>
+          <li data-i18n="privacy.not.1">We do not collect biometric data, contacts, photos, microphone or camera input from staff devices.</li>
+          <li data-i18n="privacy.not.2">We do not track you across other websites or apps.</li>
+          <li data-i18n="privacy.not.3">We do not sell any personal data to anyone, ever.</li>
+        </ul>
+
+        <h2 style="margin-top:2.2rem;" data-i18n="privacy.h2.use">4. How we use the information</h2>
+        <ul>
+          <li data-i18n="privacy.use.1">To authenticate staff and authorise access to the relevant school's data.</li>
+          <li data-i18n="privacy.use.2">To record daily attendance, approve leave, and compute the monthly reports the school admin shares with the principal.</li>
+          <li data-i18n="privacy.use.3">To send one-way notifications on Telegram that the staff member or parent has explicitly opted in to.</li>
+          <li data-i18n="privacy.use.4">To fulfil legal, accounting and regulatory record-keeping obligations under Indian labour and education law (for example, retaining attendance and leave records for the period required by the relevant State Government notifications).</li>
+        </ul>
+
+        <h2 style="margin-top:2.2rem;" data-i18n="privacy.h2.where">5. Where the data is stored and who can see it</h2>
+        <ul>
+          <li data-i18n="privacy.where.1">All data is stored on <strong>Google Firebase</strong> (Firestore + Cloud Authentication), in Google's Mumbai / asia-south1 region. Firebase is operated by Google LLC under their standard data-processing terms.</li>
+          <li data-i18n="privacy.where.2">Only authenticated staff of <em>Gurukul Academy, Amarpatan</em> can read or write data, and Firestore security rules restrict each role to the data it needs (for example, a teacher sees their own attendance; the admin sees all).</li>
+          <li data-i18n-html="privacy.where.3">The third-party service that processes data on our behalf is Google LLC. Their privacy practices are described at <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>.</li>
+          <li data-i18n-html="privacy.where.4">For Telegram alerts, the Telegram Bot API is used as a delivery channel only. Telegram's privacy practices are described at <a href="https://telegram.org/privacy" target="_blank" rel="noopener">telegram.org/privacy</a>.</li>
+        </ul>
+
+        <h2 style="margin-top:2.2rem;" data-i18n="privacy.h2.retention">6. Data retention</h2>
+        <ul>
+          <li data-i18n="privacy.ret.1">Attendance, leave and monthly-report data is retained for the duration required by Indian / Madhya Pradesh labour and education record-keeping norms, and then archived or deleted at the school's discretion.</li>
+          <li data-i18n="privacy.ret.2">If a staff member leaves the school, the admin disables their account. Their attendance records are retained (they belong to the school's payroll record) but their authentication credentials are disabled so they can no longer log in.</li>
+          <li data-i18n="privacy.ret.3">Forgotten-password reset links sent by Firebase expire after 1 hour for security.</li>
+        </ul>
+
+        <h2 style="margin-top:2.2rem;" data-i18n="privacy.h2.rights">7. Your rights</h2>
+        <p data-i18n="privacy.rights.intro">As a staff member you can:</p>
+        <ul>
+          <li data-i18n="privacy.rights.1">Ask the school admin to view, correct or delete the personal data we hold about you.</li>
+          <li data-i18n="privacy.rights.2">Disconnect your Telegram handle at any time (this stops future Telegram alerts from being sent to you).</li>
+          <li data-i18n="privacy.rights.3">Stop using the App at any time; this does not affect the school's obligation to retain historical attendance and leave records under applicable law.</li>
+        </ul>
+        <p>
+          <span data-i18n="privacy.rights.contact">For any of the above, write to</span>
+          <a href="mailto:gurukulamarpatan@gmail.com">gurukulamarpatan@gmail.com</a>
+          <span data-i18n="privacy.rights.response">or contact the school office at the address below. We will respond within 30 days.</span>
+        </p>
+
+        <h2 style="margin-top:2.2rem;" data-i18n="privacy.h2.children">8. Children's privacy</h2>
+        <p data-i18n="privacy.children.text">
+          The App is not used by children. The only children's data present in the system is
+          student names, classes and house membership — used solely to mark attendance and
+          route alerts to the appropriate staff or parent. We do not knowingly collect any
+          other information from children.
+        </p>
+
+        <h2 style="margin-top:2.2rem;" data-i18n="privacy.h2.security">9. Security</h2>
+        <ul>
+          <li data-i18n="privacy.sec.1">All network traffic is encrypted with HTTPS / TLS.</li>
+          <li data-i18n="privacy.sec.2">Passwords are stored only as cryptographic hashes; one-way functions cannot be reversed.</li>
+          <li data-i18n="privacy.sec.3">Firestore security rules restrict reads and writes to authorised roles only.</li>
+          <li data-i18n="privacy.sec.4">Two-step account recovery is supported via a verified email link.</li>
+          <li data-i18n="privacy.sec.5">Source code is held in a private repository; production access is limited to the school admin.</li>
+        </ul>
+
+        <h2 style="margin-top:2.2rem;" data-i18n="privacy.h2.changes">10. Changes to this policy</h2>
+        <p data-i18n="privacy.changes.text">
+          We may update this policy from time to time. The "Last updated" date below will
+          reflect the most recent change. Material changes (for example, a new category of
+          data collected) will be communicated inside the App before they take effect.
+        </p>
+
+        <h2 style="margin-top:2.2rem;" data-i18n="privacy.h2.contact">11. Contact</h2>
+        <p style="margin-bottom:0.2rem;"><strong data-i18n="privacy.contact.name">Gurukul Academy Higher Secondary School</strong></p>
+        <p style="color:var(--ink-soft);" data-i18n-html="privacy.contact.addr">
+          Satna Road, Village Gadauli, Amarpatan<br>
+          District Maihar, Madhya Pradesh – 485775<br>
+          India
+        </p>
+        <p style="color:var(--ink-soft);">
+          <span data-i18n="privacy.contact.emailLabel">Email:</span>
+          <a href="mailto:gurukulamarpatan@gmail.com">gurukulamarpatan@gmail.com</a><br>
+          <span data-i18n="privacy.contact.phoneLabel">Phone:</span> +91 83197 88245
+        </p>
+
+        <p style="margin-top:2.2rem; color:var(--ink-soft); font-size:0.92rem;" data-i18n="privacy.lastUpdated">Last updated: 29 August 2026.</p>
+
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="js/site-config.js?v=9"></script>
+  <script src="js/i18n.js?v=9" defer></script>
+  <script src="js/main.js?v=9" defer></script>
+</body>
+</html>
