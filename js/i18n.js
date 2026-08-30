@@ -39,13 +39,14 @@ var SITE_I18N = {
     "title.feedback": "सुझाव / शिकायत — गुरुकुल अकादमी, अमरपाटन",
     "title.notfound": "पृष्ठ नहीं मिला — गुरुकुल अकादमी",
     "title.privacy": "गोपनीयता नीति — गुरुकुल हाज़िरी ऐप",
+    "title.staffApp": "स्टाफ ऐप — इंस्टॉल गाइड · गुरुकुल अकादमी",
 
     /* nav (footer + JS-built menus) */
     "nav.home": "मुख्य पृष्ठ", "nav.about": "हमारे बारे में",
     "nav.gallery": "गैलरी", "nav.social": "सोशल मीडिया",
     "nav.contact": "संपर्क", "nav.feedback": "सुझाव",
     "nav.privacy": "गोपनीयता",
-    "nav.staff": "स्टाफ पोर्टल ↗",
+    "nav.staff": "स्टाफ पोर्टल",
     "nav.staffPlain": "स्टाफ पोर्टल",
 
     /* footer */
@@ -296,7 +297,60 @@ var SITE_I18N = {
 
     /* ---------- staff demo / guide captions (used if pages are opened) ---------- */
     "demo.play": "चलाएँ", "demo.pause": "रोकें",
-    "guide.printHeading": "किस काम के लिए कौन सा पृष्ठ"
+    "guide.printHeading": "किस काम के लिए कौन सा पृष्ठ",
+
+    /* ---------- staff-app install page ---------- */
+    "staffapp.metaDesc": "गुरुकुल अकादमी के स्टाफ के लिए गुरुकुल एटेंडेंस ऐप को Android फ़ोन पर Chrome से इंस्टॉल करने की चरण-दर-चरण मार्गदर्शिका।",
+    "staffapp.hero.est": "★ गुरुकुल अकादमी स्टाफ के लिए",
+    "staffapp.hero.title": "गुरुकुल एटेंडेंस — अपने फ़ोन पर इंस्टॉल करें",
+    "staffapp.hero.sub": "तीन मिनट। इसके बाद ऐप आपकी होम स्क्रीन पर किसी अन्य ऐप की तरह बैठा रहेगा।",
+    "staffapp.cta.open": "ऐप खोलें",
+    "staffapp.steps.heading": "Android पर इंस्टॉल करें (30 सेकंड)",
+    "staffapp.step1.title": "अपने फ़ोन पर Chrome खोलें",
+    "staffapp.step1.text": "Chrome ब्राउज़र आइकन टैप करें (लाल, पीला, हरा, नीला गोल चिह्न)।",
+    "staffapp.step2.title": "ऐप का पता टाइप करें",
+    "staffapp.step2.text": "ऊपर एड्रेस बार में ठीक-ठीक टाइप करें: <code>app.gurukulamarpatan.in</code> और Go दबाएँ।",
+    "staffapp.step3.title": "तीन बिंदु ⋮ टैप करें (Chrome के ऊपर दाईं ओर)",
+    "staffapp.step3.text": "एक मेन्यू नीचे खुलेगा।",
+    "staffapp.step4.title": "\"Add to Home screen\" या \"Install app\" टैप करें",
+    "staffapp.step4.text": "सही शब्द आपके फ़ोन के मॉडल पर निर्भर करते हैं — दोनों विकल्प एक ही काम करते हैं।",
+    "staffapp.step5.title": "\"Add\" टैप करें — हो गया",
+    "staffapp.step5.text": "ऐप का आइकन आपकी होम स्क्रीन पर आ जाएगा। कभी भी खोलने के लिए उस पर टैप करें।",
+    "staffapp.offline": "<strong>ऑफ़लाइन:</strong> एक बार इंस्टॉल होने के बाद ऐप कुछ सेकंड तक बिना इंटरनेट के भी खुल जाता है — स्कूल गेट पर जब नेटवर्क कमज़ोर हो तब काम आता है।",
+    "staffapp.login.heading": "पहला लॉगिन",
+    "staffapp.login.l1": "अपने नए होम-स्क्रीन आइकन से ऐप खोलें।",
+    "staffapp.login.l2": "अपनी भाषा चुनें: <strong>English</strong> या <strong>हिन्दी</strong>।",
+    "staffapp.login.l3": "स्कूल एडमिन द्वारा WhatsApp पर भेजा गया <strong>यूज़रनेम</strong> और <strong>पासवर्ड</strong> डालें।",
+    "staffapp.login.l4": "आपसे <strong>नया पासवर्ड</strong> सेट करने को कहा जाएगा। कुछ ऐसा चुनें जो आपको याद रहे — रोज़ इस्तेमाल होगा।",
+    "staffapp.login.forgot": "पासवर्ड भूल गए? लॉगिन स्क्रीन पर <strong>\"Forgot password\"</strong> टैप करें — आपके रजिस्टर्ड ईमेल पर रीसेट लिंक आएगा।",
+    "staffapp.features.heading": "ऐप क्या-क्या कर सकता है",
+    "staffapp.feature.clockin": "🕒 क्लॉक इन / आउट",
+    "staffapp.feature.clockinText": "स्कूल गेट पर एक टैप। GPS से पुष्टि होती है कि आप कैंपस पर हैं।",
+    "staffapp.feature.remote": "📍 रिमोट अटेंडेंस",
+    "staffapp.feature.remoteText": "घर से काम कर रहे हैं? कारण के साथ जमा करें, लाइव GPS भी रिकॉर्ड होगा।",
+    "staffapp.feature.class": "📝 क्लास अटेंडेंस",
+    "staffapp.feature.classText": "सेकंडों में अपना सेक्शन भरें। अभिभावकों को Telegram पर सूचना।",
+    "staffapp.feature.leave": "🏖️ छुट्टी का आवेदन",
+    "staffapp.feature.leaveText": "CL, ML, EL, अर्ध-दिवस, कम्प-ऑफ़ — मंज़ूरी मिलने पर तुरंत सूचना।",
+    "staffapp.feature.report": "📊 मासिक रिपोर्ट",
+    "staffapp.feature.reportText": "स्कूल की छुट्टियाँ पहले से लागू होकर अपनी उपस्थिति देखें।",
+    "staffapp.feature.lang": "🌐 हिन्दी + English",
+    "staffapp.feature.langText": "साइड मेन्यू से कभी भी बदलें।",
+    "staffapp.trouble.heading": "समस्या निवारण",
+    "staffapp.trouble.q1": "\"पुराना वर्शन दिख रहा है\"",
+    "staffapp.trouble.a1": "Chrome में: तीन बिंदु ⋮ → Settings → Privacy → Clear browsing data → सिर्फ़ \"Cached images and files\" पर टिक → Clear। फिर ऐप दोबारा खोलें।",
+    "staffapp.trouble.q2": "\"GPS काम नहीं कर रहा\"",
+    "staffapp.trouble.a2": "पहली बार क्लॉक-इन करते समय फ़ोन पूछेगा \"Allow location?\" — <strong>Allow</strong> टैप करें। अगर ग़लती से No कह दिया: फ़ोन Settings → Apps → Chrome → Permissions → Location → Allow करें।",
+    "staffapp.trouble.q3": "\"ऐप खाली है या धीमा है\"",
+    "staffapp.trouble.a3": "ऐप बंद करके दोबारा खोलें। फिर भी धीमा रहे तो इंटरनेट कनेक्शन जाँचें (नए टैब में google.com खोलकर देखें)।",
+    "staffapp.trouble.q4": "\"पासवर्ड भूल गए\"",
+    "staffapp.trouble.a4": "लॉगिन स्क्रीन पर <strong>\"Forgot password\"</strong> टैप करें। कुछ ही मिनटों में आपके रजिस्टर्ड ईमेल पर रीसेट लिंक आ जाएगा।",
+    "staffapp.help.heading": "मदद चाहिए?",
+    "staffapp.help.text": "स्कूल कार्यालय से संपर्क करें:",
+    "staffapp.help.email": "📧 ईमेल: <strong>gurukulamarpatan@gmail.com</strong>",
+    "staffapp.help.phone": "📞 फ़ोन: <strong>+91 83197 88245</strong>",
+    "staffapp.help.visit": "📍 सीधे मिलें: स्कूल कार्यालय, सतना रोड, गढ़ौली, अमरपाटन",
+    "staffapp.help.privacy": "ऐप की गोपनीयता नीति पढ़ें →"
   }
 };
 
