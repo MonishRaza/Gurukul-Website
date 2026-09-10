@@ -659,6 +659,21 @@
     hero.classList.add("has-photo");
   }
 
+  function initAnalytics() {
+    // Google Analytics 4, driven by site-config.js (analytics.ga4MeasurementId,
+    // e.g. "G-XXXXXXXXXX"). Empty or malformed → analytics stays off.
+    var id = C.analytics && C.analytics.ga4MeasurementId;
+    if (!id || String(id).indexOf("G-") !== 0) return;
+    var s = document.createElement("script");
+    s.async = true;
+    s.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(id);
+    document.head.appendChild(s);
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { window.dataLayer.push(arguments); }
+    gtag("js", new Date());
+    gtag("config", id, { anonymize_ip: true });
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
     // Apply the stored/URL language to the static HTML before anything renders,
     // so the header/footer/sections are built already in the right language.
@@ -670,6 +685,7 @@
     buildWhatsAppButton();
     initScrollEffects();
     initHeroPhoto();
+    initAnalytics();
 
     var page = document.body.getAttribute("data-page");
     if (page === "home") renderHome();

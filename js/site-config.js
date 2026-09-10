@@ -66,6 +66,14 @@ var SITE_CONFIG = {
   // "Get directions" button — opens Google Maps navigation to the school.
   mapDirectionsUrl: "https://www.google.com/maps/place/Gurukul+Academy+Higher+Secondary+School+Amarpatan/@24.3352318,80.9522386,17z",
 
+  /* ---------- Analytics (optional) ---------- */
+  // Google Analytics 4: paste the site's "Measurement ID" here (it looks
+  // like G-XXXXXXXXXX, found under GA4 → Admin → Data streams) and every
+  // page starts reporting automatically. Leave "" to keep analytics off.
+  analytics: {
+    ga4MeasurementId: "G-V92997HJ6Z"
+  },
+
   /* ---------- YouTube videos (home page) ---------- */
   // Real uploads from the school's channel @gurukulacademy876.
   // Add more with the video's ID from its YouTube link.
