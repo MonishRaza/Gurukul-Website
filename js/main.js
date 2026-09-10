@@ -182,6 +182,49 @@
       "</div>";
   }
 
+  /* ---------- developer-services promo strip (the "Ad" above the footer) ---------- */
+
+  var PROMO_WA_NUMBER = "917470418118";
+  var PROMO_WA_MESSAGE = {
+    en: "Hi! I saw the Gurukul Academy website and I'm interested in getting a similar website made.",
+    hi: "नमस्ते! मुझे अपनी वेबसाइट बनवानी है।"
+  };
+
+  function buildPromo() {
+    var footer = document.getElementById("site-footer");
+    if (!footer) return;
+    // Insert once, just before the footer; repaint its text on language change.
+    var promo = document.getElementById("promo-services");
+    if (!promo) {
+      promo = document.createElement("aside");
+      promo.id = "promo-services";
+      promo.className = "promo-services";
+      footer.insertAdjacentElement("beforebegin", promo);
+    }
+    var msg = (lang() === "hi") ? PROMO_WA_MESSAGE.hi : PROMO_WA_MESSAGE.en;
+    promo.innerHTML =
+      '<div class="promo-inner">' +
+        '<span class="promo-kicker">' + t("promo.kicker", "MM India &amp; Global Enterprises") + "</span>" +
+        '<h2 class="promo-heading">' + t("promo.heading", "Want a Website Like This One?") + "</h2>" +
+        '<p class="promo-text">' + t("promo.textHtml",
+          'This website was developed by <b>MM India &amp; Global Enterprises</b>. ' +
+          'We design and build websites &amp; custom apps for schools, businesses, shops and ' +
+          'organisations — made to your requirement. Packages starting at ' +
+          '<span class="promo-price">₹2,999</span>.') + "</p>" +
+        '<a class="promo-wa-btn" href="https://wa.me/' + PROMO_WA_NUMBER + "?text=" + encodeURIComponent(msg) +
+          '" target="_blank" rel="noopener">' +
+          ICON.whatsapp + "<span>WhatsApp 7470418118</span>" +
+        "</a>" +
+        '<span class="promo-hint">' + t("promo.hint", "Websites · School apps · Business pages · Custom software") + "</span>" +
+      "</div>";
+    // Tiny "Ad" tag, so the strip is clearly distinguishable from school content.
+    var tag = document.createElement("span");
+    tag.className = "promo-ad-tag";
+    tag.setAttribute("aria-hidden", "true");
+    tag.textContent = t("promo.adTag", "Ad");
+    promo.insertBefore(tag, promo.firstChild);
+  }
+
   /* ---------- floating WhatsApp button ---------- */
 
   function buildWhatsAppButton() {
@@ -623,6 +666,7 @@
 
     buildHeader();
     buildFooter();
+    buildPromo();
     buildWhatsAppButton();
     initScrollEffects();
     initHeroPhoto();
@@ -638,6 +682,7 @@
       window.SITE_LANG.onChange(function () {
         buildHeader();
         buildFooter();
+        buildPromo();
         buildWhatsAppButton();
         if (pageRepaint) pageRepaint();
       });

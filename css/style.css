@@ -1106,6 +1106,105 @@ html.js .reveal:nth-child(5) { transition-delay: 0.32s; }
 }
 .wa-float:hover .wa-tooltip, .wa-float:focus-visible .wa-tooltip { opacity: 1; }
 
+/* ---------- developer-services promo strip (the "Ad" above the footer) ---------- */
+
+.promo-services {
+  position: relative;
+  background:
+    radial-gradient(420px 200px at 8% 0%, rgba(255, 153, 51, 0.14), transparent 65%),
+    radial-gradient(420px 200px at 92% 100%, rgba(19, 136, 8, 0.14), transparent 65%),
+    #ffffff;
+  border-top: 3px solid var(--saffron);
+  /* cancels #site-footer's margin-top so the strip sits flush above it;
+     with JavaScript off the strip doesn't exist and the footer keeps its gap */
+  margin-bottom: -4.5rem;
+  padding: 2.2rem 1.4rem;
+  text-align: center;
+}
+
+.promo-inner {
+  max-width: 720px;
+  margin-inline: auto;
+}
+
+.promo-ad-tag {
+  position: absolute;
+  top: 0.55rem;
+  right: 0.8rem;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: #b9b3a8;
+}
+
+.promo-kicker {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--saffron-deep);
+  background: var(--saffron-soft);
+  border: 1px solid #ffd9ae;
+  border-radius: 999px;
+  padding: 0.3rem 0.9rem;
+  margin-bottom: 0.9rem;
+}
+
+.promo-heading {
+  font-family: var(--font-serif);
+  color: var(--chakra);
+  font-size: clamp(1.3rem, 3.2vw, 1.8rem);
+  margin-bottom: 0.5rem;
+}
+
+.promo-text {
+  font-size: 0.98rem;
+  line-height: 1.6;
+  max-width: 58ch;
+  margin: 0 auto 1.3rem;
+}
+
+.promo-price {
+  font-weight: 700;
+  color: var(--green-deep);
+  background: var(--green-soft);
+  border-radius: 6px;
+  padding: 0 0.35em;
+  white-space: nowrap;
+}
+
+.promo-wa-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  background: linear-gradient(135deg, var(--wa-green), var(--wa-green-dark));
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.8rem 1.5rem;
+  border-radius: 999px;
+  box-shadow: 0 6px 16px rgba(18, 140, 74, 0.28);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.promo-wa-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 9px 20px rgba(18, 140, 74, 0.34);
+}
+.promo-wa-btn svg { width: 19px; height: 19px; fill: currentColor; }
+
+.promo-hint {
+  display: block;
+  margin-top: 1rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+@media (max-width: 520px) {
+  .promo-services { padding: 1.8rem 1.1rem; }
+}
+
 /* ---------- footer (template style: solid orange, centred) ---------- */
 
 #site-footer {

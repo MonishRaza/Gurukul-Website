@@ -55,6 +55,13 @@ var SITE_I18N = {
     "footer.staffLinks": "स्टाफ के लिए: निर्देशित सैर · संक्षिप्त गाइड",
     "footer.pagesHeading": "पृष्ठ",
 
+    /* developer-services promo strip (the "Ad" above the footer) */
+    "promo.adTag": "विज्ञापन",
+    "promo.kicker": "एमएम इंडिया एंड ग्लोबल एंटरप्राइजेज",
+    "promo.heading": "ऐसी वेबसाइट बनवाना चाहते हैं?",
+    "promo.textHtml": "यह वेबसाइट <b>एमएम इंडिया एंड ग्लोबल एंटरप्राइजेज</b> द्वारा विकसित की गई है। हम स्कूलों, व्यापारों, दुकानों और संस्थाओं के लिए वेबसाइट व कस्टम ऐप बनाते हैं — आपकी ज़रूरत के अनुसार। पैकेज <span class=\"promo-price\">₹2,999</span> से शुरू।",
+    "promo.hint": "वेबसाइट · स्कूल ऐप · व्यापार पेज · कस्टम सॉफ़्टवेयर",
+
     /* WhatsApp float */
     "wa.floatAria": "WhatsApp पर हमसे बात करें",
     "wa.tooltip": "हमसे बात करें",
