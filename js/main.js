@@ -208,9 +208,8 @@
         '<h2 class="promo-heading">' + t("promo.heading", "Want a Website Like This One?") + "</h2>" +
         '<p class="promo-text">' + t("promo.textHtml",
           'This website was developed by <b>MM India &amp; Global Enterprises</b>. ' +
-          'We design and build websites &amp; custom apps for schools, businesses, shops and ' +
-          'organisations — made to your requirement. Packages starting at ' +
-          '<span class="promo-price">₹2,999</span>.') + "</p>" +
+          'We design and build professional websites &amp; custom apps for schools, businesses, ' +
+          'shops and organisations — tailored to your requirements.') + "</p>" +
         '<a class="promo-wa-btn" href="https://wa.me/' + PROMO_WA_NUMBER + "?text=" + encodeURIComponent(msg) +
           '" target="_blank" rel="noopener">' +
           ICON.whatsapp + "<span>WhatsApp 7470418118</span>" +
