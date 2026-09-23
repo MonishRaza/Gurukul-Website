@@ -87,7 +87,7 @@
 
         <h3 style="margin-top:1.4rem;" data-i18n="privacy.h3.account">a) Account information</h3>
         <ul>
-          <li data-i18n="privacy.collect.account.1">Name, email address, phone number (if provided by the staff member), role (teacher / coordinator / principal / admin), assigned classes and sections, and whether the staff member is permanent or guest.</li>
+          <li data-i18n="privacy.collect.account.1">Name, email address, phone number (if provided by the staff member), role (teacher / coordinator / principal / director / school admin), assigned classes and sections, and whether the staff member is permanent or guest.</li>
           <li data-i18n="privacy.collect.account.2">Passwords are stored only as cryptographic hashes by our identity provider (Firebase Authentication, Google Cloud). We never store or transmit plaintext passwords.</li>
           <li data-i18n="privacy.collect.account.3">A temporary "must change password" flag is set on first login so the staff member must choose their own password before using the App.</li>
         </ul>
@@ -99,35 +99,54 @@
           <li data-i18n="privacy.collect.att.3">Monthly attendance summaries (working days, Sundays, gazetted holidays, present, CL within allowance, LWP deducted, attendance percentage) computed from the records above.</li>
         </ul>
 
-        <h3 style="margin-top:1.4rem;" data-i18n="privacy.h3.location">c) Location data (only for remote clock-in)</h3>
+        <h3 style="margin-top:1.4rem;" data-i18n="privacy.h3.selfie">c) Punch photograph (selfie)</h3>
         <ul>
-          <li data-i18n-html="privacy.collect.loc.1">When a staff member submits a <strong>remote clock-in request</strong>, the App captures the device's GPS coordinates (latitude, longitude), reported accuracy in metres and the capture timestamp, and stores them together with the request for the school's review and approval.</li>
-          <li data-i18n-html="privacy.collect.loc.2">The App requests location permission <strong>only</strong> at the moment the staff member taps "Capture location" while raising a remote clock-in request. Location is never collected continuously in the background.</li>
-          <li data-i18n="privacy.collect.loc.3">If the staff member denies location permission, the remote clock-in request can still be submitted without GPS — the school simply sees "no GPS" in the request and decides whether to approve on the merits of the reason text.</li>
+          <li data-i18n-html="privacy.collect.selfie.1">Each time a staff member marks attendance (punches IN or OUT), the App opens the <strong>front camera</strong> and takes one photograph of the staff member. This is what makes a punch verifiable: a clock-in is a claim about a person being present, and the photograph is the record of who made it.</li>
+          <li data-i18n="privacy.collect.selfie.2">The photograph is a single still image, stored in the App's database (Google Firebase) with the date, the punch type (IN or OUT) and a device identifier. It is visible only to authenticated school staff with the permission to review attendance.</li>
+          <li data-i18n="privacy.collect.selfie.3">Photographs are deleted automatically 90 days after they are taken. The App has no facility to keep one longer, and the deletion is performed by a scheduled job and not by a person.</li>
+          <li data-i18n="privacy.collect.selfie.4">The camera is used only at the moment of a punch. It is never accessed at any other time, and no audio or video is recorded — one still photograph, nothing else.</li>
+          <li data-i18n="privacy.collect.selfie.5">The App performs no facial recognition and derives no biometric template or face signature from the photograph.</li>
+          <li data-i18n="privacy.collect.selfie.6">If the camera is unavailable, or permission is refused, the staff member can still complete the punch after a short delay. The record then shows that no photograph was taken, and the administrator is notified so the gap can be reviewed rather than hidden.</li>
         </ul>
 
-        <h3 style="margin-top:1.4rem;" data-i18n="privacy.h3.telegram">d) Notifications via Telegram</h3>
+        <h3 style="margin-top:1.4rem;" data-i18n="privacy.h3.location">d) Location data</h3>
         <ul>
-          <li data-i18n="privacy.collect.tg.1">For staff who have linked their Telegram account (optional), the App sends per-student attendance alerts ("Present / Absent / Late") to a school-configured Telegram group via the official Telegram Bot API.</li>
-          <li data-i18n="privacy.collect.tg.2">For the parent-attendance-alert feature, parents who have linked their Telegram handle receive one direct message per day per child. Only the parent's chat ID and the matched student are stored on our side.</li>
-          <li data-i18n="privacy.collect.tg.3">No Telegram content from your account is ever read or stored; the App only sends messages and listens for one-way commands you opt in to.</li>
+          <li data-i18n-html="privacy.collect.loc.1">The App reads the device's location each time a staff member marks attendance, in order to confirm that the punch was made inside the school campus (the "geofence").</li>
+          <li data-i18n-html="privacy.collect.loc.2">For an ordinary punch that confirms the campus, the check is a comparison made at that moment and <strong>no coordinates are stored</strong>. Coordinates are stored only for a <strong>flagged</strong> punch — one whose location could not confirm the campus — together with the distance from the campus and the reported accuracy, so that the school can review what happened.</li>
+          <li data-i18n-html="privacy.collect.loc.3">When a staff member submits a <strong>remote clock-in request</strong>, the App captures the device's GPS coordinates (latitude, longitude), the reported accuracy in metres and the capture timestamp, and stores them together with the request for the school's review and approval.</li>
+          <li data-i18n="privacy.collect.loc.4">Location is never collected continuously and never in the background. It is read only while a punch or a remote clock-in request is being made, and the staff member is shown on screen when a flagged location is being recorded.</li>
+          <li data-i18n="privacy.collect.loc.5">Flagged-punch locations are deleted automatically 90 days after the punch. Coordinates stored with a remote clock-in request are kept with that request as part of the attendance record.</li>
+          <li data-i18n="privacy.collect.loc.6">If the staff member denies location permission, the remote clock-in request can still be submitted without GPS — the school simply sees "no GPS" in the request and decides whether to approve on the merits of the reason text.</li>
         </ul>
 
-        <h3 style="margin-top:1.4rem;" data-i18n="privacy.h3.holidays">e) School holiday calendar</h3>
+        <h3 style="margin-top:1.4rem;" data-i18n="privacy.h3.telegram">e) Notifications via Telegram</h3>
+        <ul>
+          <li data-i18n="privacy.collect.tg.1">Punch and leave events (the staff member's name, the type of event and its time) are posted by the App to a school-configured staff Telegram group via the official Telegram Bot API, so that the day's attendance is visible to the staff room as it happens.</li>
+          <li data-i18n="privacy.collect.tg.2">For staff who have linked their Telegram account (optional), the App sends per-student attendance alerts ("Present / Absent / Late") to a school-configured Telegram group via the same API.</li>
+          <li data-i18n="privacy.collect.tg.3">For the parent-attendance-alert feature, parents who have linked their Telegram handle receive one direct message per day per child. Only the parent's chat ID and the matched student are stored on our side.</li>
+          <li data-i18n="privacy.collect.tg.4">Fee-ledger entries (a student's payment, its amount and its receipt number) are posted to a <strong>separate, school-configured accounts group</strong> on Telegram, visible to the school's accounts staff. The App's finance features are restricted to the school's administration and accounts staff.</li>
+          <li data-i18n="privacy.collect.tg.5">No Telegram content from your account is ever read or stored; the App only sends messages and listens for one-way commands you opt in to.</li>
+        </ul>
+
+        <h3 style="margin-top:1.4rem;" data-i18n="privacy.h3.holidays">f) School holiday calendar</h3>
         <ul>
           <li data-i18n="privacy.collect.hol.1">A read-only list of Central Government of India and Madhya Pradesh state gazetted holidays, plus school-declared vacation windows (Summer / Winter), is stored in the App's database. This list is used only to compute monthly attendance summaries and contains no personal data.</li>
         </ul>
 
-        <h3 style="margin-top:1.4rem;" data-i18n="privacy.h3.ads">f) Advertising</h3>
+        <h3 style="margin-top:1.4rem;" data-i18n="privacy.h3.analytics">g) Usage analytics and device identifier</h3>
         <ul>
-          <li data-i18n-html="privacy.collect.ads.1">The free, ad-supported version of the App may display Google Mobile Ads. Google may collect device identifiers, coarse location, and ad-interaction data for ad personalisation as described in <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener">Google's partner-sites policy</a>. The paid school-deployed version of the App does not include advertising.</li>
+          <li data-i18n-html="privacy.collect.an.1">The App uses <strong>Google Analytics 4</strong> to record which screens are opened, so that the interface can be improved. Each record carries the staff member's account identifier and their role (teacher / coordinator / principal / director / admin), and identifies the device by its type. IP addresses are anonymised before storage. Google's practices are described in <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's privacy policy</a>.</li>
+          <li data-i18n="privacy.collect.dev.1">The App generates a random device identifier the first time it runs on a phone and stores it on that phone. It contains no personal information and is used only to tell one device from another — for example, to notice the same account punching from several phones, or a photograph that failed to save.</li>
         </ul>
 
         <h2 style="margin-top:2.2rem;" data-i18n="privacy.h2.notCollect">3. What we do NOT collect</h2>
         <ul>
-          <li data-i18n="privacy.not.1">We do not collect biometric data, contacts, photos, microphone or camera input from staff devices.</li>
-          <li data-i18n="privacy.not.2">We do not track you across other websites or apps.</li>
-          <li data-i18n="privacy.not.3">We do not sell any personal data to anyone, ever.</li>
+          <li data-i18n="privacy.not.1">We do not create biometric templates, and we run no facial recognition, on the punch photograph or on anything else.</li>
+          <li data-i18n="privacy.not.2">We do not collect contacts, microphone or audio, or any file from the staff member's device.</li>
+          <li data-i18n="privacy.not.3">We do not read or record the device's location in the background or as a movement history; the App's location use is limited to the punch and remote-clock-in checks described above.</li>
+          <li data-i18n="privacy.not.4">We do not show advertising. The App carries no ad network and no advertising identifier.</li>
+          <li data-i18n="privacy.not.5">We do not track you across other websites or apps.</li>
+          <li data-i18n="privacy.not.6">We do not sell any personal data to anyone, ever.</li>
         </ul>
 
         <h2 style="margin-top:2.2rem;" data-i18n="privacy.h2.use">4. How we use the information</h2>
@@ -151,6 +170,7 @@
           <li data-i18n="privacy.ret.1">Attendance, leave and monthly-report data is retained for the duration required by Indian / Madhya Pradesh labour and education record-keeping norms, and then archived or deleted at the school's discretion.</li>
           <li data-i18n="privacy.ret.2">If a staff member leaves the school, the admin disables their account. Their attendance records are retained (they belong to the school's payroll record) but their authentication credentials are disabled so they can no longer log in.</li>
           <li data-i18n="privacy.ret.3">Forgotten-password reset links sent by Firebase expire after 1 hour for security.</li>
+          <li data-i18n="privacy.ret.4">Punch photographs and flagged-punch locations are deleted automatically <strong>90 days</strong> after they are recorded, by a scheduled job, whether or not anyone asks. This is the shortest window the school can keep and still let a disputed punch be reviewed within the same term.</li>
         </ul>
 
         <h2 style="margin-top:2.2rem;" data-i18n="privacy.h2.rights">7. Your rights</h2>
@@ -159,6 +179,7 @@
           <li data-i18n="privacy.rights.1">Ask the school admin to view, correct or delete the personal data we hold about you.</li>
           <li data-i18n="privacy.rights.2">Disconnect your Telegram handle at any time (this stops future Telegram alerts from being sent to you).</li>
           <li data-i18n="privacy.rights.3">Stop using the App at any time; this does not affect the school's obligation to retain historical attendance and leave records under applicable law.</li>
+          <li data-i18n="privacy.rights.4">Ask for your data to be deleted. Section 8 below says exactly what can and cannot be deleted, and how to ask.</li>
         </ul>
         <p>
           <span data-i18n="privacy.rights.contact">For any of the above, write to</span>
@@ -166,7 +187,20 @@
           <span data-i18n="privacy.rights.response">or contact the school office at the address below. We will respond within 30 days.</span>
         </p>
 
-        <h2 style="margin-top:2.2rem;" data-i18n="privacy.h2.children">8. Children's privacy</h2>
+        <h2 style="margin-top:2.2rem;" data-i18n="privacy.h2.delete">8. Deleting your data</h2>
+        <p>
+          <span data-i18n="privacy.delete.intro">You can ask for the personal data the App holds about you to be deleted, and ask what is held, without giving a reason. Write to</span>
+          <a href="mailto:gurukulamarpatan@gmail.com">gurukulamarpatan@gmail.com</a>
+          <span data-i18n="privacy.delete.intro2">from the email address registered to your staff account, with the subject "Data deletion request". The school will confirm receipt and act within 30 days.</span>
+        </p>
+        <ul>
+          <li data-i18n="privacy.delete.1">Deleted on request: your punch photographs, the locations recorded for your flagged punches, your device identifier, and the account details (name, email, phone number) held for you.</li>
+          <li data-i18n="privacy.delete.2">Not deleted, and why: your attendance and leave records are the school's payroll and statutory record, and the App has no facility to remove them — the school is required to retain them under Indian labour and education record-keeping norms. If you want such a record corrected, the school will review it and correct it if it is wrong.</li>
+          <li data-i18n="privacy.delete.3">If you leave the school, the admin disables your account so it can no longer be used. Your punch photographs still expire on their own 90-day schedule.</li>
+          <li data-i18n="privacy.delete.4">Requests that concern only records the school must retain will be answered in writing, saying so and giving the reason.</li>
+        </ul>
+
+        <h2 style="margin-top:2.2rem;" data-i18n="privacy.h2.children">9. Children's privacy</h2>
         <p data-i18n="privacy.children.text">
           The App is not used by children. The only children's data present in the system is
           student names, classes and house membership — used solely to mark attendance and
@@ -174,7 +208,7 @@
           other information from children.
         </p>
 
-        <h2 style="margin-top:2.2rem;" data-i18n="privacy.h2.security">9. Security</h2>
+        <h2 style="margin-top:2.2rem;" data-i18n="privacy.h2.security">10. Security</h2>
         <ul>
           <li data-i18n="privacy.sec.1">All network traffic is encrypted with HTTPS / TLS.</li>
           <li data-i18n="privacy.sec.2">Passwords are stored only as cryptographic hashes; one-way functions cannot be reversed.</li>
@@ -183,14 +217,14 @@
           <li data-i18n="privacy.sec.5">Source code is held in a private repository; production access is limited to the school admin.</li>
         </ul>
 
-        <h2 style="margin-top:2.2rem;" data-i18n="privacy.h2.changes">10. Changes to this policy</h2>
+        <h2 style="margin-top:2.2rem;" data-i18n="privacy.h2.changes">11. Changes to this policy</h2>
         <p data-i18n="privacy.changes.text">
           We may update this policy from time to time. The "Last updated" date below will
           reflect the most recent change. Material changes (for example, a new category of
           data collected) will be communicated inside the App before they take effect.
         </p>
 
-        <h2 style="margin-top:2.2rem;" data-i18n="privacy.h2.contact">11. Contact</h2>
+        <h2 style="margin-top:2.2rem;" data-i18n="privacy.h2.contact">12. Contact</h2>
         <p style="margin-bottom:0.2rem;"><strong data-i18n="privacy.contact.name">Gurukul Academy Higher Secondary School</strong></p>
         <p style="color:var(--ink-soft);" data-i18n-html="privacy.contact.addr">
           Satna Road, Village Gadauli, Amarpatan<br>
@@ -203,7 +237,7 @@
           <span data-i18n="privacy.contact.phoneLabel">Phone:</span> +91 83197 88245
         </p>
 
-        <p style="margin-top:2.2rem; color:var(--ink-soft); font-size:0.92rem;" data-i18n="privacy.lastUpdated">Last updated: 29 August 2026.</p>
+        <p style="margin-top:2.2rem; color:var(--ink-soft); font-size:0.92rem;" data-i18n="privacy.lastUpdated">Last updated: 24 September 2026.</p>
 
       </div>
     </section>
