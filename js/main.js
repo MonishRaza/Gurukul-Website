@@ -97,7 +97,8 @@
     { href: "contact.html", label: "Contact", id: "contact" },
     { href: "feedback.html", label: "Feedback", id: "feedback" },
     { href: "staff-app.html", label: "Gurukul-TEAM App", id: "staff-portal" },
-    { href: "privacy.html", label: "Privacy Policy", id: "privacy", footerOnly: true }
+    { href: "privacy.html", label: "Privacy Policy", id: "privacy", footerOnly: true },
+    { href: "account-deletion.html", label: "Data Deletion", id: "account-deletion", footerOnly: true }
   ];
 
   function buildHeader() {
