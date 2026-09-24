@@ -104,7 +104,7 @@ var SITE_CONFIG = {
   // Removed from the website on the school's request (2026-08).
   // To bring it back, an entry like this can be restored and the
   // app page re-added:
-  //   app: { name: "Gurukul Attendance", webAppUrl: "https://gurukul-amarpatan-attendance.web.app/" }
+  //   app: { name: "Gurukul-TEAM (Amarpatan)", webAppUrl: "https://app.gurukulamarpatan.in/" }
 
   /* ---------- Photo albums (gallery page) ---------- */
   // How to add an album:
