@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title data-i18n="title.staffApp">Staff App — Install Guide · Gurukul Academy</title>
-  <meta name="description" data-i18n="staffapp.metaDesc" content="Step-by-step guide for Gurukul Academy staff to install the Gurukul-TEAM app on Android phones via Chrome.">
+  <title data-i18n="title.staffApp">Gurukul-TEAM App — Install Guide · Gurukul Academy</title>
+  <meta name="description" data-i18n="staffapp.metaDesc" content="Step-by-step guide for Gurukul Academy staff to install the Gurukul-TEAM app (TEAM = Teachers and Employees Attendance Management) on Android phones via Chrome.">
   <meta name="robots" content="index, follow">
   <link rel="icon" type="image/png" href="images/logo.png">
   <link rel="canonical" href="https://gurukulamarpatan.in/staff-app.html">
-  <link rel="stylesheet" href="css/style.css?v=11">
+  <link rel="stylesheet" href="css/style.css?v=12">
   <script>
     document.documentElement.className += " js";
     // Anti-FOUC: apply the stored language before the page paints.
@@ -42,7 +42,7 @@
         <a href="index.html#social" data-i18n="nav.social">Social Presence</a>
         <a href="contact.html" data-i18n="nav.contact">Contact</a>
         <a href="feedback.html" data-i18n="nav.feedback">Feedback</a>
-        <a class="nav-staff" href="staff-app.html" data-i18n="nav.staffPlain">Staff Portal</a>
+        <a class="nav-staff" href="staff-app.html" data-i18n="nav.staffPlain">Gurukul-TEAM App</a>
       </nav>
     </div>
   </header>
@@ -52,8 +52,9 @@
     <section class="hero" style="padding:3.4rem 0;">
       <div class="container">
         <span class="est" data-i18n="staffapp.hero.est">★ For Gurukul Academy staff</span>
-        <h1 data-i18n="staffapp.hero.title">Gurukul-TEAM — Install on your phone</h1>
-        <p class="tagline" data-i18n="staffapp.hero.sub">Three minutes. Then the app sits on your home screen like any other app.</p>
+        <h1 data-i18n="staffapp.hero.title">Gurukul-TEAM (Amarpatan)</h1>
+        <p data-i18n="staffapp.hero.team" style="margin:.5rem 0 0; font-weight:700; letter-spacing:.02em; color:#06038D;">TEAM = Teachers and Employees Attendance Management</p>
+        <p class="tagline" data-i18n="staffapp.hero.sub">The school's staff app. Three minutes to install — then it sits on your home screen like any other app.</p>
         <div class="hero-actions" style="margin-top:1.4rem;">
           <a class="btn btn-blue" href="https://app.gurukulamarpatan.in" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 12c-4.4 0-8 2.7-8 6v2h16v-2c0-3.3-3.6-6-8-6z"/></svg>
@@ -98,13 +99,36 @@
         </ol>
 
         <p style="margin-top:1.4rem; padding:1rem; background:#fff8e1; border-left:4px solid #f4b400; border-radius:4px;" data-i18n="staffapp.offline">
-          <strong>Offline:</strong> Once installed, the app launches even without internet for a few seconds — useful at the school gate when network is patchy.
+          <strong>Weak network:</strong> a punch taken without internet is kept on the phone and syncs by itself when the network returns — useful at the school gate when the signal is patchy.
+        </p>
+      </div>
+    </section>
+
+    <!-- What happens when you punch — the change staff will notice first -->
+    <section class="section" style="background:#f4f4f8;">
+      <div class="container" style="max-width:880px;">
+        <h2 data-i18n="staffapp.punch.heading">What happens when you punch</h2>
+        <p data-i18n="staffapp.punch.intro" style="margin:.4rem 0 1rem; color:#555;">A punch now takes four steps — this is new, so please read it once:</p>
+        <ol style="line-height:1.9;">
+          <li data-i18n-html="staffapp.punch.s1">Tap <strong>Punch In</strong> or <strong>Punch Out</strong> in the app.</li>
+          <li data-i18n="staffapp.punch.s2">The app checks that you are inside the school campus.</li>
+          <li data-i18n-html="staffapp.punch.s3">The camera opens — take your <strong>photo</strong> and tap <strong>✓ Confirm</strong>. Retake it if it came out unclear.</li>
+          <li data-i18n="staffapp.punch.s4">Done — your IN or OUT is recorded.</li>
+        </ol>
+        <p style="margin-top:1.2rem; padding:1rem; background:#fff; border-left:4px solid #06038D; border-radius:4px;" data-i18n-html="staffapp.punch.whyHtml">
+          <strong>Why a photo?</strong> So that nobody can punch on someone else's behalf. The photo is used only to verify the punch — it is <strong>deleted automatically after 90 days</strong>, and the app runs no facial recognition.
+        </p>
+        <p style="margin-top:.8rem; padding:1rem; background:#fff; border-left:4px solid #f4b400; border-radius:4px;" data-i18n-html="staffapp.punch.escapeHtml">
+          <strong>If the camera does not work:</strong> after a short wait a "camera not working" option appears, and the punch will still go through — but the record will show that no photo was taken, and <strong>the school office is told</strong>.
+        </p>
+        <p style="margin-top:.8rem; padding:1rem; background:#fff; border-left:4px solid #f4b400; border-radius:4px;" data-i18n-html="staffapp.punch.permHtml">
+          <strong>Permissions:</strong> on your first punch the phone asks for <em>camera</em> and <em>location</em>. Tap <strong>Allow</strong> for both. (Location is read only while you punch — never in the background.)
         </p>
       </div>
     </section>
 
     <!-- Login -->
-    <section class="section" style="background:#f4f4f8;">
+    <section class="section">
       <div class="container" style="max-width:880px;">
         <h2 data-i18n="staffapp.login.heading">First login</h2>
         <ol style="line-height:1.9;">
@@ -120,35 +144,66 @@
     </section>
 
     <!-- Features quick reference -->
-    <section class="section">
+    <section class="section" style="background:#f4f4f8;">
       <div class="container" style="max-width:880px;">
         <h2 data-i18n="staffapp.features.heading">What the app does</h2>
         <div class="feature-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:1rem; margin-top:1rem;">
           <div class="feature-card" style="background:#fff; padding:1rem; border-radius:8px; box-shadow:0 1px 3px rgba(0,0,0,.06);">
-            <strong data-i18n="staffapp.feature.clockin">🕒 Clock in / out</strong>
-            <p data-i18n="staffapp.feature.clockinText" style="margin:.3rem 0 0; font-size:.92rem; color:#555;">Tap once at the school gate. GPS confirms you're on campus.</p>
+            <strong data-i18n="staffapp.feature.punch">🕒 Punch In / Punch Out</strong>
+            <p data-i18n="staffapp.feature.punchText" style="margin:.3rem 0 0; font-size:.92rem; color:#555;">Your IN and OUT, checked against the campus and with a photo. The photo expires after 90 days.</p>
           </div>
           <div class="feature-card" style="background:#fff; padding:1rem; border-radius:8px; box-shadow:0 1px 3px rgba(0,0,0,.06);">
-            <strong data-i18n="staffapp.feature.remote">📍 Remote attendance</strong>
-            <p data-i18n="staffapp.feature.remoteText" style="margin:.3rem 0 0; font-size:.92rem; color:#555;">Working from home? Submit with reason and live GPS.</p>
+            <strong data-i18n="staffapp.feature.schedule">📅 Today's Schedule</strong>
+            <p data-i18n="staffapp.feature.scheduleText" style="margin:.3rem 0 0; font-size:.92rem; color:#555;">Your periods for the day, at a glance.</p>
           </div>
           <div class="feature-card" style="background:#fff; padding:1rem; border-radius:8px; box-shadow:0 1px 3px rgba(0,0,0,.06);">
-            <strong data-i18n="staffapp.feature.class">📝 Class attendance</strong>
-            <p data-i18n="staffapp.feature.classText" style="margin:.3rem 0 0; font-size:.92rem; color:#555;">Mark your section in seconds. Parents notified on Telegram.</p>
+            <strong data-i18n="staffapp.feature.mine">📊 My Attendance</strong>
+            <p data-i18n="staffapp.feature.mineText" style="margin:.3rem 0 0; font-size:.92rem; color:#555;">Your own IN/OUT history and the hours you have worked.</p>
           </div>
           <div class="feature-card" style="background:#fff; padding:1rem; border-radius:8px; box-shadow:0 1px 3px rgba(0,0,0,.06);">
-            <strong data-i18n="staffapp.feature.leave">🏖️ Leave application</strong>
-            <p data-i18n="staffapp.feature.leaveText" style="margin:.3rem 0 0; font-size:.92rem; color:#555;">CL, ML, EL, half-day, comp-off — get notified when approved.</p>
+            <strong data-i18n="staffapp.feature.class">📝 Take Class Attendance</strong>
+            <p data-i18n="staffapp.feature.classText" style="margin:.3rem 0 0; font-size:.92rem; color:#555;">Mark your section present or absent in a few taps; it is posted to the school's Telegram group.</p>
           </div>
           <div class="feature-card" style="background:#fff; padding:1rem; border-radius:8px; box-shadow:0 1px 3px rgba(0,0,0,.06);">
-            <strong data-i18n="staffapp.feature.report">📊 Monthly report</strong>
-            <p data-i18n="staffapp.feature.reportText" style="margin:.3rem 0 0; font-size:.92rem; color:#555;">See your attendance with school holidays already applied.</p>
+            <strong data-i18n="staffapp.feature.leave">🏖️ Apply for Leave</strong>
+            <p data-i18n="staffapp.feature.leaveText" style="margin:.3rem 0 0; font-size:.92rem; color:#555;">AL, CL, ML and comp-off — with the status of every request alongside.</p>
+          </div>
+          <div class="feature-card" style="background:#fff; padding:1rem; border-radius:8px; box-shadow:0 1px 3px rgba(0,0,0,.06);">
+            <strong data-i18n="staffapp.feature.remote">📍 Remote Attendance</strong>
+            <p data-i18n="staffapp.feature.remoteText" style="margin:.3rem 0 0; font-size:.92rem; color:#555;">Have to punch from outside the campus? File a request with a reason; the principal or the office approves it.</p>
+          </div>
+          <div class="feature-card" style="background:#fff; padding:1rem; border-radius:8px; box-shadow:0 1px 3px rgba(0,0,0,.06);">
+            <strong data-i18n="staffapp.feature.gatepass">🚪 Raise Gatepass</strong>
+            <p data-i18n="staffapp.feature.gatepassText" style="margin:.3rem 0 0; font-size:.92rem; color:#555;">File a gatepass for a student and follow its place in the queue.</p>
+          </div>
+          <div class="feature-card" style="background:#fff; padding:1rem; border-radius:8px; box-shadow:0 1px 3px rgba(0,0,0,.06);">
+            <strong data-i18n="staffapp.feature.casual">🔁 Casual Planning</strong>
+            <p data-i18n="staffapp.feature.casualText" style="margin:.3rem 0 0; font-size:.92rem; color:#555;">Arrange a substitute teacher for a period.</p>
+          </div>
+          <div class="feature-card" style="background:#fff; padding:1rem; border-radius:8px; box-shadow:0 1px 3px rgba(0,0,0,.06);">
+            <strong data-i18n="staffapp.feature.contacts">☎️ Important Contacts</strong>
+            <p data-i18n="staffapp.feature.contactsText" style="margin:.3rem 0 0; font-size:.92rem; color:#555;">The school's contact directory, always with you.</p>
           </div>
           <div class="feature-card" style="background:#fff; padding:1rem; border-radius:8px; box-shadow:0 1px 3px rgba(0,0,0,.06);">
             <strong data-i18n="staffapp.feature.lang">🌐 हिन्दी + English</strong>
-            <p data-i18n="staffapp.feature.langText" style="margin:.3rem 0 0; font-size:.92rem; color:#555;">Switch any time from the side menu.</p>
+            <p data-i18n="staffapp.feature.langText" style="margin:.3rem 0 0; font-size:.92rem; color:#555;">Everyday attendance screens are in Hindi; some office labels are still in English.</p>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- Office / management side -->
+    <section class="section">
+      <div class="container" style="max-width:880px;">
+        <h2 data-i18n="staffapp.office.heading">For the school office and management</h2>
+        <p data-i18n="staffapp.office.intro" style="margin:.4rem 0 1rem; color:#555;">These screens open for the school office, the principal and the admin login:</p>
+        <ul style="line-height:1.9;">
+          <li data-i18n="staffapp.office.1">Staff Attendance report — IN/OUT, hours and late marks, for salary work.</li>
+          <li data-i18n="staffapp.office.2">Reports and class-wise exports.</li>
+          <li data-i18n="staffapp.office.3">Pending Approvals — leave, gatepass and remote-attendance requests in one place.</li>
+          <li data-i18n="staffapp.office.4">Punch Photos — review a day's punch photos.</li>
+          <li data-i18n-html="staffapp.office.5Html">Fee records — record a fee payment made by cash, UPI, bank transfer or cheque, and print a receipt. This is record-keeping only: <strong>the app takes no money and has no payment gateway</strong>.</li>
+        </ul>
       </div>
     </section>
 
@@ -162,15 +217,19 @@
         </details>
         <details style="margin:.6rem 0; background:#fff; padding:.8rem 1rem; border-radius:6px;">
           <summary data-i18n="staffapp.trouble.q2" style="cursor:pointer; font-weight:600;">"GPS not working"</summary>
-          <p data-i18n="staffapp.trouble.a2" style="margin:.6rem 0 0;">The first time you clock in, your phone asks "Allow location?" — tap <strong>Allow</strong>. If you said No: Phone Settings → Apps → Chrome → Permissions → Location → Allow.</p>
+          <p data-i18n="staffapp.trouble.a2" style="margin:.6rem 0 0;">The phone asks "Allow location?" at every punch — tap <strong>Allow</strong>. If you said No once: Phone Settings → Apps → Chrome → Permissions → Location → Allow. If the app says it could not confirm the campus, stand near the gate and try again.</p>
         </details>
         <details style="margin:.6rem 0; background:#fff; padding:.8rem 1rem; border-radius:6px;">
-          <summary data-i18n="staffapp.trouble.q3" style="cursor:pointer; font-weight:600;">"App is blank or slow"</summary>
-          <p data-i18n="staffapp.trouble.a3" style="margin:.6rem 0 0;">Close and reopen the app. If still slow, check your internet connection (try opening google.com in a new tab).</p>
+          <summary data-i18n="staffapp.trouble.q3" style="cursor:pointer; font-weight:600;">"The camera opens when I punch"</summary>
+          <p data-i18n="staffapp.trouble.a3" style="margin:.6rem 0 0;">That is the punch photo — tap <strong>Allow</strong>; the permission is asked only once. If the camera will not work, a "camera not working" option appears after a short wait: the punch still goes through, but the school office is told that no photo was taken.</p>
         </details>
         <details style="margin:.6rem 0; background:#fff; padding:.8rem 1rem; border-radius:6px;">
-          <summary data-i18n="staffapp.trouble.q4" style="cursor:pointer; font-weight:600;">"Forgot password"</summary>
-          <p data-i18n="staffapp.trouble.a4" style="margin:.6rem 0 0;">On the login screen, tap <strong>"Forgot password"</strong>. A reset link will be emailed to your registered address within minutes.</p>
+          <summary data-i18n="staffapp.trouble.q4" style="cursor:pointer; font-weight:600;">"App is blank or slow"</summary>
+          <p data-i18n="staffapp.trouble.a4" style="margin:.6rem 0 0;">Close and reopen the app. If still slow, check your internet connection (try opening google.com in a new tab).</p>
+        </details>
+        <details style="margin:.6rem 0; background:#fff; padding:.8rem 1rem; border-radius:6px;">
+          <summary data-i18n="staffapp.trouble.q5" style="cursor:pointer; font-weight:600;">"Forgot password"</summary>
+          <p data-i18n="staffapp.trouble.a5" style="margin:.6rem 0 0;">On the login screen, tap <strong>"Forgot password"</strong>. A reset link will be emailed to your registered address within minutes.</p>
         </details>
       </div>
     </section>
@@ -193,8 +252,8 @@
   </main>
 
   <footer id="site-footer"></footer>
-  <script src="js/site-config.js?v=11"></script>
-  <script src="js/i18n.js?v=11"></script>
-  <script src="js/main.js?v=11"></script>
+  <script src="js/site-config.js?v=12"></script>
+  <script src="js/i18n.js?v=12"></script>
+  <script src="js/main.js?v=12"></script>
 </body>
 </html>
