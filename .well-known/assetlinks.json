@@ -1,0 +1,8 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "in.gurukulamarpatan.team",
+        "sha256_cert_fingerprints": ["FE:C5:F0:2A:AD:9F:2D:A6:DC:0A:EA:7A:AD:28:1B:D3:7B:BA:2E:37:10:33:B3:63:7B:D4:F9:3D:E8:45:68:A2"]
+      }
+    }]
